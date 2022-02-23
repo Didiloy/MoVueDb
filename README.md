@@ -4,8 +4,8 @@
 
     - Style : Materialize
     - Couleurs: 
-        - Bleu : #2596be
-        - Violet: #6c25be
+        - Bleu : #1e7898
+        - Violet: #561e98
         - Gris: d0d0d0
     - Framework JS : Vue.js
 
