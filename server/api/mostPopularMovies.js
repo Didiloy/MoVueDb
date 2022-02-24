@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 require('dotenv').config();
 
-//get 250 top movies 
+//get most popular movies
 const URL = `https://imdb-api.com/fr/API/MostPopularMovies/${process.env.IMDB_API_KEY}`;
 
 router.get('/', (req, res) => {

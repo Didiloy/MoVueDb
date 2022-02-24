@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 require('dotenv').config();
 
-//get 250 top movies 
+//get boxOfficeAllTime 
 const URL = `https://imdb-api.com/fr/API/BoxOfficeAllTime/${process.env.IMDB_API_KEY}`;
 
 router.get('/', (req, res) => {
