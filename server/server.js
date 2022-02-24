@@ -14,6 +14,8 @@ const inTheater = require('./api/inTheater');
 const boxOffice = require('./api/boxOffice');
 const boxOfficeAllTime = require('./api/boxOfficeAllTime');
 const search = require('./api/search');
+const searchMovie = require('./api/searchMovie');
+const searchSeries = require('./api/searchSeries');
 
 //rediriger les requete de ces urls vers les fichier
 app.use('/api/top250Movies', top250Movies);
@@ -24,6 +26,8 @@ app.use('/api/inTheater', inTheater);
 app.use('/api/boxOffice', boxOffice);
 app.use('/api/boxOfficeAllTime', boxOfficeAllTime);
 app.use('/api/search', search);
+app.use('/api/searchMovie', searchMovie);
+app.use('/api/searchSeries', searchSeries);
 
 app.listen(port, () => {
     console.log("listening on port " + port);
