@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 4000;
 
-app.use(bodyParser.json());
 app.use(cors());
 
 //J'utiliser les fichier écrits pour gérer ces requetes
@@ -15,6 +13,7 @@ const mostPopularTvs = require('./api/mostPopularTvs');
 const inTheater = require('./api/inTheater');
 const boxOffice = require('./api/boxOffice');
 const boxOfficeAllTime = require('./api/boxOfficeAllTime');
+const search = require('./api/search');
 
 //rediriger les requete de ces urls vers les fichier
 app.use('/api/top250Movies', top250Movies);
@@ -24,6 +23,7 @@ app.use('/api/mostPopularTvs', mostPopularTvs);
 app.use('/api/inTheater', inTheater);
 app.use('/api/boxOffice', boxOffice);
 app.use('/api/boxOfficeAllTime', boxOfficeAllTime);
+app.use('/api/search', search);
 
 app.listen(port, () => {
     console.log("listening on port " + port);
