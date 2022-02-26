@@ -3,15 +3,15 @@
         <ul id="nav-mobile" class="sidenav sidenav-fixed">
             <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
-                <li class="bold"><a href="about.html" class="collapsible-header waves-effect waves-teal">Abouuuuut</a></li>
-                <li class="bold"><a href="getting-started.html" class="collapsible-header waves-effect waves-teal">Getting Started</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal">CSS</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal">Components</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal">JavaScript</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal">Forms</a></li>
-                <li class="bold"><a href="mobile.html" class="collapsible-header waves-effect waves-teal">Mobile</a></li>
-                <li class="bold"><a href="showcase.html" class="collapsible-header waves-effect waves-teal">Showcase</a></li>
-                <li class="bold"><a href="themes.html" class="collapsible-header waves-effect waves-teal">Themes</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">Box office de la semaine</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">Box office</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">En salle de cinéma</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">Films les plus populaires</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">Series les plus populaires</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">rechercher des films</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">rechercher des series</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect">Top 250 des meilleurs films</a></li>
+                <li class="bold"><a  class="collapsible-header waves-effect">Top 250 des meilleurs series</a></li>
             </ul>
             </li>
             
@@ -48,7 +48,7 @@ export default {
 .sidenav-fixed{
 
     margin-top :56px !important;
-    width: 200px !important;
+    width: 250px !important;
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
 }
