@@ -15,7 +15,7 @@
   
         <!-- Defining the search bars -->
         <div class="height">
-            <input type="text" placeholder="Search..." id="searchbar">
+            <input ref="input" v-on:keyup.enter="search" type="text" placeholder="Search..." id="searchbar">
         </div>
     </nav>
 </template>
@@ -25,11 +25,23 @@
 // import M from 'materialize-css'
 // import 'materialize-css'
 // import 'materialize-css/dist/css/materialize.css'
+const axios = require('axios');
 
 export default {
-    // mounted () {
-    //     M.AutoInit()
-    // },    
+    name: "Navbar",
+    data() {
+        return {}
+    },  
+    methods: {
+        async search() {
+            axios.get(`http://localhost:4000/api/search/?q=${this.$refs.input.value}`)
+            .then((response)=> {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+    }
 }
 </script>
 
