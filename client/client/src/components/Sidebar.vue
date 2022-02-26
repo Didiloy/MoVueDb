@@ -1,31 +1,114 @@
 <template>
-    <div class="">
-        <ul id="slide-out" class="sidenav" ref="sidebar">
-            <li><div class="user-view">
-            <div class="background">
-                <img src="images/office.jpg">
-            </div>
-            <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-        </ul>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
+    <ul id="nav-mobile" class="sidenav sidenav-fixed">
+        
+        
+        <li class="bold"><a href="about.html" class="waves-effect waves-teal">Abouuuuut</a></li>
+        <li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Getting Started</a></li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal">CSS</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="color.html">Color</a></li>
+                  <li><a href="grid.html">Grid</a></li>
+                  <li><a href="helpers.html">Helpers</a></li>
+                  <li><a href="media-css.html">Media</a></li>
+                  <li><a href="pulse.html">Pulse</a></li>
+                  <li><a href="sass.html">Sass</a></li>
+                  <li><a href="shadow.html">Shadow</a></li>
+                  <li><a href="table.html">Table</a></li>
+                  <li><a href="css-transitions.html">Transitions</a></li>
+                  <li><a href="typography.html">Typography</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal">Components</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="badges.html">Badges</a></li>
+                  <li><a href="buttons.html">Buttons</a></li>
+                  <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+                  <li><a href="cards.html">Cards</a></li>
+                  <li><a href="collections.html">Collections</a></li>
+                  <li><a href="floating-action-button.html">Floating Action Button</a></li>
+                  <li><a href="footer.html">Footer</a></li>
+                  <li><a href="icons.html">Icons</a></li>
+                  <li><a href="navbar.html">Navbar</a></li>
+                  <li><a href="pagination.html">Pagination</a></li>
+                  <li><a href="preloader.html">Preloader</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold active"><a class="collapsible-header waves-effect waves-teal">JavaScript</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="auto-init.html">Auto Init</a></li>
+                  <li><a href="carousel.html">Carousel</a></li>
+                  <li><a href="collapsible.html">Collapsible</a></li>
+                  <li><a href="dropdown.html">Dropdown</a></li>
+                  <li><a href="feature-discovery.html">FeatureDiscovery</a></li>
+                  <li><a href="media.html">Media</a></li>
+                  <li><a href="modals.html">Modals</a></li>
+                  <li><a href="parallax.html">Parallax</a></li>
+                  <li><a href="pushpin.html">Pushpin</a></li>
+                  <li><a href="scrollspy.html">Scrollspy</a></li>
+                  <li class="active"><a href="sidenav.html">Sidenav</a></li>
+                  <li><a href="tabs.html">Tabs</a></li>
+                  <li><a href="toasts.html">Toasts</a></li>
+                  <li><a href="tooltips.html">Tooltips</a></li>
+                  <li><a href="waves.html">Waves</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal">Forms</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="autocomplete.html">Autocomplete</a></li>
+                  <li><a href="checkboxes.html">Checkboxes</a></li>
+                  <li><a href="chips.html">Chips</a></li>
+                  <li><a href="pickers.html">Pickers</a></li>
+                  <li><a href="radio-buttons.html">Radio Buttons</a></li>
+                  <li><a href="range.html">Range</a></li>
+                  <li><a href="select.html">Select</a></li>
+                  <li><a href="switches.html">Switches</a></li>
+                  <li><a href="text-inputs.html">Text Inputs</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold"><a href="mobile.html" class="waves-effect waves-teal">Mobile</a></li>
+        <li class="bold"><a href="showcase.html" class="waves-effect waves-teal">Showcase</a></li>
+        <li class="bold"><a href="themes.html" class="waves-effect waves-teal">Themes</a></li>
+      </ul>
 </template>
 
 <script>
+
+import M from 'materialize-css'
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.css'
+
 export default {
+    
+    data: () => ({
+            isPanelOpen: true
+    }),
+    methods: {
+        closeSidebarPanel() {
+            this.isPanelOpen = false
+        }
+    }
 
 
 }
 </script>
 
-<style>
+<style scoped>
+.sidenav-fixed{
+    margin-top :57px !important;
+    width: 200px !important;
+    
+}
 
 </style>
