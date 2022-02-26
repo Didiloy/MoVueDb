@@ -15,6 +15,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 
+
 export default {
   name: 'HomeView',
   components: {
