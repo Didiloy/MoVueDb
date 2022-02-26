@@ -63,4 +63,8 @@ export default {
     color : white !important
 }
 
+.color-purple{
+    background-color: #5F51E5 !important;
+}
+
 </style>
