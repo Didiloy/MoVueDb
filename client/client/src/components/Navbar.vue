@@ -96,6 +96,8 @@ export default {
             font-size: 15px;
             font-weight: 500;
             text-decoration: none;
+            position: relative;
+            top: -12px; left: 0px;
         }
   
         /* Setting the hover colour on the list items*/
