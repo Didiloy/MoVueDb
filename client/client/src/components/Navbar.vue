@@ -75,6 +75,7 @@ export default {
             justify-content: space-between;
             height: 56px;
             padding: 0 50px;
+            position: fixed;
         }
   
         /* Styling the logo */
