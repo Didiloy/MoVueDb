@@ -4,7 +4,7 @@
             Logo
         </div>
   
-        <div class="nav-items">
+        <div class="nav-items height">
   
             <!-- The Menu items -->
             <li><a href="#">TUTORIALS</a></li>
@@ -14,22 +14,8 @@
         </div>
   
         <!-- Defining the search bars -->
-        <div class="searchbar">
-            <input type="text" placeholder="search">
-            <div class="icon">
-                <i class="fas fa-search"></i>
-            </div>
-        </div>
-  
-        <!-- Defining the login button -->
-        <div class="licon">
-            <li>
-                <a href="#">
-                    <i class="fas fa-user-circle
-                        fa-2x" style="color: white;">
-                    </i>
-                </a>
-            </li>
+        <div class="height">
+            <input type="text" placeholder="Search..." id="searchbar">
         </div>
     </nav>
 </template>
@@ -68,13 +54,15 @@ export default {
 
     /* Styling all the elements in nav as a whole */
         nav {
-            background: #037729;
+            background-color: transparent !important;
+            background-image: url('../assets/background.jpg') !important;
+            background-size: cover;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            height: 70px;
-            padding: 0 100px;
+            height: 56px;
+            padding: 0 50px;
         }
   
         /* Styling the logo */
@@ -89,13 +77,17 @@ export default {
         nav .nav-items {
             display: flex;
             flex: 1;
-            padding: 0 0 0 200px;
+            padding: 0 0 0 33%;
+             
         }
   
         /* Styling the list items in the nav tag */
         nav .nav-items li {
             list-style: none;
             padding: 0 10px;
+            margin: 0 10px; 
+            background-color: #B94465;
+            border-radius: 10px;
         }
   
         /* Styling each list items */
@@ -108,71 +100,24 @@ export default {
   
         /* Setting the hover colour on the list items*/
           
-        nav .nav-items li a:hover {
+        nav .nav-items li:hover {
+            background-color: #19191b;
+        }
+          
+        #searchbar {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding-left: 20px;
+            background-color: #D0D0D0;
+         }
+
+         input::placeholder {
             color: #19191b;
         }
-          
-        nav .searchbar {
-            position: relative;
-        }
-  
-        /* Styling the search box where the 
-            input would be given */
-        nav .searchbar input[type="text"] {
-            border: 0;
-            padding: 0;
-            width: 0px;
-            height: 35px;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-  
-        /* Styling the search bar icon */
-        nav .searchbar .icon {
-            display: flex;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 35px;
-            height: 100%;
-            background: none;
-            border-radius: 3px;
-            color: #fff;
-            transition: all 0.5s 0.3s ease;
-        }
-          
-        nav .searchbar .icon i {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-        }
-          
-        nav .searchbar .icon.active {
-            background: #062333;
-            transition: all 0.3s ease;
-        }
-          
-        nav .searchbar input[type="text"].active {
-            width: 250px;
-            padding: 0 10px;
-            transition: all 0.5s 0.2s ease;
-        }
-          
-        nav .licon li {
-            list-style: none;
-            display: flex;
-        }
-          
-        nav .licon li a {
-            padding: 0 20px;
-        }
-  
-        /* Changing the colour of the login 
-            icon when hovered over*/
-          
-        .fa-user-circle:hover {
-            color: #0e0d0d !important;
-        }
+         .height {
+             height: 60%;
+         }
 </style>
