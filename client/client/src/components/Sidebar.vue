@@ -2,7 +2,7 @@
     <ul id="nav-mobile" class="sidenav sidenav-fixed">
         
         
-        <li class="bold"><a href="about.html" class="waves-effect waves-teal">Abouuuuut</a></li>
+        <li class="bold"><a href="about.html" class="waves-effect waves-teal color-purple">Abouuuuut</a></li>
         <li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Getting Started</a></li>
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
@@ -109,6 +109,10 @@ export default {
     margin-top :57px !important;
     width: 200px !important;
     
+}
+
+.color-purple{
+    background-color: #5F51E5 !important;
 }
 
 </style>
