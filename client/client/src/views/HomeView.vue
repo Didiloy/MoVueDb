@@ -6,10 +6,15 @@
       <br>
       <br>
       <div class="row">
-          <div class="col s3">
+          <div class="col s2">
           <Sidebar />
       </div>
-      <div class="col s9">
+      <div class="col s10">
+          <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+            
+          </div>
+
           <div class="home">
           <img alt="Vue logo" src="../assets/logo.png">
           <HelloWorld msg="Welcome to Your Vue.js App"/>
