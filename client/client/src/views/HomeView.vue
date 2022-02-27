@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     M.AutoInit(),
-    this.getMostPopularMovies().then(() => instances = M.Carousel.init(this.$refs.carousel, {numVisible: 5}))
+    this.getMostPopularMovies().then(() => M.Carousel.init(this.$refs.carousel, {numVisible: 10}))
     console.log(this.$refs.carousel)
   },
   methods: {
@@ -78,7 +78,12 @@ export default {
       await axios.get(`http://localhost:4000/api/MostPopularMovies`)
       .then((response)=> {
                 // console.log(response.data);
-                return (this.mostPopularMovies = response.data);
+                //Couper la reponse pour ne garder que les 10 plus populaires car trop d'entrées sinon
+                let slicedMostPopularMovies = {};
+                for (let i = 0; i <= 10; i++) {
+                  slicedMostPopularMovies[i] = response.data[i];
+                }
+                return (this.mostPopularMovies = slicedMostPopularMovies);
             }).catch((error) => {
                 console.log(error);
             });
@@ -88,7 +93,4 @@ export default {
 </script>
 <style scoped>
 
-.spacer {
-
-}
 </style>
