@@ -1,6 +1,8 @@
 const KEY = "k_ifxrev3b";
 const KEY2 = "k_orizm94k";
 const KEY3 = "k_v4ayy42d";
+const KEY4 = "k_4c2c2kyg";
+const KEY5 = "k_z25r6v1f";
 const IMDB_BASE_URL = "https://imdb-api.com/en/API"
 const axios = require('axios');
 
@@ -10,7 +12,7 @@ const axios = require('axios');
  */
 export async function getCategorie(categorie) {
     return new Promise((resolve, reject) => {
-        axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY}`)
+        axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY5}`)
             .then(function(response) {
                 resolve(response.data.items);
             })
@@ -27,7 +29,7 @@ export async function getCategorie(categorie) {
  */
 export async function searchApi(searchType, query) {
     return new Promise((resolve, reject) => {
-        fetch(`${IMDB_BASE_URL}/${searchType}/${KEY}/${query}`)
+        fetch(`${IMDB_BASE_URL}/${searchType}/${KEY5}/${query}`)
             .then(function(response) {
                 resolve(response.data.results);
             })

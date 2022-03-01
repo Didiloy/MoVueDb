@@ -10,7 +10,7 @@
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
                 </div>
                 <div class="carousel-fixed-item left">
-                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> lt </a>
                 </div>
                 <div v-for="movie in boxOfficeMovies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
