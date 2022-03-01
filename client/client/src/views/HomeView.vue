@@ -11,7 +11,10 @@
       </div>
       <div class="col s10">
           <CarouselMostPopularMovies />
+          <br>
           <CarouselBoxOfficeSemaine />
+          <br>
+          <CarouselBoxOfficeAllTime />
       </div>
       </div>
       <br>
@@ -27,6 +30,7 @@ import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import CarouselMostPopularMovies from '@/components/CarouselMostPopularMovies.vue'
 import CarouselBoxOfficeSemaine from '@/components/CarouselBoxOfficeSemaine.vue'
+import CarouselBoxOfficeAllTime from '@/components/CarouselBoxOfficeAllTime.vue'
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
@@ -47,6 +51,7 @@ export default {
     Sidebar,
     CarouselMostPopularMovies,
     CarouselBoxOfficeSemaine,
+    CarouselBoxOfficeAllTime
   },
   created(){
     
