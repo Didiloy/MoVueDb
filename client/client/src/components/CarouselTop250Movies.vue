@@ -47,7 +47,9 @@ export default {
         M.AutoInit(),
         this.getTop250Movies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,})
+          fullWidth: true,});
+          this.instance.next(3);
+          this.instance.prev(2);
           })
     },
     methods: {

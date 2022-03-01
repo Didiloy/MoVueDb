@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>{{films_top}}</h2>
-        <div v-if="computedTop250Movies == null">
+        <h2>{{mostPopularTvs_title}}</h2>
+        <div v-if="computedMostPopularTvs == null">
             <p>Recherche en cours...</p>
         </div>
         <div v-else>
@@ -12,7 +12,7 @@
                 <div class="carousel-fixed-item left">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
                 </div>
-                <div v-for="movie in top250Movies" v-bind:key="movie.id" class="carousel-item card">
+                <div v-for="movie in mostPopularTvs" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
@@ -30,22 +30,22 @@ import 'materialize-css/dist/css/materialize.css'
 import {getCategorie} from '../api/api.js'
 
 export default {
-    name :'CarouselTop250Series',
+    name :'CarouselMostPopularTvs',
     data() {
         return {
-            top250Movies: null ,
-            films_top: "Top 250 des meilleures series",
+            mostPopularTvs: null ,
+            mostPopularTvs_title: "Séries les plus populaires",
             instance: null
         }
     },
     computed:{
-        computedTop250Movies(){
-            return this.top250Movies
+        computedMostPopularTvs(){
+            return this.mostPopularTvs
         }
     },
     mounted() {
         M.AutoInit(),
-        this.getTop250Movies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
+        this.getMostPopularTvs().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
           fullWidth: true,});
           this.instance.next(3);
@@ -53,10 +53,10 @@ export default {
           })
     },
     methods: {
-    async getTop250Movies(){
-      this.top250Movies = [];
-      await getCategorie("Top250TVs").then((movies) =>{
-        return (this.top250Movies = movies);
+    async getMostPopularTvs(){
+      this.mostPopularTvs = [];
+      await getCategorie("MostPopularTvs").then((movies) =>{
+        return (this.mostPopularTvs = movies);
       });
     },
     nextCarousel(){
