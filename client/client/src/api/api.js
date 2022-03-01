@@ -1,5 +1,5 @@
-const KEY = "k_ifxrev3b";
-const KEY2 = "k_orizm94k";
+const KEY2 = "k_ifxrev3b";
+const KEY = "k_orizm94k";
 const KEY3 = "k_v4ayy42d";
 const KEY4 = "k_4c2c2kyg";
 const KEY5 = "k_z25r6v1f";
