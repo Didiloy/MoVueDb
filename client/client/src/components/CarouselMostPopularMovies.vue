@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <h2>{{films_populaires}}</h2>
     <div v-if="computedMostPopularMovies == null">
             <p>Recherche en cours...</p>
           </div>
@@ -11,6 +13,7 @@
               </div>
             </div>
           </div>
+      </div>
       </div>
 </template>
 
@@ -25,6 +28,7 @@ export default {
     data() {
         return {
             mostPopularMovies: null ,
+            films_populaires: "Films les plus populaires",
         }
     },
     computed:{
@@ -34,7 +38,7 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getMostPopularMovies().then(() => M.Carousel.init(this.$refs.carousel, {numVisible: 10}))
+        this.getMostPopularMovies().then(() => M.Carousel.init(this.$refs.carousel, {numVisible: 10,}))
         console.log(this.$refs.carousel)
     },
     methods: {
