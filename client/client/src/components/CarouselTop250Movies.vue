@@ -6,6 +6,12 @@
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
+                 <div class="carousel-fixed-item right">
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
+                </div>
+                <div class="carousel-fixed-item left">
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
+                </div>
                 <div v-for="movie in top250Movies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
@@ -29,6 +35,7 @@ export default {
         return {
             top250Movies: null ,
             films_top: "Top 250 des meilleurs films",
+            instance: null
         }
     },
     computed:{
@@ -38,10 +45,10 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getTop250Movies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getTop250Movies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,}))
-        console.log(this.$refs.carousel)
+          fullWidth: true,})
+          })
     },
     methods: {
     async getTop250Movies(){
@@ -49,6 +56,12 @@ export default {
       await getCategorie("Top250Movies").then((movies) =>{
         return (this.top250Movies = movies);
       });
+    },
+    nextCarousel(){
+        this.instance.next(3);
+    },
+    prevCarousel(){
+        this.instance.prev(3);
     }
   }
 }
@@ -59,5 +72,14 @@ export default {
 .carousel-item{
     margin: 10px;
     padding: 10px;
+}
+
+#btn-carousel {
+    border-radius: 20px;
+    background-color: #5F51E5 !important;
+    color: #5F51E5 ;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 120px;
 }
 </style>

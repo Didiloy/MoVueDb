@@ -6,6 +6,12 @@
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
+                <div class="carousel-fixed-item right">
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
+                </div>
+                <div class="carousel-fixed-item left">
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
+                </div>
                 <div v-for="movie in boxOfficeMovies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
@@ -29,6 +35,7 @@ export default {
         return {
             boxOfficeMovies: null ,
             films_box_office: "Box Office de la semaine",
+            instance: null
         }
     },
     computed:{
@@ -38,10 +45,10 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getBoxOfficeWeekMovies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getBoxOfficeWeekMovies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,}))
-        console.log(this.$refs.carousel)
+          fullWidth: true,})
+          })
     },
     methods: {
     async getBoxOfficeWeekMovies(){
@@ -49,6 +56,12 @@ export default {
       await getCategorie("BoxOffice").then((movies) =>{
         return (this.boxOfficeMovies = movies);
       });
+    },
+    nextCarousel(){
+        this.instance.next(3);
+    },
+    prevCarousel(){
+        this.instance.prev(3);
     }
   }
 }
@@ -59,5 +72,14 @@ export default {
 .carousel-item{
     margin: 10px;
     padding: 10px;
+}
+
+#btn-carousel {
+    border-radius: 20px;
+    background-color: #5F51E5 !important;
+    color: #5F51E5 ;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 120px;
 }
 </style>

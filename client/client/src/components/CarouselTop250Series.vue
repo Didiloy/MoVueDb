@@ -10,7 +10,7 @@
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
                 </div>
                 <div class="carousel-fixed-item left">
-                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel"> &lt </a>
+                    <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
                 </div>
                 <div v-for="movie in top250Movies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
@@ -35,6 +35,7 @@ export default {
         return {
             top250Movies: null ,
             films_top: "Top 250 des meilleures series",
+            instance: null
         }
     },
     computed:{
@@ -44,10 +45,10 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getTop250Movies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getTop250Movies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,}))
-        console.log(this.$refs.carousel)
+          fullWidth: true,})
+          })
     },
     methods: {
     async getTop250Movies(){
@@ -57,10 +58,10 @@ export default {
       });
     },
     nextCarousel(){
-        this.$refs.carousel.next();
+        this.instance.next(3);
     },
     prevCarousel(){
-        this.$refs.carousel.prev();
+        this.instance.prev(3);
     }
   }
 }
