@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h2>{{films_box_office}}</h2>
-        <div v-if="computedBoxOfficeAllTime == null">
+        <h2>{{films_top}}</h2>
+        <div v-if="computedTop250Movies == null">
             <p>Recherche en cours...</p>
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
-                <div v-for="movie in boxOfficeMoviesAllTime" v-bind:key="movie.id" class="carousel-item card">
+                <div v-for="movie in top250Movies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
@@ -24,30 +24,30 @@ import 'materialize-css/dist/css/materialize.css'
 import {getCategorie} from '../api/api.js'
 
 export default {
-    name :'CarouselBoxOfficeSemaine',
+    name :'CarouselTop250Movies',
     data() {
         return {
-            boxOfficeMoviesAllTime: null ,
-            films_box_office: "Meilleurs films du Box Office",
+            top250Movies: null ,
+            films_top: "Top 250 des meilleurs films",
         }
     },
     computed:{
-        computedBoxOfficeAllTime(){
-            return this.boxOfficeMoviesAllTime
+        computedTop250Movies(){
+            return this.top250Movies
         }
     },
     mounted() {
         M.AutoInit(),
-        this.getBoxOfficeAllTimeMovies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getTop250Movies().then(() => M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
           fullWidth: true,}))
         console.log(this.$refs.carousel)
     },
     methods: {
-    async getBoxOfficeAllTimeMovies(){
-      this.boxOfficeMoviesAllTime = [];
-      await getCategorie("BoxOfficeAllTime").then((movies) =>{
-        return (this.boxOfficeMoviesAllTime = movies);
+    async getTop250Movies(){
+      this.top250Movies = [];
+      await getCategorie("Top250Movies").then((movies) =>{
+        return (this.top250Movies = movies);
       });
     }
   }

@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h2>{{films_box_office}}</h2>
-        <div v-if="computedBoxOfficeAllTime == null">
+        <h2>{{films_in_theater}}</h2>
+        <div v-if="computedInTheaterMovies == null">
             <p>Recherche en cours...</p>
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
-                <div v-for="movie in boxOfficeMoviesAllTime" v-bind:key="movie.id" class="carousel-item card">
+                <div v-for="movie in inTheatherMovies" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
@@ -24,30 +24,30 @@ import 'materialize-css/dist/css/materialize.css'
 import {getCategorie} from '../api/api.js'
 
 export default {
-    name :'CarouselBoxOfficeSemaine',
+    name :'CarouselInTheater',
     data() {
         return {
-            boxOfficeMoviesAllTime: null ,
-            films_box_office: "Meilleurs films du Box Office",
+            inTheatherMovies: null ,
+            films_in_theater: "Films au cinéma",
         }
     },
     computed:{
-        computedBoxOfficeAllTime(){
-            return this.boxOfficeMoviesAllTime
+        computedInTheaterMovies(){
+            return this.inTheatherMovies
         }
     },
     mounted() {
         M.AutoInit(),
-        this.getBoxOfficeAllTimeMovies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getInTheaterMovies().then(() => M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
           fullWidth: true,}))
         console.log(this.$refs.carousel)
     },
     methods: {
-    async getBoxOfficeAllTimeMovies(){
-      this.boxOfficeMoviesAllTime = [];
-      await getCategorie("BoxOfficeAllTime").then((movies) =>{
-        return (this.boxOfficeMoviesAllTime = movies);
+    async getInTheaterMovies(){
+      this.inTheatherMovies = [];
+      await getCategorie("InTheaters").then((movies) =>{
+        return (this.inTheatherMovies = movies);
       });
     }
   }

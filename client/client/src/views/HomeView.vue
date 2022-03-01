@@ -15,6 +15,10 @@
           <CarouselBoxOfficeSemaine />
           <br>
           <CarouselBoxOfficeAllTime />
+          <br>
+          <CarouselInTheater />
+          <br>
+          <CarouselTop250Movies />
       </div>
       </div>
       <br>
@@ -31,6 +35,8 @@ import Sidebar from '@/components/Sidebar.vue'
 import CarouselMostPopularMovies from '@/components/CarouselMostPopularMovies.vue'
 import CarouselBoxOfficeSemaine from '@/components/CarouselBoxOfficeSemaine.vue'
 import CarouselBoxOfficeAllTime from '@/components/CarouselBoxOfficeAllTime.vue'
+import CarouselInTheater from '@/components/CarouselInTheater.vue'
+import CarouselTop250Movies from '@/components/CarouselTop250Movies.vue'
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
@@ -51,7 +57,9 @@ export default {
     Sidebar,
     CarouselMostPopularMovies,
     CarouselBoxOfficeSemaine,
-    CarouselBoxOfficeAllTime
+    CarouselBoxOfficeAllTime,
+    CarouselInTheater,
+    CarouselTop250Movies
   },
   created(){
     
