@@ -3,15 +3,15 @@
             <p>Recherche en cours...</p>
           </div>
           <div v-else>
-            <div ref="carousel" class="carousel">
-              <div v-for="movie in mostPopularMovies" v-bind:key="movie.id" class="carousel-item card">
-                <div class="card-image">
-                  <img v-bind:src="movie.image">
-                  <span class="card-title">{{movie.title}}</span>
-                </div>
+          <div ref="carousel" class="carousel">
+            <div v-for="movie in mostPopularMovies" v-bind:key="movie.id" class="carousel-item card">
+              <div class="card-image">
+                <img v-bind:src="movie.image">
+                <span class="card-title">{{movie.title}}</span>
               </div>
             </div>
           </div>
+      </div>
 </template>
 
 <script>
@@ -40,19 +40,9 @@ export default {
     methods: {
     async getMostPopularMovies(){
       this.mostPopularMovies = {};
-      // await axios.get(`http://localhost:4000/api/MostPopularMovies`)
-      // .then((response)=> {
-      //           // console.log(response.data);
-      //           //Couper la reponse pour ne garder que les 10 plus populaires car trop d'entrées sinon
-      //           let slicedMostPopularMovies = {};
-      //           for (let i = 0; i <= 10; i++) {
-      //             slicedMostPopularMovies[i] = response.data[i];
-      //           }
-      //           return (this.mostPopularMovies = slicedMostPopularMovies);
-      //       }).catch((error) => {
-      //           console.log(error);
-      //       });
-      await getCategorie("MostPopularMovies");
+      await getCategorie("MostPopularMovies").then((movies) =>{
+        return (this.mostPopularMovies = movies);
+      });
     }
   }
 }

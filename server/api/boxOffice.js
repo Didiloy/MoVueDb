@@ -9,6 +9,7 @@ const URL = `https://imdb-api.com/fr/API/BoxOffice/${process.env.IMDB_API_KEY}`;
 router.get('/', (req, res) => {
     axios.get(URL)
         .then(function(response) {
+            
             res.send(response.data.items);
         })
         .catch((error) => {
