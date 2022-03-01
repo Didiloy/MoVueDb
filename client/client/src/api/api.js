@@ -1,5 +1,6 @@
-const KEY = "k_v4ayy42d";
-const KEY2 = "k_orizm94k"
+const KEY = "k_ifxrev3b";
+const KEY2 = "k_orizm94k";
+const KEY3 = "k_v4ayy42d";
 const IMDB_BASE_URL = "https://imdb-api.com/en/API"
 const axios = require('axios');
 

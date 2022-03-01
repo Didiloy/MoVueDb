@@ -19,6 +19,8 @@
           <CarouselInTheater />
           <br>
           <CarouselTop250Movies />
+          <br>
+          <CarouselTop250Series />
       </div>
       </div>
       <br>
@@ -37,6 +39,7 @@ import CarouselBoxOfficeSemaine from '@/components/CarouselBoxOfficeSemaine.vue'
 import CarouselBoxOfficeAllTime from '@/components/CarouselBoxOfficeAllTime.vue'
 import CarouselInTheater from '@/components/CarouselInTheater.vue'
 import CarouselTop250Movies from '@/components/CarouselTop250Movies.vue'
+import CarouselTop250Series from '@/components/CarouselTop250Series.vue'
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
@@ -59,7 +62,8 @@ export default {
     CarouselBoxOfficeSemaine,
     CarouselBoxOfficeAllTime,
     CarouselInTheater,
-    CarouselTop250Movies
+    CarouselTop250Movies,
+    CarouselTop250Series
   },
   created(){
     
