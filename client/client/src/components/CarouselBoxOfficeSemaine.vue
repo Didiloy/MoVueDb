@@ -45,8 +45,7 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getBoxOfficeWeekMovies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
-          numVisible: 10, 
+        this.getBoxOfficeWeekMovies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, { 
           fullWidth: true,})
           })
     },

@@ -29,6 +29,7 @@ export default {
         return {
             inTheatherMovies: null ,
             films_in_theater: "Films au cinéma",
+            instance: null
         }
     },
     computed:{
@@ -38,10 +39,12 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getInTheaterMovies().then(() => M.Carousel.init(this.$refs.carousel, {
+        this.getInTheaterMovies().then(() => { this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,}))
-        console.log(this.$refs.carousel)
+          fullWidth: true,});
+        this.instance.next(3);
+        this.instance.prev(2);
+        })
     },
     methods: {
     async getInTheaterMovies(){
