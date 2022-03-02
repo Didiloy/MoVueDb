@@ -19,9 +19,18 @@
                     </div>
                 </div> -->
                 <div>
-                    <CardFilm2 v-for="movie in mostPopularTvs" v-bind:key="movie.id" :name="movie.title" :image="movie.image" />
+                    <!-- <CardFilm2 class="carousel-item" v-for="movie in mostPopularTvs" v-bind:key="movie.id" :name="movie.title" :image="movie.image" /> -->
                 </div>
             </div>
+            <div class="row">
+                <div class="col s12 l3">
+                    <CardFilm2 class="carousel-item" :name="mostPopularTvs[0].title" :image="mostPopularTvs[0].image" :color="B94465" />
+                </div>
+                <div class="col s12 l3">
+                    <CardFilm2 class="carousel-item" :name="mostPopularTvs[1].title" :image="mostPopularTvs[1].image" :color="AF51E5" />
+                </div>
+            </div>
+            
         </div>
       </div>
 </template>

@@ -1,28 +1,31 @@
 <template>
+  <div class="conteneur">
     <div class="card">
-  <div class="card-image" :style="image">
-      <img :src="image" alt="">
-  </div>
-  <div class="card-text">
-    <span class="date">4 days ago</span>
-    <h2>{{name}}</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
-  </div>
-  <div class="card-stats">
-    <div class="stat">
-      <div class="value">4<sup>m</sup></div>
-      <div class="type">read</div>
+      <div class="card-image" :style="imageCard">
+          <!-- <img :src="image" alt=""> -->
+      </div>
+      <div class="card-text">
+          <span class="date">4 days ago</span>
+          <h2>{{name}}</h2>
+          <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
+      </div>
+      <div class="card-stats">
+        <div class="stat">
+          <div class="value">4<sup>m</sup></div>
+          <div class="type">read</div>
+        </div>
+        <div class="stat border">
+          <div class="value">5123</div>
+          <div class="type">views</div>
+        </div>
+        <div class="stat">
+          <div class="value">32</div>
+          <div class="type">comments</div>
+        </div>
+      </div>
     </div>
-    <div class="stat border">
-      <div class="value">5123</div>
-      <div class="type">views</div>
-    </div>
-    <div class="stat">
-      <div class="value">32</div>
-      <div class="type">comments</div>
-    </div>
   </div>
-</div>
+    
 </template>
 
 <script>
@@ -40,12 +43,31 @@ export default {
         name:{
             required : true,
             type:String
+        },
+        color: {
+          required: true,
+          type:String
         }
+    },
+    computed: {
+      imageCard(){
+        return { 
+          '--background-image' : `url(${this.image})`,
+        };
+      },
+      computedColor(){
+        return { 
+          '--color': `#${this.color}`
+        };
+      }
     }
 }
 </script>
 
 <style scoped>
+.conteneur {
+  width: 380px
+}
 .card {
   display: grid;
   grid-template-columns: 300px;
@@ -74,7 +96,7 @@ export default {
 
 .card-image {
   grid-area: image;
-  background: url();
+  background: var(--background-image);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-size: cover;
@@ -86,6 +108,7 @@ export default {
 }
 .card-text .date {
   color: rgb(255, 7, 110);
+  /* color: var(color); */
   font-size:13px;
 }
 .card-text p {
@@ -106,6 +129,7 @@ export default {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background: rgb(255, 7, 110);
+  /* background: var(color); */
 }
 
 .card-stats .stat {
@@ -118,7 +142,7 @@ export default {
 }
 
 .card:hover {
-  transform: scale(1.15);
+  transform: scale(1.05);
   box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }
 </style>
