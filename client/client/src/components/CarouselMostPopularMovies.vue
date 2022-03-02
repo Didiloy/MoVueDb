@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .carousel .carousel-item{
-  width: 300px;
+  width: 280px;
   height: 100%;
   
 }

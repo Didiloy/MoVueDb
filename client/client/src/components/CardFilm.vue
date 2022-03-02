@@ -1,7 +1,13 @@
 <template>
+
     <div class="card">
-        <h3 class="name">{{name}}</h3>
-        <img :src="src" class="image">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" :src="src">
+        </div>
+        <div class="card-title">
+            <span class="card-title activator grey-text text-darken-4">{{name}}</span>
+        </div>
+        
     </div>
 </template>
 
@@ -36,19 +42,19 @@ export default {
     margin-top: 0px;
     cursor: pointer;
 }
-.card :hover{
-    background-color: #7F74EA;
-}
+
 .card :active{
-    transform: scale(.97) rotate(1deg);
+    
 }
-.name{
+.card .name{
     font-size: 30px;
     
 }
-.image{
-    margin-top: 20px;
-    width: 90% !important;
-    height: 70% !important;
+.card-image{
+    height: 320px;
+    width: 240px;
+    border-radius: 10px;
+    
 }
+
 </style>
