@@ -12,7 +12,7 @@ const axios = require('axios');
  */
 export async function getCategorie(categorie) {
     return new Promise((resolve, reject) => {
-        axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY5}`)
+        axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY4}`)
             .then(function(response) {
                 resolve(response.data.items);
             })
@@ -29,7 +29,7 @@ export async function getCategorie(categorie) {
  */
 export async function searchApi(searchType, query) {
     return new Promise((resolve, reject) => {
-        fetch(`${IMDB_BASE_URL}/${searchType}/${KEY5}/${query}`)
+        fetch(`${IMDB_BASE_URL}/${searchType}/${KEY4}/${query}`)
             .then(function(response) {
                 resolve(response.data.results);
             })
