@@ -14,15 +14,16 @@
           <br>
           <CarouselMostPopularTvs />
           <br>
-          <CarouselBoxOfficeSemaine />
-          <br>
-          <CarouselBoxOfficeAllTime />
-          <br>
-          <CarouselInTheater />
-          <br>
           <CarouselTop250Movies />
           <br>
           <CarouselTop250Series />
+          <br>
+          <CarouselBoxOfficeSemaine />
+          <br>
+          <CarouselInTheater />
+          <br>
+          <CarouselBoxOfficeAllTime />
+
       </div>
       </div>
       <br>

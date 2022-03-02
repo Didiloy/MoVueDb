@@ -6,7 +6,13 @@
           </div>
           <div v-else>
             <Modal ref="modal"/>
-          <div ref="carousel" class="carousel">
+          <div ref="carousel" class="carousel ">
+            <div class="carousel-fixed-item right">
+                <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
+            </div>
+            <div class="carousel-fixed-item left">
+                <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
+            </div>
             <CardFilm v-for="movie in mostPopularMovies" v-bind:key="movie" :src="movie.image" :name="movie.title" class="carousel-item card" @click="open"/>
           </div>
       </div>
@@ -31,7 +37,8 @@ export default {
         return {
             mostPopularMovies: null ,
             films_populaires: "Films les plus populaires",
-            hover : false
+            hover : false,
+            instance: null
         }
     },
     computed:{
@@ -41,20 +48,30 @@ export default {
     },
     mounted() {
         M.AutoInit(),
-        this.getMostPopularMovies().then(() => M.Carousel.init(this.$refs.carousel, {numVisible: 10,}))
-        console.log(this.$refs.carousel)
+        this.getMostPopularMovies().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
+          numVisible: 10,
+          fullWidth: false, 
+          });
+          this.instance.next(3);
+          this.instance.prev(2);
+          })
     },
     methods: {
     async getMostPopularMovies(){
       this.mostPopularMovies = {};
       await getCategorie("MostPopularMovies").then((movies) =>{
-        console.log(movies)
         return (this.mostPopularMovies = movies);
       });
 
     },
     open(){
       this.$refs.modal.show()
+    },
+    nextCarousel(){
+        this.instance.next(1);
+    },
+    prevCarousel(){
+        this.instance.prev(1);
     }
 
   }
@@ -66,6 +83,16 @@ export default {
   width: 280px;
   height: 100%;
   
+}
+
+#btn-carousel {
+    border-radius: 20px;
+    /* background-color: #5F51E5 !important; */
+    background-color: #B94465 !important;
+    color: #5F51E5 ;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 120px;
 }
 
 
