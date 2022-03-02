@@ -6,21 +6,18 @@
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
-                <div class="carousel-fixed-item right">
+                <!-- <div class="carousel-fixed-item right">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
                 </div>
                 <div class="carousel-fixed-item left">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
                 </div>
-                <!-- <div v-for="movie in mostPopularTvs" v-bind:key="movie.id" class="carousel-item card">
+                <div v-for="movie in mostPopularTvs" v-bind:key="movie.id" class="carousel-item card">
                     <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
                     </div>
                 </div> -->
-                <div>
-                    <!-- <CardFilm2 class="carousel-item" v-for="movie in mostPopularTvs" v-bind:key="movie.id" :name="movie.title" :image="movie.image" /> -->
-                </div>
             </div>
             <div class="row">
                 <div class="col s12 l3">

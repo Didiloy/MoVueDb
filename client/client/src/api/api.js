@@ -32,7 +32,7 @@ export async function searchApi(searchType, query) {
     return new Promise((resolve, reject) => {
         fetch(`${IMDB_BASE_URL}/${searchType}/${KEY}/${query}`)
             .then(function(response) {
-                resolve(response.data.results);
+                resolve(response.json());
             })
             .catch((error) => {
                 reject(error.message)

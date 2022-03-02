@@ -26,6 +26,7 @@
 // import 'materialize-css'
 // import 'materialize-css/dist/css/materialize.css'
 const axios = require('axios');
+import {searchApi} from '../api/api.js'
 
 export default {
     name: "Navbar",
@@ -34,9 +35,8 @@ export default {
     },  
     methods: {
         async search() {
-            axios.get(`http://localhost:4000/api/search/?q=${this.$refs.input.value}`)
-            .then((response)=> {
-                console.log(response.data);
+            searchApi('Search', this.$refs.input.value).then((response)=> {
+               console.log(response.results);
             }).catch((error) => {
                 console.log(error);
             });
