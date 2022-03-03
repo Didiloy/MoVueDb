@@ -57,24 +57,24 @@ export default {
           })
     },
     methods: {
-    async getMostPopularMovies(){
-      this.mostPopularMovies = {};
-      await getCategorie("MostPopularMovies").then((movies) =>{
-        return (this.mostPopularMovies = movies);
-      });
+      async getMostPopularMovies(){
+        this.mostPopularMovies = [];
+        await getCategorie("MostPopularMovies").then((movies) =>{
+          return (this.mostPopularMovies = movies);
+        });
 
-    },
-    open(){
-      this.$refs.modal.show()
-    },
-    nextCarousel(){
-        this.instance.next(1);
-    },
-    prevCarousel(){
-        this.instance.prev(1);
+      },
+      open(){
+        this.$refs.modal.show()
+      },
+      nextCarousel(){
+          this.instance.next(1);
+      },
+      prevCarousel(){
+          this.instance.prev(1);
+      }
+
     }
-
-  }
 }
 </script>
 

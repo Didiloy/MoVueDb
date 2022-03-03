@@ -6,28 +6,21 @@
         </div>
         <div v-else>
             <div ref="carousel" class="carousel">
-                <!-- <div class="carousel-fixed-item right">
+                 <div class="carousel-fixed-item right">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="nextCarousel">></a>
                 </div>
                 <div class="carousel-fixed-item left">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
                 </div>
-                <div v-for="movie in mostPopularTvs" v-bind:key="movie.id" class="carousel-item card">
-                    <div class="card-image">
+                
+                <div v-for="(movie, index) in mostPopularTvs" v-bind:key="movie.id" class="carousel-item">
+                    <!-- <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
-                    </div>
-                </div> -->
-            </div>
-            <div class="row">
-                <div class="col s12 l3">
-                    <CardFilm2 class="carousel-item" :name="mostPopularTvs[0].title" :image="mostPopularTvs[0].image" :color="B94465" />
-                </div>
-                <div class="col s12 l3">
-                    <CardFilm2 class="carousel-item" :name="mostPopularTvs[1].title" :image="mostPopularTvs[1].image" :color="AF51E5" />
+                    </div> -->
+                    <CardFilm2 class="" :name="movie.title" :image="movie.image" :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
                 </div>
             </div>
-            
         </div>
       </div>
 </template>
@@ -45,7 +38,9 @@ export default {
         return {
             mostPopularTvs: null ,
             mostPopularTvs_title: "Séries les plus populaires",
-            instance: null
+            instance: null,
+            roseColor: "B94465",
+            bleuColor: "5F51E5",
         }
     },
     computed:{
@@ -57,25 +52,26 @@ export default {
         M.AutoInit(),
         this.getMostPopularTvs().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
           numVisible: 10, 
-          fullWidth: true,});
+          fullWidth: true,
+          });
           this.instance.next(3);
           this.instance.prev(2);
           })
     },
     methods: {
-    async getMostPopularTvs(){
-      this.mostPopularTvs = [];
-      await getCategorie("MostPopularTvs").then((movies) =>{
-        return (this.mostPopularTvs = movies);
-      });
+        async getMostPopularTvs(){
+        this.mostPopularTvs = [];
+        await getCategorie("MostPopularTvs").then((movies) =>{
+            return (this.mostPopularTvs = movies);
+        });
+        },
+        nextCarousel(){
+            this.instance.next(3);
+        },
+        prevCarousel(){
+            this.instance.prev(3);
+        }
     },
-    nextCarousel(){
-        this.instance.next(3);
-    },
-    prevCarousel(){
-        this.instance.prev(3);
-    }
-  },
   components:{
       CardFilm2
   }
@@ -84,9 +80,15 @@ export default {
 
 <style scoped>
 
+.carousel {
+    height: 500px !important;
+}
+
 .carousel-item{
-    margin: 10px;
-    padding: 10px;
+    /* margin: 10px;
+    padding: 10px; */
+    height: 450px !important;
+    width: 100px !important;
 }
 
 #btn-carousel {

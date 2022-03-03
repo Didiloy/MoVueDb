@@ -1,14 +1,14 @@
-const KEY2 = "k_ifxrev3b";
+const KEY = "k_ifxrev3b";
 const KEY3 = "k_orizm94k";
 const KEY6 = "k_v4ayy42d";
 const KEY4 = "k_4c2c2kyg";
 const KEY5 = "k_z25r6v1f";
-const KEY = "k_d0coomyh";
+const KEY2 = "k_d0coomyh";
 const IMDB_BASE_URL = "https://imdb-api.com/en/API"
 const axios = require('axios');
 
 /**
- * categorie : ["Top250Movies", "Top250Tvs", "MostPopularMovies", "MostPopularTvs", "InTheaters", "BoxOffice", "BoxOfficeAllTime"]
+ * @param{string} categorie - "Top250Movies", "Top250Tvs", "MostPopularMovies", "MostPopularTvs", "InTheaters", "BoxOffice", "BoxOfficeAllTime"
  * Function that return an object with movies of the specified categories 
  */
 export async function getCategorie(categorie) {
@@ -24,8 +24,8 @@ export async function getCategorie(categorie) {
 }
 
 /**
- * searchType : ["Search", "SearchTitle", "SearchMovie", "SearchSeries"]
- * query : The movie or serie you want to search
+ * @param{string} searchType - "Search", "SearchTitle", "SearchMovie", "SearchSeries"
+ * @param{string} query - The movie or serie you want to search
  * Function that return an object with movies of the specified type of search 
  */
 export async function searchApi(searchType, query) {

@@ -1,15 +1,14 @@
 <template>
   <div class="conteneur">
-    <div class="card">
-      <div class="card-image" :style="imageCard">
-          <!-- <img :src="image" alt=""> -->
+    <div class="carte">
+      <div class="carte-image" :style="imageCard">
       </div>
       <div class="card-text">
           <span class="date">4 days ago</span>
           <h2>{{name}}</h2>
           <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
       </div>
-      <div class="card-stats">
+      <div class="card-stats" :style="computedColor">
         <div class="stat">
           <div class="value">4<sup>m</sup></div>
           <div class="type">read</div>
@@ -44,7 +43,7 @@ export default {
             required : true,
             type:String
         },
-        color: {
+        card_stat_color: {
           required: true,
           type:String
         }
@@ -57,7 +56,7 @@ export default {
       },
       computedColor(){
         return { 
-          '--color': `#${this.color}`
+          '--color': `#${this.card_stat_color}`
         };
       }
     }
@@ -66,12 +65,12 @@ export default {
 
 <style scoped>
 .conteneur {
-  width: 380px
+  width: 360px
 }
-.card {
+.carte {
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: 210px 210px 80px;
+  grid-template-rows: 210px 150px 60px;
   grid-template-areas: "image" "text" "stats";
   border-radius: 18px;
   background: white;
@@ -84,7 +83,7 @@ export default {
   margin:30px;
 }
 
-.card-image {
+.carte-image {
   grid-area: image;
 }
 .card-text {
@@ -94,7 +93,7 @@ export default {
   grid-area: stats; 
 }
 
-.card-image {
+.carte-image {
   grid-area: image;
   background: var(--background-image);
   border-top-left-radius: 15px;
@@ -128,8 +127,8 @@ export default {
   grid-template-rows: 1fr;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background: rgb(255, 7, 110);
-  /* background: var(color); */
+  /* background: rgb(255, 7, 110); */
+  background: var(--color);
 }
 
 .card-stats .stat {
