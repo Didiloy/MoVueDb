@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-      </div>
+    </div>
 </template>
 
 <script>
@@ -51,7 +51,7 @@ export default {
     mounted() {
         M.AutoInit(),
         this.getMostPopularTvs().then(() => {this.instance = M.Carousel.init(this.$refs.carousel, {
-          numVisible: 10, 
+        //   numVisible: 10, 
           fullWidth: true,
           });
           this.instance.next(3);
