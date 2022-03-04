@@ -17,7 +17,14 @@
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
                     </div> -->
-                    <CardFilm2 class="" :name="movie.title" :image="movie.image" :date="movie.year" :crew="movie.crew" :numNotes="movie.imDbRatingCount" :note="movie.imDbRating" :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
+                    <CardFilm2 class="" 
+                      :name="movie.title" 
+                      :image="movie.image" 
+                      :date="movie.year" 
+                      :note="movie.imDbRating" 
+                      :numNotes="movie.imDbRatingCount" 
+                      :crew="movie.crew" 
+                      :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
                 </div>
             </div>
         </div>
