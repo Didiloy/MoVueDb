@@ -1,26 +1,24 @@
 <template>
   <div class="background">
-      <div class="row">
-        <Navbar />
-      </div>
-      <br>
-      <br>
-      <div class="row">
-            <div class="col s2">
-                <Sidebar />
+        <div class="row">
+            <Navbar />
+        </div>
+        <br>
+        <br>
+        <Sidebar />
+
+        <div class="main">
+            {{name}}
+            <div v-if="computedMovies == null">
+                <p>Recherche en cours...</p>
             </div>
-            <div class="col s10">
-                {{name}}
-                <div v-if="computedMovies == null">
-                    <p>Recherche en cours...</p>
-                </div>
-                <div v-else> 
-                    <!-- {{movies.image}} -->
-                    <img :src="movies.image" alt="movie picture">
-                    {{id}}
-                </div>
+            <div v-else> 
+                <!-- {{movies.image}} -->
+                <img :src="movies.image" alt="movie picture">
+                {{id}}
             </div>
-      </div>
+        </div>
+
       
       <br>
       <br>
@@ -93,5 +91,8 @@ export default {
 .background{
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
+}
+.main{
+    margin-left: 230px;
 }
 </style>

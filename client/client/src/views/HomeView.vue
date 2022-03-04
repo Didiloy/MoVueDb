@@ -5,11 +5,8 @@
       </div>
       <br>
       <br>
-      <div class="row">
-          <div class="col s2">
-          <Sidebar />
-      </div>
-      <div class="col s10">
+      <Sidebar />
+      <div class="main">
           <CarouselMostPopularMovies />
           <br>
           <CarouselMostPopularTvs />
@@ -24,7 +21,6 @@
           <br>
           <CarouselBoxOfficeAllTime />
 
-      </div>
       </div>
       <br>
       <br>
@@ -83,5 +79,9 @@ export default {
 .background{
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
+}
+
+.main{
+    margin-left: 230px;
 }
 </style>

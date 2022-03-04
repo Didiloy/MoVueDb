@@ -48,7 +48,7 @@ export default {
 .sidenav-fixed{
 
     margin-top :56px !important;
-    width: 250px !important;
+    width: 220px !important;
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
 }
@@ -58,9 +58,16 @@ export default {
 }
 .sidenav-fixed .bold:hover{
     background-color: #7F74EA !important;
+    margin-left: 10px;
+    transition: 0.4s;
 }
+
 .sidenav-fixed a{
     color : white !important
+}
+
+.sidenav-fixed a:hover {
+    color: #B94465 !important;
 }
 
 .color-purple{
