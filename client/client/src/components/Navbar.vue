@@ -1,7 +1,7 @@
 <template>
     <nav>
         <div class="logo">
-            Logo
+            <img src="../assets/clapperboard32x32.png" alt="">
         </div>
   
         <div class="nav-items height">
@@ -25,7 +25,6 @@
 // import M from 'materialize-css'
 // import 'materialize-css'
 // import 'materialize-css/dist/css/materialize.css'
-const axios = require('axios');
 import {searchApi} from '../api/api.js'
 
 export default {
@@ -46,6 +45,11 @@ export default {
 </script>
 
 <style scoped>
+    img {
+        height: 40px;
+        width: 40px;
+    }
+
     .background-img {
         background-image: url('../assets/background.jpg') !important;
         background-size: cover;
