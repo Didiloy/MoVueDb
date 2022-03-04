@@ -15,6 +15,7 @@ export async function getCategorie(categorie) {
     return new Promise((resolve, reject) => {
         axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY}`)
             .then(function(response) {
+                // console.log(response.data.items);
                 resolve(response.data.items);
             })
             .catch((error) => {

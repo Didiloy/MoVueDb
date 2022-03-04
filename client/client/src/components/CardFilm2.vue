@@ -4,22 +4,20 @@
       <div class="carte-image" :style="imageCard">
       </div>
       <div class="card-text">
-          <span class="date">4 days ago</span>
+          <span class="date" :style="computedColor">{{date}}</span>
           <h2>{{name}}</h2>
-          <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
-      </div>
+          <p>Avec {{crew}}</p>
+          </div>
       <div class="card-stats" :style="computedColor">
         <div class="stat">
-          <div class="value">4<sup>m</sup></div>
-          <div class="type">read</div>
+          <div class="value">{{note}}/10</div>
         </div>
         <div class="stat border">
-          <div class="value">5123</div>
-          <div class="type">views</div>
+          <div class="value">{{numNotes}}</div>
+          <div class="type">notes</div>
         </div>
         <div class="stat">
-          <div class="value">32</div>
-          <div class="type">comments</div>
+          <div class="value"><a href="#" class="link">Voir plus</a></div>
         </div>
       </div>
     </div>
@@ -44,6 +42,22 @@ export default {
             type:String
         },
         card_stat_color: {
+          required: true,
+          type:String
+        },
+        date:{
+          required: true,
+          type:String
+        },
+        note:{
+          required: true,
+          type:String
+        },
+        numNotes: {
+          required: true,
+          type:String
+        },
+        crew:{
           required: true,
           type:String
         }
@@ -106,8 +120,8 @@ export default {
   margin: 25px;
 }
 .card-text .date {
-  color: rgb(255, 7, 110);
-  /* color: var(color); */
+  /* color: rgb(255, 7, 110); */
+  color: var(--color);
   font-size:13px;
 }
 .card-text p {
@@ -138,6 +152,11 @@ export default {
   flex-direction: column;
   color: white;
   padding:10px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }
 
 .card:hover {

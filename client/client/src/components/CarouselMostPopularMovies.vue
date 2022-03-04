@@ -92,7 +92,7 @@ export default {
     color: #5F51E5 ;
     font-weight: bold;
     font-size: large;
-    margin-top: 120px;
+    margin-top: 200px;
 }
 
 

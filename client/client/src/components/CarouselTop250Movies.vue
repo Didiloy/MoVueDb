@@ -17,7 +17,7 @@
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
                     </div> -->
-                    <CardFilm2 class="" :name="movie.title" :image="movie.image" :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
+                    <CardFilm2 class="" :name="movie.title" :image="movie.image" :date="movie.year" :crew="movie.crew" :numNotes="movie.imDbRatingCount" :note="movie.imDbRating" :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
                 </div>
             </div>
         </div>
@@ -64,10 +64,10 @@ export default {
       });
     },
     nextCarousel(){
-        this.instance.next(3);
+        this.instance.next();
     },
     prevCarousel(){
-        this.instance.prev(3);
+        this.instance.prev();
     }
   },
    components:{
@@ -94,6 +94,6 @@ export default {
     color: #5F51E5 ;
     font-weight: bold;
     font-size: large;
-    margin-top: 120px;
+    margin-top: 200px;
 }
 </style>

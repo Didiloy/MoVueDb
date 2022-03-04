@@ -12,11 +12,12 @@
                 <div class="carousel-fixed-item left">
                     <a class="btn waves-effect white white-text darken-text-2" id="btn-carousel" v-on:click="prevCarousel"> &lt </a>
                 </div>
-                <div v-for="movie in top250Movies" v-bind:key="movie.id" class="carousel-item card">
-                    <div class="card-image">
+                <div v-for="(movie, index) in top250Movies" v-bind:key="movie.id" class="carousel-item">
+                    <!-- <div class="card-image">
                         <img v-bind:src="movie.image">
                         <span class="card-title">{{movie.title}}</span>
-                    </div>
+                    </div> -->
+                    <CardFilm2 class="" :name="movie.title" :image="movie.image" :crew="movie.crew" :date="movie.year" :numNotes="movie.imDbRatingCount" :note="movie.imDbRating" :card_stat_color="index%2 === 0 ? roseColor : bleuColor" />
                 </div>
             </div>
         </div>
@@ -28,6 +29,7 @@ import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
 import {getCategorie} from '../api/api.js'
+import CardFilm2 from '@/components/CardFilm2.vue'
 
 export default {
     name :'CarouselTop250Series',
@@ -35,7 +37,9 @@ export default {
         return {
             top250Movies: null ,
             films_top: "Top 250 des meilleures series",
-            instance: null
+            instance: null,
+            roseColor: "B94465",
+            bleuColor: "5F51E5",
         }
     },
     computed:{
@@ -53,27 +57,35 @@ export default {
           })
     },
     methods: {
-    async getTop250Movies(){
-      this.top250Movies = [];
-      await getCategorie("Top250TVs").then((movies) =>{
-        return (this.top250Movies = movies);
-      });
+        async getTop250Movies(){
+        this.top250Movies = [];
+        await getCategorie("Top250TVs").then((movies) =>{
+            return (this.top250Movies = movies);
+        });
+        },
+        nextCarousel(){
+            this.instance.next();
+        },
+        prevCarousel(){
+            this.instance.prev();
+        }
     },
-    nextCarousel(){
-        this.instance.next(3);
-    },
-    prevCarousel(){
-        this.instance.prev(3);
+    components:{
+        CardFilm2
     }
-  }
 }
 </script>
 
 <style scoped>
+.carousel {
+    height: 500px !important;
+}
 
 .carousel-item{
-    margin: 10px;
-    padding: 10px;
+    /* margin: 10px;
+    padding: 10px; */
+    height: 450px !important;
+    width: 100px !important;
 }
 
 #btn-carousel {
@@ -82,6 +94,6 @@ export default {
     color: #5F51E5 ;
     font-weight: bold;
     font-size: large;
-    margin-top: 120px;
+    margin-top: 200px;
 }
 </style>
