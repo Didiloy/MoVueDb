@@ -34,7 +34,6 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import CarouselMostPopularMovies from '@/components/CarouselMostPopularMovies.vue'
@@ -59,7 +58,6 @@ export default {
     
   },
   components: {
-    HelloWorld,
     Navbar,
     Sidebar,
     CarouselMostPopularMovies,

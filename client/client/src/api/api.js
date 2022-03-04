@@ -4,7 +4,7 @@ const KEY6 = "k_v4ayy42d";
 const KEY = "k_4c2c2kyg";
 const KEY5 = "k_z25r6v1f";
 const KEY2 = "k_d0coomyh";
-const IMDB_BASE_URL = "https://imdb-api.com/en/API"
+const IMDB_BASE_URL = "https://imdb-api.com/fr/API"
 const axios = require('axios');
 
 /**
@@ -40,5 +40,17 @@ export async function searchApi(searchType, query) {
             })
     })
 }
+
+// export async function serchApiTitle(id) {
+//     return new Promise((resolve, reject) => {
+//         fetch(`${IMDB_BASE_URL}/Title/${KEY}/${id}`)
+//             .then(function(response) {
+//                 resolve(response.json());
+//             })
+//             .catch((error) => {
+//                 reject(error.message)
+//             })
+//     })
+// }
 
 // export.modules = { getCategorie, searchApi };
