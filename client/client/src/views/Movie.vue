@@ -8,18 +8,102 @@
         <Sidebar />
 
         <div class="main">
-            {{name}}
             <div v-if="computedMovies == null">
                 <p>Recherche en cours...</p>
             </div>
             <div v-else> 
-                <!-- {{movies.image}} -->
-                <img :src="movies.image" alt="movie picture">
-                {{id}}
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <img :src="movies.image" alt="movie picture">
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <div class="row">
+                            <h2>{{movieInfos.title}}</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- plot -->
+                                <CardInfoMovie :titre="'Résumé'" 
+                                :color_shadow="roseColor" 
+                                :content="movieInfos.plotLocal"/>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- cast -->
+                                <CardInfoMovie 
+                                :titre="'Casting'"
+                                :color_shadow="bleuColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- box office -->
+                                <CardInfoMovie 
+                                :titre="'Box office'"
+                                :color_shadow="roseColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- Companies -->
+                                <CardInfoMovie 
+                                :titre="'Entreprises'"
+                                :color_shadow="bleuColor"
+                                :content="'placeholder'"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- Directors -->
+                                <CardInfoMovie 
+                                :titre="'Directeurs'"
+                                :color_shadow="roseColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- notes -->
+                                <CardInfoMovie 
+                                :titre="'Notes'"
+                                :color_shadow="bleuColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- date de sortie, durée, genre -->
+                                <CardInfoMovie 
+                                :titre="'Détails'"
+                                :color_shadow="roseColor"
+                                :content="'placeholder'"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="roseColor"
+                                :content="'placeholder'"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :content="'placeholder'"/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
             </div>
-        </div>
-
-      
+        </div>    
       <br>
       <br>
   </div>
@@ -33,6 +117,20 @@ import 'materialize-css/dist/css/materialize.css'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
+import CardInfoMovie from '@/components/CardInfoMovie.vue'
+
+//quoi afficher:
+//Actor list
+//box office
+//Companies
+//directors
+//genre
+//imDbRating imDbRatingVotes
+//plotLocal
+//releaseDate
+//runtimeStr
+//Similars ?
+//year
 
 export default {
   name: 'HomeView',
@@ -46,7 +144,9 @@ export default {
     return{
         movies: null,
         id: null,
-        movieInfos: null
+        movieInfos: null,
+        roseColor: "B94465",
+        bleuColor: "5F51E5",
     }
   },
   computed:{
@@ -56,7 +156,8 @@ export default {
   },
   components: {
         Navbar,
-        Sidebar
+        Sidebar,
+        CardInfoMovie
   },
   created(){
     
@@ -94,5 +195,16 @@ export default {
 }
 .main{
     margin-left: 230px;
+}
+
+h2 {
+    color: #5F51E5;
+    text-align: center;
+    text-shadow: 1px 2px 1px black;
+}
+
+img{
+    width: 100%;
+    height: auto;
 }
 </style>
