@@ -26,6 +26,7 @@
 // import 'materialize-css'
 // import 'materialize-css/dist/css/materialize.css'
 import {searchApi} from '../api/api.js'
+import router from '../router/index.js'
 
 export default {
     name: "Navbar",
@@ -34,11 +35,12 @@ export default {
     },  
     methods: {
         async search() {
-            searchApi('Search', this.$refs.input.value).then((response)=> {
-               console.log(response.results);
-            }).catch((error) => {
-                console.log(error);
-            });
+            // searchApi('Search', this.$refs.input.value).then((response)=> {
+            //    console.log(response.results);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+            router.replace(`/movie/${this.$refs.input.value}`)
         },
     }
 }

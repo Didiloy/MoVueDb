@@ -117,6 +117,7 @@ import 'materialize-css/dist/css/materialize.css'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
+import router from '../router/index.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
 
 //quoi afficher:
@@ -133,7 +134,7 @@ import CardInfoMovie from '@/components/CardInfoMovie.vue'
 //year
 
 export default {
-  name: 'HomeView',
+  name: 'Movie',
   props: {
       name: {
             required: true,
@@ -152,6 +153,9 @@ export default {
   computed:{
       computedMovies(){
             return this.movies
+        },
+        computedName(){
+            return this.name
         }
   },
   components: {
@@ -160,12 +164,12 @@ export default {
         CardInfoMovie
   },
   created(){
-    
+      
   },
   mounted() {
       M.AutoInit(),
       this.getMovie().then(() => {
-          console.log(this.id);
+        //   console.log(this.id);
           this.getInfos();
       });
   },
@@ -183,6 +187,14 @@ export default {
             .then((responses) => {
                 console.log(responses);
                 return (this.movieInfos = responses);
+            });
+        }
+    },
+    watch: { //refresh components a chaque changement de name
+        name:function(){
+            this.getMovie().then(() => {
+            //   console.log(this.id);
+            this.getInfos();
             });
         }
     }
