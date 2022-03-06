@@ -47,7 +47,7 @@ export default {
 
 .card {
   --padding: 1rem;
-  background: white;
+  background: rgb(255, 255, 255, 0.3);
   /* border: 1px solid #777; */
   border-radius: .50rem;
   overflow: hidden;
