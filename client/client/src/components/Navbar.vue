@@ -1,7 +1,9 @@
 <template>
     <nav>
         <div class="logo">
-            <img src="../assets/clapperboard32x32.png" alt="">
+            <button v-on:click="goHome">
+                <img src="../assets/clapperboard32x32.png" alt="">
+            </button>
         </div>
   
         <div class="nav-items height">
@@ -34,7 +36,7 @@ export default {
         return {}
     },  
     methods: {
-        async search() {
+        search() {
             // searchApi('Search', this.$refs.input.value).then((response)=> {
             //    console.log(response.results);
             // }).catch((error) => {
@@ -42,6 +44,9 @@ export default {
             // });
             router.replace(`/movie/${this.$refs.input.value}`)
         },
+        goHome(){
+            router.replace(`/`)
+        }
     }
 }
 </script>
@@ -141,4 +146,12 @@ export default {
          .height {
              height: 60%;
          }
+        button {
+            border: none;
+            color: none;
+            background: none;
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+        }
 </style>
