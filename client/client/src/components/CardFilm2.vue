@@ -17,7 +17,7 @@
           <div class="type">notes</div>
         </div>
         <div class="stat">
-          <div class="value"><a href="#" class="link">Voir plus</a></div>
+          <button v-on:click="search"> voir plus</button>
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@
 
 // import 'materialize-css'
 // import 'materialize-css/dist/css/materialize.css'
+import router from '../router/index.js'
 
 export default {
     name :'CardFilm2',
@@ -73,6 +74,16 @@ export default {
           '--color': `#${this.card_stat_color}`
         };
       }
+    },
+    methods: {
+      async search() {
+            // searchApi('Search', this.$refs.input.value).then((response)=> {
+            //    console.log(response.results);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+            router.replace(`/movie/${this.name}`)
+        },
     }
 }
 </script>
@@ -162,5 +173,18 @@ export default {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+button {
+  border: none;
+  text-align: center;
+  color: white;
+  background: var(--color);
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+button:hover {
+  filter: brightness(85%);
 }
 </style>
