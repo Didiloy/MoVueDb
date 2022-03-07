@@ -42,12 +42,14 @@
                                 <CardInfoMovie 
                                 :titre="'Box office'"
                                 :color_shadow="roseColor"
-                                :content="'placeholder'"/>
+                                :content="`<b>Budget </b>: ${movieInfos.boxOffice.budget}
+                                <br> <b>Revenus cumulés </b>: ${movieInfos.boxOffice.cumulativeWorldwideGross}
+                                <br> <b> Premère semaine </b>: ${movieInfos.boxOffice.openingWeekendUSA}`"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- Companies -->
                                 <CardInfoMovie 
-                                :titre="'Entreprises'"
+                                :titre="'Studio de production'"
                                 :color_shadow="bleuColor"
                                 :content="'placeholder'"/>
                             </div>

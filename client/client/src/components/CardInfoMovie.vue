@@ -2,7 +2,7 @@
     <div class="card card-shadow" :style="computedColor">
       <div class="card-header">{{titre}}</div>
       <div class="card-body">
-        {{content}}  
+        <div v-html="content"></div> 
       </div>
       <div class="card-footer">
         <!-- <button class="btn">Details</button> -->
