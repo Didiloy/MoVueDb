@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <!-- plot -->
-                                <CardInfoMovie :titre="movieInfos.tagline !== null? movieInfos.tagline : movieInfos.title" 
+                                <CardInfoMovie :titre="movieInfos.tagline !== null? movieInfos.tagline : 'Résumé'" 
                                 :color_shadow="roseColor" 
                                 :content="movieInfos.plotLocal"/>
                             </div>
