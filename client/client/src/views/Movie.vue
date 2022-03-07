@@ -42,12 +42,17 @@
                                 <CardInfoMovie 
                                 :titre="'Box office'"
                                 :color_shadow="roseColor"
-                                :content="'placeholder'"/>
+                                :content="`<b>Budget </b>: ${movieInfos.boxOffice.budget}
+                                Revenus cumulés : ${movieInfos.boxOffice.cumulativeWorldwideGross}`"/>
+                                <!-- budget: "$19,000,000 (estimated)"
+cumulativeWorldwideGross: "$50,023,780"
+grossUSA: "$50,023,780"
+openingWeekendUSA: "$537,242" -->
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- Companies -->
                                 <CardInfoMovie 
-                                :titre="'Entreprises'"
+                                :titre="'Studio de production'"
                                 :color_shadow="bleuColor"
                                 :content="'placeholder'"/>
                             </div>
