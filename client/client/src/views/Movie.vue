@@ -43,11 +43,8 @@
                                 :titre="'Box office'"
                                 :color_shadow="roseColor"
                                 :content="`<b>Budget </b>: ${movieInfos.boxOffice.budget}
-                                Revenus cumulés : ${movieInfos.boxOffice.cumulativeWorldwideGross}`"/>
-                                <!-- budget: "$19,000,000 (estimated)"
-cumulativeWorldwideGross: "$50,023,780"
-grossUSA: "$50,023,780"
-openingWeekendUSA: "$537,242" -->
+                                <br> <b>Revenus cumulés </b>: ${movieInfos.boxOffice.cumulativeWorldwideGross}
+                                <br> <b> Premère semaine </b>: ${movieInfos.boxOffice.openingWeekendUSA}`"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- Companies -->
