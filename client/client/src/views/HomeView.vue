@@ -17,9 +17,9 @@
           <br>
           <CarouselBoxOfficeSemaine />
           <br>
-          <CarouselInTheater />
+          <!-- <CarouselInTheater />
           <br>
-          <CarouselBoxOfficeAllTime />
+          <CarouselBoxOfficeAllTime /> -->
 
       </div>
       <br>

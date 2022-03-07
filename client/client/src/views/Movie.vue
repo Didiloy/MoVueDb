@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <!-- plot -->
-                                <CardInfoMovie :titre="'Résumé'" 
+                                <CardInfoMovie :titre="movieInfos.tagline !== null? movieInfos.tagline : movieInfos.title" 
                                 :color_shadow="roseColor" 
                                 :content="movieInfos.plotLocal"/>
                             </div>
@@ -33,9 +33,9 @@
                             <div class="col s12 m12 l4">
                                 <!-- cast -->
                                 <CardInfoMovie 
-                                :titre="'Casting'"
+                                :titre="'Tête d\'affiche'"
                                 :color_shadow="bleuColor"
-                                :content="'placeholder'"/>
+                                :content="starList"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- box office -->
@@ -44,14 +44,14 @@
                                 :color_shadow="roseColor"
                                 :content="`<b>Budget </b>: ${movieInfos.boxOffice.budget}
                                 <br> <b>Revenus cumulés </b>: ${movieInfos.boxOffice.cumulativeWorldwideGross}
-                                <br> <b> Premère semaine </b>: ${movieInfos.boxOffice.openingWeekendUSA}`"/>
+                                <br> <b> Première semaine </b>: ${movieInfos.boxOffice.openingWeekendUSA}`"/>
                             </div>
                             <div class="col s12 m12 l4">
-                                <!-- Companies -->
+                                <!-- Studio de production -->
                                 <CardInfoMovie 
                                 :titre="'Studio de production'"
                                 :color_shadow="bleuColor"
-                                :content="'placeholder'"/>
+                                :content="movieInfos.companies"/>
                             </div>
                         </div>
                         <div class="row">
@@ -60,7 +60,7 @@
                                 <CardInfoMovie 
                                 :titre="'Directeurs'"
                                 :color_shadow="roseColor"
-                                :content="'placeholder'"/>
+                                :content="directorList"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- notes -->
@@ -148,6 +148,8 @@ export default {
         movies: null,
         id: null,
         movieInfos: null,
+        starList: null,
+        directorList: null,
         roseColor: "B94465",
         bleuColor: "5F51E5",
     }
@@ -188,6 +190,26 @@ export default {
             await searchApi('Title', this.id)
             .then((responses) => {
                 console.log(responses);
+                //loop throught starList to make a <p> tag
+                const paragraphCast = () => {
+                    let paragraphStar = '<p>';
+                    responses.starList.map((star) => {
+                        paragraphStar = paragraphStar + ' ' + star.name + ' <br>';
+                    });
+                    paragraphStar += '</p>';
+                    return paragraphStar;
+                    } 
+                this.starList = paragraphCast();
+                //loop throught directorList to make a <p> tag
+                const paragraphDirector = () => {
+                    let paragraph = '<p>';
+                    responses.directorList.map((star) => {
+                        paragraph = paragraph + ' ' + star.name + ' <br>';
+                    });
+                    paragraph += '</p>';
+                    return paragraph;
+                    } 
+                this.directorList = paragraphDirector();
                 return (this.movieInfos = responses);
             });
         }
