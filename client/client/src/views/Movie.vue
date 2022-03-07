@@ -8,8 +8,8 @@
         <Sidebar />
 
         <div class="main">
-            <div v-if="computedMovies == null">
-                <p>Recherche en cours...</p>
+            <div v-if="computedMovies == null" class="fullHeight">
+                <h2>Recherche en cours...</h2>
             </div>
             <div v-else> 
                 <div class="row">
@@ -203,6 +203,10 @@ export default {
 }
 </script>
 <style scoped>
+.fullHeight {
+    height: 100vh;
+}
+
 .background{
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
