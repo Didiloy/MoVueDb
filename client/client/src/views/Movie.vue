@@ -74,7 +74,7 @@
                                 <CardInfoMovie 
                                 :titre="'Détails'"
                                 :color_shadow="roseColor"
-                                :content="'placeholder'"/>
+                                :content="details"/>
                             </div>
                         </div>
                         <div class="row">
@@ -150,6 +150,7 @@ export default {
         movieInfos: null,
         starList: null,
         directorList: null,
+        details: null,
         roseColor: "B94465",
         bleuColor: "5F51E5",
     }
@@ -210,6 +211,15 @@ export default {
                     return paragraph;
                     } 
                 this.directorList = paragraphDirector();
+                //loop throught directorList to make a <p> tag
+                const paragraphDetails = () => {
+                    let paragraph = '<p> <b>Durée : </b>' + responses.runtimeStr;
+                    paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
+                    paragraph += '<br> <b>Genres : </b>' + responses.genres;
+                    paragraph += '</p>';
+                    return paragraph;
+                    } 
+                this.details = paragraphDetails();
                 return (this.movieInfos = responses);
             });
         }

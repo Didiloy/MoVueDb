@@ -82,6 +82,7 @@ export default {
   padding: 0 var(--padding);
 }
 
+
 .card-footer {
   margin-top: 1rem;
   padding: var(--padding);
