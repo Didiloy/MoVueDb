@@ -51,6 +51,7 @@ export default {
   /* border: 1px solid #777; */
   border-radius: .50rem;
   overflow: hidden;
+  transition: 0.4s;
   
 }
 

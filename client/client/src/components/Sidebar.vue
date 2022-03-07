@@ -54,6 +54,7 @@ export default {
 }
 .sidenav-fixed .bold{
     background-color: #5F51E5 !important;
+    transition: 0.4s;
     
 }
 .sidenav-fixed .bold:hover{

@@ -80,8 +80,13 @@ export default {
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
 }
+.row{
+  position: fixed;
+  z-index: 1;
+}
 
 .main{
     margin-left: 230px;
+    z-index: 2;
 }
 </style>
