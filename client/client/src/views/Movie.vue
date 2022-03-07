@@ -14,7 +14,7 @@
             <div v-else> 
                 <div class="row">
                     <div class="col s12 m6 l6">
-                        <img :src="movies.image" alt="movie picture">
+                        <img class="image" :src="movies.image" alt="movie picture">
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
@@ -218,5 +218,8 @@ h2 {
 img{
     width: 100%;
     height: auto;
+    border-radius: 10px;
+    
 }
+
 </style>
