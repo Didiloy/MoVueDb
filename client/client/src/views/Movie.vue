@@ -11,7 +11,8 @@
             <div v-if="computedMovies == null" class="fullHeight">
                 <h2>Recherche en cours...</h2>
                 <br>
-                <div class="conteneur-animation">
+                <!-- Permet de faire l'animation pendant la recherche -->
+                <div class="conteneur-animation">  
                     <div class="rond-animation">
 
                     </div>
@@ -20,7 +21,10 @@
             <div v-else> 
                 <div class="row">
                     <div class="col s12 m6 l6">
-                        <img class="image" :src="movies.image" alt="movie picture">
+                        <CardInfoMovie 
+                                :color_shadow="bleuColor" 
+                                :image_content="{ image_link: movies.image}"/>
+                        <!-- <img class="image" :src="movies.image" alt="movie picture"> -->
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
