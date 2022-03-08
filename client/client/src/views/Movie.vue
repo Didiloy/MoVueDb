@@ -268,15 +268,15 @@ img{
 
 .conteneur-animation {
     position: absolute;
-    width: 50vmin;
-    height: 5vmin;
+    width: 20rem;
+    height: 2rem;
     background-image: linear-gradient(45deg,#5F51E5, #B94465);
     border-radius: .75rem;
     left: 45vw;
 }
 
 .rond-animation {
-    width: 30px;
+    width: 2rem;
     height: 100%; 
     background-color: #5F51E5;
     border-radius: 1rem;
@@ -286,10 +286,14 @@ img{
 
 @keyframes search-animation {
     0% {
-        transform : translateX(0%); background-color: #B94465;
+        transform : translateX(0%);
+        background-color: #B94465;
+    }
+    50% {
+        background-color: #65b944;
     }
     100% {
-        transform : translateX(970%); background-color: #5F51E5;
+        transform : translateX(900%); background-color: #5F51E5;
     }
 }
 
