@@ -7,8 +7,8 @@
         <br>
         <Sidebar />
 
-        <div class="main">
-            <div v-if="thereAreMovies == null" class="fullHeight">
+        <div class="main fullHeight">
+            <div v-if="thereAreMovies == null">
                 <h2>Recherche en cours...</h2>
                 <br>
                 <div class="conteneur-animation">
