@@ -180,9 +180,6 @@ img{
         transform : translateX(0%);
         background-color: #B94465;
     }
-    50% {
-        background-color: #65b944;
-    }
     100% {
         transform : translateX(900%); background-color: #5F51E5;
     }
