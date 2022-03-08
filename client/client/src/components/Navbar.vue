@@ -42,7 +42,7 @@ export default {
             // }).catch((error) => {
             //     console.log(error);
             // });
-            router.replace(`/movie/${this.$refs.input.value}`)
+            router.replace(`/movies/${this.$refs.input.value}`)
         },
         goHome(){
             router.replace(`/`)
