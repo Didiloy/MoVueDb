@@ -7,8 +7,8 @@
         <br>
         <Sidebar />
 
-        <div class="main fullHeight">
-            <div v-if="thereAreMovies == null">
+        <div class="main">
+            <div v-if="thereAreMovies == null" class="fullHeight">
                 <h2>Recherche en cours...</h2>
                 <br>
                 <div class="conteneur-animation">
@@ -17,20 +17,21 @@
                     </div>
                 </div>
             </div>
-            <div v-else> 
-                <div class="searchTitle">
-                    <h2>Resultat de la recherche : {{searchTitle}}</h2>
-                </div>
-                <div class="principal">
-                    <div v-for="movies in films" v-bind:key="movies.id" class="secondaire">
-                      
-                      <CardSearchMovies class="" 
-                      :name="movies.title" 
-                      :image="movies.image" 
-                      :description="movies.description" />
+            <div v-else>
+                <div class="fullHeight">
+                     <div class="searchTitle ">
+                        <h2>Resultat de la recherche : {{searchTitle}}</h2>
                     </div>
-                </div>
-                
+                    <div class="principal">
+                        <div v-for="movies in films" v-bind:key="movies.id" class="secondaire">
+                      
+                        <CardSearchMovies class="" 
+                        :name="movies.title" 
+                        :image="movies.image" 
+                        :description="movies.description" />
+                        </div>
+                    </div>
+                </div> 
                 
             </div>
         </div>    
@@ -102,14 +103,11 @@ export default {
   },
   mounted() {
       M.AutoInit(),
-      this.getMovie().then(() => {
-        //   console.log(this.id);
-          this.getInfos();
-      });
+      this.getMovie()
   },
   methods: {
       async getMovie(){
-          this.films = [];
+        //   this.films = [];
           this.searchTitle = this.name
           await searchApi('SearchMovie', this.name)
           .then((responses) => {
