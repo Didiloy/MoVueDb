@@ -8,7 +8,7 @@
           <h2>{{name}}</h2>
           <p>{{description}}</p>
           </div>
-      <div class="card-stats" :style="computedColor">
+      <div class="card-stats waves-effect waves-light" :style="computedColor">
         <div class="stat">
           <button v-on:click="search"> voir plus</button>
         </div>
@@ -141,8 +141,11 @@ button {
   height: 100%;
   width: 100%;
   border-radius: 15px;
+  transition: .5s;
 }
 button:hover {
+  cursor: pointer;
   filter: brightness(85%);
+  transition: .5s;
 }
 </style>
