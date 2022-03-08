@@ -3,6 +3,9 @@
       <div class="card-header">{{titre}}</div>
       <div class="card-body">
         <div v-html="content"></div> 
+        <div v-if="image_content"> 
+          <img class="image" :src="image_content.image_link" alt="movie picture">
+        </div>
       </div>
       <div class="card-footer">
         <!-- <button class="btn">Details</button> -->
@@ -20,7 +23,7 @@ export default {
   },
   props: {
     titre: {
-      required: true,
+      required: false,
       type:String
     },
     color_shadow: {
@@ -28,8 +31,12 @@ export default {
         type:String
     },
     content: {
-      required: true,
+      required: false,
       type:String
+    },
+    image_content: {
+      required: false,
+      type:Object
     }
   },
   computed: {
@@ -43,6 +50,13 @@ export default {
 </script>
 
 <style scoped>
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    
+}
+
 
 .card {
   --padding: 1rem;
