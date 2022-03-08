@@ -10,6 +10,12 @@
         <div class="main">
             <div v-if="computedMovies == null" class="fullHeight">
                 <h2>Recherche en cours...</h2>
+                <br>
+                <div class="conteneur-animation">
+                    <div class="rond-animation">
+
+                    </div>
+                </div>
             </div>
             <div v-else> 
                 <div class="row">
@@ -258,6 +264,33 @@ img{
     height: auto;
     border-radius: 10px;
     
+}
+
+.conteneur-animation {
+    position: absolute;
+    width: 50vmin;
+    height: 5vmin;
+    background-image: linear-gradient(45deg,#5F51E5, #B94465);
+    border-radius: .75rem;
+    left: 45vw;
+}
+
+.rond-animation {
+    width: 30px;
+    height: 100%; 
+    background-color: #5F51E5;
+    border-radius: 1rem;
+    left: 0;
+    animation: search-animation 1s  infinite alternate;
+}
+
+@keyframes search-animation {
+    0% {
+        transform : translateX(0%); background-color: #B94465;
+    }
+    100% {
+        transform : translateX(970%); background-color: #5F51E5;
+    }
 }
 
 </style>
