@@ -110,6 +110,24 @@
                                 :content="'placeholder'"/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- Trailer -->
+                                <iframe class="trailer" 
+                                :src="computedTrailerLink" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                                </iframe>
+                                    <!-- <video  controls class="trailer" :poster="computedThumbnail">
+                                        <source :src="computedTrailerLink" type="video/ogg">
+                                        <source :src="computedTrailerLink" type="video/mp4">
+                                        <source :src="computedTrailerLink" type="video/webm">
+                                        Votre navigateur ne peux pas afficher la vidéo.
+                                    </video> -->
+                            </div>
+                        </div>
                         
                     </div>
                 </div>
@@ -131,6 +149,7 @@ import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
 import router from '../router/index.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
+const movieTrailer = require( 'movie-trailer' )
 
 //quoi afficher:
 //Actor list
@@ -161,6 +180,8 @@ export default {
         starList: null,
         directorList: null,
         details: null,
+        trailer_link: null,
+        thumbnail: null,
         roseColor: "B94465",
         bleuColor: "5F51E5",
     }
@@ -171,6 +192,12 @@ export default {
         },
         computedName(){
             return this.name
+        },
+        computedTrailerLink(){
+            return this.trailer_link
+        },
+        computedThumbnail(){
+            return this.thumbnail
         }
   },
   components: {
@@ -185,7 +212,8 @@ export default {
       M.AutoInit(),
       this.getMovie().then(() => {
         //   console.log(this.id);
-          this.getInfos();
+          this.getInfos()
+            .then(this.getLinkTrailer())
       });
   },
   methods: {
@@ -232,13 +260,32 @@ export default {
                 this.details = paragraphDetails();
                 return (this.movieInfos = responses);
             });
+        },
+        async getLinkTrailer(){
+            // await searchApi('Trailer', this.id)
+            // .then((response) => {
+            //     console.log(response);
+            //     this.trailer_link = response.linkEmbed;
+            //     this.thumbnail = response.thumbnailUrl
+            // });
+            await movieTrailer(this.name)
+            .then((responses) => {
+                const YOUTUBE_EMBED_ENDPOINT = "https://www.youtube.com/embed/"
+                const ID_OF_YOUTUBE_VIDEO = responses.slice(responses.lastIndexOf('=') +1, -1)
+                let link =  YOUTUBE_EMBED_ENDPOINT + ID_OF_YOUTUBE_VIDEO
+                console.log("lien youtube: ",responses, " lien transformé: ", link);
+                this.trailer_link = link
+                
+            })
         }
     },
     watch: { //refresh components a chaque changement de name
         name:function(){
             this.getMovie().then(() => {
             //   console.log(this.id);
-            this.getInfos();
+            this.getInfos()
+            .then(this.getLinkTrailer())
+            
             });
         }
     }
@@ -299,6 +346,10 @@ img{
     100% {
         transform : translateX(900%); background-color: #5F51E5;
     }
+}
+
+.trailer {
+    width: 100%;
 }
 
 </style>
