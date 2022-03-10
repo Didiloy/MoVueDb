@@ -8,7 +8,7 @@
           <h2>{{name}}</h2>
           <p>{{description}}</p>
           </div>
-      <div class="card-stats waves-effect waves-light" :style="computedColor">
+      <div class="card-stats" :style="computedColor">
         <div class="stat">
           <button v-on:click="search"> voir plus</button>
         </div>
@@ -88,9 +88,6 @@ export default {
 .card-text {
   grid-area: text;
 }
-.card-stats {
-  grid-area: stats; 
-}
 
 .carte-image {
   grid-area: image;
@@ -125,12 +122,6 @@ export default {
   border-bottom-right-radius: 15px;
   /* background: rgb(255, 7, 110); */
   background: var(--color);
-}
-
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }
 
 button {

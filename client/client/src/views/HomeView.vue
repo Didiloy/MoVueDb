@@ -78,7 +78,7 @@ export default {
 <style scoped>
 .background{
     background-image: url('../assets/background.jpg') !important;
-    background-size: cover;
+    background-size:cover ;
 }
 .row{
   position: fixed;

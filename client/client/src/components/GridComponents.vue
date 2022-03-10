@@ -53,19 +53,6 @@ import {searchApi} from '@/api/api.js'
 import router from '../router/index.js'
 import CardSearchMovies from '../components/CardSearchMovies.vue'
 
-//quoi afficher:
-//Actor list
-//box office
-//Companies
-//directors
-//genre
-//imDbRating imDbRatingVotes
-//plotLocal
-//releaseDate
-//runtimeStr
-//Similars ?
-//year
-
 export default {
   name: 'Movie',
   props: {
