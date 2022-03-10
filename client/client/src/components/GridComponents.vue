@@ -20,17 +20,30 @@
             <div v-else>
                 <div class="fullHeight">
                      <div class="searchTitle ">
-                        <h2>Resultat de la recherche : {{searchTitle}}</h2>
+                        <h2>Resultat de la recherche pour {{searchTitle}}</h2>
                     </div>
                     <div class="principal">
                         <div v-for="movies in films" v-bind:key="movies.id" class="">
                             <div>
-                                <CardSearchMovies class="uneCard" 
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'SearchMovie'"
                                 :name="movies.title" 
                                 :image="movies.image" 
                                 :description="movies.description" />
+
+
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'BoxOffice'"
+                                :name="movies.title" 
+                                :image="movies.image" 
+                                :description="`Gain de la semaine : ${movies.weekend}`" />
+
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'MostPopularMovies'"
+                                :name="movies.title" 
+                                :image="movies.image" 
+                                :description="`Année : ${movies.year}
+                                <br> Note : ${movies.imDbRating}/10
+                                `" />
                             </div>
-                        
+                            
                         </div>
                     </div>
                 </div> 
@@ -52,26 +65,26 @@ import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
 import router from '../router/index.js'
 import CardSearchMovies from '../components/CardSearchMovies.vue'
+import { getCategorie } from '../api/api.js'
 
 export default {
   name: 'Movie',
   props: {
-      name: {
+        name: {
             required: true,
             type: String
-      }
+        },
+        path:{
+            required:true,
+            type: String
+        }
   },
   data() {
     return{
         searchTitle: "",
         films: null,
-        id: null,
-        movieInfos: null,
-        starList: null,
-        directorList: null,
-        details: null,
-        roseColor: "B94465",
-        bleuColor: "5F51E5",
+        apiGetCategorie : false,
+        chemin:this.path
     }
   },
   computed:{
@@ -80,6 +93,9 @@ export default {
         },
         computedName(){
             return this.name
+        },
+        computedPath(){
+            return this.path
         }
   },
   components: {
@@ -92,22 +108,45 @@ export default {
   },
   mounted() {
       M.AutoInit(),
-      this.getMovie()
+      this.testWhoPath(),
+      console.log(this.path);
+      this.getMovie(this.path)
   },
   methods: {
-      async getMovie(){
+      async getMovie(path){
         //   this.films = [];
           this.searchTitle = this.name
-          await searchApi('SearchMovie', this.name)
-          .then((responses) => {
-              console.log(responses.results);
-              return (this.films = responses.results);
-          });
+            console.log(path);
+          if(this.apiGetCategorie){
+              
+              await getCategorie(path)
+              .then((responses)=>{
+                  console.log("affichage");
+                  console.log(responses);
+                  return (this.films = responses)
+              })
+          }else{
+            
+            await searchApi(path, this.name)
+            .then((responses) => {
+                console.log(responses.results);
+                return (this.films = responses.results);
+            });
+          }
+          
+        },
+        testWhoPath(){
+            console.log();
+            if(this.path == "SearchMovie"){
+                this.apiGetCategorie = false
+            }else{
+                this.apiGetCategorie = true
+            }
         }
     },
     watch: { //refresh components a chaque changement de name
         name:function(){
-            this.getMovie().then();
+            this.getMovie(this.path).then();
         }
     }
 }

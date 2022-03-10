@@ -72,7 +72,7 @@ export default {
 .carte {
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: 290px 150px 60px;
+  grid-template-rows: 290px 170px 60px;
   grid-template-areas: "image" "text" "stats";
   border-radius: 18px;
   background: white;

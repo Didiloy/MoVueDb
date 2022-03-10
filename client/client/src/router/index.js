@@ -50,7 +50,65 @@ const routes = [{
             enterClass: "animate__animated animate__fadeInRight",
             leaveClass: "animate__animated animate__fadeOutRight",
         }
+    },
+    {
+        path:'/boxOffice',
+        name:'boxOffice',
+        props:true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/BoxOfficeSemaine'),
+        meta:{
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
+    },
+    {
+        path:'/boxOfficeAllTime',
+        name:'boxOfficeAllTime',
+        props:true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/BoxOfficeAllTime'),
+        meta:{
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
+    },
+    {
+        path:'/inTheater',
+        name:'inTheater',
+        props:true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/InTheater'),
+        meta:{
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
+    },
+    {
+        path:'/mostPopularMovies',
+        name:'mostPopularMovies',
+        props:true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/MostPopularMovies'),
+        meta:{
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
     }
+
+
 ]
 
 const router = createRouter({

@@ -5,7 +5,7 @@ const KEY6 = "k_4c2c2kyg";
 const KEY3 = "k_z25r6v1f";
 const KEY2 = "k_d0coomyh";
 
-const KEY = KEY1;
+const KEY = KEY3;
 
 const IMDB_BASE_URL = "https://imdb-api.com/fr/API"
 const axios = require('axios');
@@ -18,7 +18,7 @@ export async function getCategorie(categorie) {
     return new Promise((resolve, reject) => {
         axios.get(`${IMDB_BASE_URL}/${categorie}/${KEY}`)
             .then(function(response) {
-                // console.log(response.data.items);
+                //console.log(response.data.items);
                 resolve(response.data.items);
             })
             .catch((error) => {

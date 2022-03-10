@@ -3,10 +3,10 @@
         <ul id="nav-mobile" class="sidenav sidenav-fixed">
             <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
-                <li class="bold"><a class="collapsible-header waves-effect">Box office de la semaine</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">Box office</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">En salle de cinéma</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">Films les plus populaires</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToBoxOffice">Box office de la semaine</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToBoxOfficeAllTime">Box office</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToInTheater">En salle de cinéma</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularMovies">Films les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">Series les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des films</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des series</a></li>
@@ -26,6 +26,7 @@
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
+import router from '../router/index.js'
 
 export default {
     
@@ -35,6 +36,18 @@ export default {
     methods: {
         closeSidebarPanel() {
             this.isPanelOpen = false
+        },
+        goToBoxOffice(){
+            router.replace(`/boxOffice`)
+        },
+        goToBoxOfficeAllTime(){
+            router.replace(`/boxOfficeAllTime`)
+        },
+        goToInTheater(){
+            router.replace(`/inTheater`)
+        },
+        goToMostPopularMovies(){
+            router.replace(`/mostPopularMovies`)
         }
     }
 }

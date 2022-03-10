@@ -7,7 +7,7 @@
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
-import GridComponents from '../components/GridComponents.vue'
+import GridComponents from '../../components/GridComponents.vue'
 
 //quoi afficher:
 //Actor list
@@ -23,14 +23,14 @@ import GridComponents from '../components/GridComponents.vue'
 //year
 
 export default {
-  name: 'Movies',
+  name: 'InTheater',
   components:{
       GridComponents
   },
   data(){
     return{
-      path:"SearchMovie",
-      name:""
+      path:"InTheaters",
+      name:"les films en salle de cinéma"
     }
   }
   
