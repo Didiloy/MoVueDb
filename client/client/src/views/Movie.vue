@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s12 m12 l12">
+                            <div class="col s12 m12 l12" v-if="computedTrailerLink">
                                 <!-- Trailer -->
                                 <iframe class="trailer" 
                                 :src="computedTrailerLink" 
@@ -120,6 +120,7 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen>
                                 </iframe>
+                                <p class="link"><a :href="computedNonTransformedLink"> Regarder sur youtube !!</a></p>
                                     <!-- <video  controls class="trailer" :poster="computedThumbnail">
                                         <source :src="computedTrailerLink" type="video/ogg">
                                         <source :src="computedTrailerLink" type="video/mp4">
@@ -182,6 +183,7 @@ export default {
         details: null,
         trailer_link: null,
         thumbnail: null,
+        nonTransformed_link: null,
         roseColor: "B94465",
         bleuColor: "5F51E5",
     }
@@ -198,6 +200,9 @@ export default {
         },
         computedThumbnail(){
             return this.thumbnail
+        },
+        computedNonTransformedLink(){
+            return this.nonTransformed_link
         }
   },
   components: {
@@ -270,9 +275,11 @@ export default {
             // });
             await movieTrailer(this.name)
             .then((responses) => {
+                this.nonTransformed_link = responses;
                 const YOUTUBE_EMBED_ENDPOINT = "https://www.youtube.com/embed/"
-                const ID_OF_YOUTUBE_VIDEO = responses.slice(responses.lastIndexOf('=') +1, -1)
+                const ID_OF_YOUTUBE_VIDEO = responses.slice(responses.lastIndexOf('=') +1)
                 let link =  YOUTUBE_EMBED_ENDPOINT + ID_OF_YOUTUBE_VIDEO
+                // let link =  YOUTUBE_EMBED_ENDPOINT + "sLfqapBIqME"
                 console.log("lien youtube: ",responses, " lien transformé: ", link);
                 this.trailer_link = link
                 
@@ -291,6 +298,8 @@ export default {
     }
 }
 </script>
+
+
 <style scoped>
 .fullHeight {
     height: 100vh;
@@ -319,6 +328,17 @@ img{
     height: auto;
     border-radius: 10px;
     
+}
+
+.link a {
+    text-decoration: none;
+}
+
+.link{
+    color: #5F51E5;
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: underline;
 }
 
 .conteneur-animation {
@@ -354,6 +374,7 @@ img{
 
 .trailer {
     width: 100%;
+    height: 400px;
 }
 
 </style>
