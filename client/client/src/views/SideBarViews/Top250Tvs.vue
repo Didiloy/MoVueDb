@@ -23,14 +23,14 @@ import GridComponents from '../../components/GridComponents.vue'
 //year
 
 export default {
-  name: 'Top250Movies',
+  name: 'Top250Tvs',
   components:{
       GridComponents
   },
   data(){
     return{
-      path:"Top250Movies",
-      name:"Les 250 films les plus populaires"
+      path:"Top250Tvs",
+      name:"Les 250 Séries les plus populaires"
     }
   }
   

@@ -134,6 +134,20 @@ const routes = [{
             enterClass: "animate__animated animate__fadeInRight",
             leaveClass: "animate__animated animate__fadeOutRight",
         }
+    },
+    {
+        path: '/top250Tvs',
+        name: 'Top250Tvs',
+        props: true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/Top250Tvs'),
+        meta: {
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
     }
 
 
