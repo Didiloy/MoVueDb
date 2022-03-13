@@ -303,6 +303,10 @@ export default {
     height: 100vh;
 }
 
+.fixe{
+    z-index: 1 !important;
+}
+
 .background{
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;

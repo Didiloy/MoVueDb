@@ -9,10 +9,10 @@
         <div class="nav-items height">
   
             <!-- The Menu items -->
-            <li><a href="#">TUTORIALS</a></li>
+            <!-- <li><a href="#">TUTORIALS</a></li>
             <li><a href="#">STUDENT</a></li>
             <li><a href="#">JOBS</a></li>
-            <li><a href="#">COURSES</a></li>
+            <li><a href="#">COURSES</a></li> -->
         </div>
   
         <!-- Defining the search bars -->
