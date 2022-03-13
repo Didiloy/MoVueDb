@@ -7,10 +7,10 @@
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToBoxOfficeAllTime">Box office</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToInTheater">En salle de cinéma</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularMovies">Films les plus populaires</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">Series les plus populaires</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularSeries">Series les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des films</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des series</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">Top 250 des meilleurs films</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToTop250Movies">Top 250 des meilleurs films</a></li>
                 <li class="bold"><a  class="collapsible-header waves-effect">Top 250 des meilleurs series</a></li>
             </ul>
             </li>
@@ -48,7 +48,13 @@ export default {
         },
         goToMostPopularMovies(){
             router.replace(`/mostPopularMovies`)
-        }
+        },
+        goToMostPopularSeries(){
+            router.replace(`/mostPopularSeries`)
+        },
+        goToTop250Movies(){
+            router.replace(`/top250Movies`)
+        },
     }
 }
 </script>

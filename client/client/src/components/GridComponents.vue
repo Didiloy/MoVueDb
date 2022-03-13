@@ -36,7 +36,7 @@
                                 :image="movies.image" 
                                 :description="`Gain de la semaine : ${movies.weekend}`" />
 
-                                <CardSearchMovies class="uneCard" v-if="chemin == 'MostPopularMovies'"
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'MostPopularMovies' || chemin == 'MostPopularTvs' || chemin == 'Top250Movies' || chemin == 'Top250Tvs'"
                                 :name="movies.title" 
                                 :image="movies.image" 
                                 :description="`Année : ${movies.year}
