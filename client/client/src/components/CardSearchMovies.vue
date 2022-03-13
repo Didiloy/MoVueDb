@@ -6,7 +6,7 @@
       </div>
       <div class="card-text">
           <h2>{{name}}</h2>
-          <p>{{description}}</p>
+          <p v-html='description'></p>
           </div>
       <div class="card-stats" :style="computedColor">
         <div class="stat">

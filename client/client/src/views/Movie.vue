@@ -279,8 +279,6 @@ export default {
                 const YOUTUBE_EMBED_ENDPOINT = "https://www.youtube.com/embed/"
                 const ID_OF_YOUTUBE_VIDEO = responses.slice(responses.lastIndexOf('=') +1)
                 let link =  YOUTUBE_EMBED_ENDPOINT + ID_OF_YOUTUBE_VIDEO
-                // let link =  YOUTUBE_EMBED_ENDPOINT + "sLfqapBIqME"
-                console.log("lien youtube: ",responses, " lien transformé: ", link);
                 this.trailer_link = link
                 
             })
