@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies">
-            <a class="carousel-item" href="#one!"><img :src="topMovies[0].image"></a>
+            <div class="fill">
+<a class="carousel-item" href="#one!"><img src="https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_Ratio0.6716_AL_.jpg"></a>
+            
+            </div>
             <a class="carousel-item" href="#two!"><img :src="topMovies[1].image"></a>
             <a class="carousel-item" href="#three!"><img :src="topMovies[2].image"></a>
             <a class="carousel-item" href="#four!"><img :src="topMovies[3].image"></a>
@@ -65,12 +68,23 @@ export default {
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
     width: auto;
-    height: auto;
-    object-fit: cover;
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
+
+/* .fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+} */
 
 #btn-carousel {
     border-radius: 20px;
