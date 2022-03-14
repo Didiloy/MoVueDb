@@ -7,6 +7,8 @@
       <br>
       <Sidebar />
       <div class="main">
+          <CarouselAcceuil />
+          <br>
           <CarouselMostPopularMovies />
           <br>
           <CarouselMostPopularTvs />
@@ -39,6 +41,7 @@ import CarouselInTheater from '@/components/CarouselInTheater.vue'
 import CarouselTop250Movies from '@/components/CarouselTop250Movies.vue'
 import CarouselTop250Series from '@/components/CarouselTop250Series.vue'
 import CarouselMostPopularTvs from '@/components/CarouselMostPopularTvs.vue'
+import CarouselAcceuil from '@/components/CarouselAcceuil.vue'
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
@@ -62,7 +65,8 @@ export default {
     CarouselInTheater,
     CarouselTop250Movies,
     CarouselTop250Series,
-    CarouselMostPopularTvs
+    CarouselMostPopularTvs,
+    CarouselAcceuil
   },
   created(){
     
