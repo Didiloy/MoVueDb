@@ -1,10 +1,13 @@
 <template>
-    <div class="carousel carousel-slider" ref="carousel">
-        <a class="carousel-item" href="#one!"><img src="../assets/background.jpg"></a>
-        <a class="carousel-item" href="#two!"><img src="../assets/background.jpg"></a>
-        <a class="carousel-item" href="#three!"><img src="../assets/background.jpg"></a>
-        <a class="carousel-item" href="#four!"><img src="../assets/background.jpg"></a>
-  </div>
+    <div>
+        <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies">
+            <a class="carousel-item" href="#one!"><img :src="topMovies[0].image"></a>
+            <a class="carousel-item" href="#two!"><img :src="topMovies[1].image"></a>
+            <a class="carousel-item" href="#three!"><img :src="topMovies[2].image"></a>
+            <a class="carousel-item" href="#four!"><img :src="topMovies[3].image"></a>
+            <a class="carousel-item" href="#four!"><img :src="topMovies[4].image"></a>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -26,18 +29,29 @@ export default {
         }
     },
     computed:{
-        
+        computedTopMovies : function(){
+            return this.topMovies
+        }
     },
     mounted() {
         // M.AutoInit()
-        this.instance = M.Carousel.init(this.$refs.carousel,{
-            fullWidth: true,
-            indicators: true
-        });
-        setInterval(() => {this.instance.next()}, 6000)
+        this.getMostPopularMovies()
+        .then( () => {
+            this.instance = M.Carousel.init(this.$refs.carousel,{
+                fullWidth: true,
+                indicators: true
+            });
+            setInterval(() => {this.instance.next()}, 6000)
+        })
+        
     },
     methods: {
-
+        async getMostPopularMovies(){
+            await getCategorie("MostPopularMovies").then((movies) =>{
+                console.log(movies);
+            return (this.topMovies = movies);
+            });
+        },
     },
    components:{
       
@@ -48,6 +62,14 @@ export default {
 <style scoped>
 .carousel {
     height: 90vh !important;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
 }
 
 #btn-carousel {
