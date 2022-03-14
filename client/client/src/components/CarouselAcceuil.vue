@@ -22,6 +22,7 @@ export default {
             films_top: "Top 250 des meilleurs films",
             roseColor: "B94465",
             bleuColor: "5F51E5",
+            instance:null,
         }
     },
     computed:{
@@ -29,10 +30,11 @@ export default {
     },
     mounted() {
         // M.AutoInit()
-        M.Carousel.init(this.$refs.carousel,{
+        this.instance = M.Carousel.init(this.$refs.carousel,{
             fullWidth: true,
             indicators: true
         });
+        setInterval(() => {this.instance.next()}, 6000)
     },
     methods: {
 
@@ -44,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+.carousel {
+    height: 90vh !important;
+}
 
 #btn-carousel {
     border-radius: 20px;
