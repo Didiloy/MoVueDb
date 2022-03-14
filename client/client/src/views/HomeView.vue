@@ -13,11 +13,11 @@
           <br>
           <CarouselMostPopularTvs />
           <br>
-          <CarouselTop250Movies />
+          <!-- <CarouselTop250Movies />
           <br>
           <CarouselTop250Series />
           <br>
-          <CarouselBoxOfficeSemaine />
+          <CarouselBoxOfficeSemaine /> -->
           <br>
           <!-- <CarouselInTheater />
           <br>
