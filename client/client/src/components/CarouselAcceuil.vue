@@ -1,11 +1,12 @@
 <template>
     <div>
-        <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies">
-            <a class="carousel-item" href="#one!"><img :src="topMovies[0].image"></a>
-            <a class="carousel-item" href="#two!"><img :src="topMovies[1].image"></a>
-            <a class="carousel-item" href="#three!"><img :src="topMovies[2].image"></a>
-            <a class="carousel-item" href="#four!"><img :src="topMovies[3].image"></a>
-            <a class="carousel-item" href="#four!"><img :src="topMovies[4].image"></a>
+        <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies" >
+            <span class="carousel-item" v-for="film in topMovies" v-bind:key="film.id">
+                <img :src="film.image">
+                
+            </span>
+            
+            
         </div>
     </div>
 </template>
@@ -49,9 +50,17 @@ export default {
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
                 console.log(movies);
-            return (this.topMovies = movies);
+                let tab =[];
+                for(let i=0;i<5;i++){
+                    console.log("salut");
+                    tab.push(movies[i])
+                }
+            return (this.topMovies = tab);
             });
         },
+        filmDetails(){
+            
+        }
     },
    components:{
       
