@@ -1,12 +1,9 @@
 <template>
-    <div class="carousel carousel-slider">
-          <div class="carousel-fixed-item center">
-            <a class="btn waves-effect white grey-text darken-text-2">button</a>
-        </div>
-    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+    <div class="carousel carousel-slider" ref="carousel">
+        <a class="carousel-item" href="#one!"><img src="../assets/background.jpg"></a>
+        <a class="carousel-item" href="#two!"><img src="../assets/background.jpg"></a>
+        <a class="carousel-item" href="#three!"><img src="../assets/background.jpg"></a>
+        <a class="carousel-item" href="#four!"><img src="../assets/background.jpg"></a>
   </div>
 </template>
 
@@ -31,8 +28,8 @@ export default {
         
     },
     mounted() {
-        M.AutoInit()
-        M.Carousel.init({
+        // M.AutoInit()
+        M.Carousel.init(this.$refs.carousel,{
             fullWidth: true,
             indicators: true
         });
@@ -47,16 +44,6 @@ export default {
 </script>
 
 <style scoped>
-.carousel {
-    height: 500px !important;
-}
-
-.carousel-item{
-    /* margin: 10px;
-    padding: 10px; */
-    height: 450px !important;
-    width: 100px !important;
-}
 
 #btn-carousel {
     border-radius: 20px;
