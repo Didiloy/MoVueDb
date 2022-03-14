@@ -15,7 +15,7 @@
 import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
-import {getCategorie} from '../api/api.js'
+import {getCategorie,searchApi} from '../api/api.js'
 
 
 export default {
@@ -23,6 +23,8 @@ export default {
     data() {
         return {
             topMovies: null ,
+            tabImages:null,
+            tabId:[],
             films_top: "Top 250 des meilleurs films",
             roseColor: "B94465",
             bleuColor: "5F51E5",
@@ -49,14 +51,25 @@ export default {
     methods: {
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
-                console.log(movies);
                 let tab =[];
                 for(let i=0;i<5;i++){
                     console.log("salut");
                     tab.push(movies[i])
+                    this.tabId.push(tab[i].id + "/Images")
                 }
+            
+                this.getImagesById();
             return (this.topMovies = tab);
             });
+        },
+        async getImagesById(){
+            this.tabId.forEach( async(id) =>{
+               
+                await searchApi("Title",id).then((movies) =>{
+
+                })
+            })
+            
         },
         filmDetails(){
             
