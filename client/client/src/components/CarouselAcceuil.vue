@@ -21,25 +21,32 @@
             
         </div> -->
 
-    <section class="slider" ref="slider">
-        <ul class="slides">
-            <li v-for="film in topMovies" v-bind:key="film.id">
-                <div class="row">
-                        <div class="col s12 m8">
-                            <img :src="film.image" alt="">
-                            <!-- <div class="carte">
+        <section class="slider" ref="slider">
+            <ul class="slides">
+                <li v-for="film in topMovies" v-bind:key="film.id">
+                    <div class="row">
+                            <div class="col s12 m8">
+                                <img :src="film.image" alt="">
+                                <!-- <div class="carte">
+                                    
+                                </div> -->
                                 
-                            </div> -->
-                            
+                            </div>
+                            <div class="col s12 m4">
+                                <h1>{{film.title}}</h1>
+                                <br>
+                                <CardInfoMovie :color_shadow="roseColor" :content="'<b>Avec</b> : <br>'+ film.crew"/>
+                                <br>
+                                <CardInfoMovie :color_shadow="bleuColor" :content="'<br><b>Note IMDB </b>: '+ film.imDbRating + '/10'" />
+                                <br>
+                                <CardInfoMovie :color_shadow="roseColor" :content="'<br><b>Année de sortie</b>: '+ film.year" />
+                                <br>
+                                <a class="waves-effect waves-light btn" @click="search(film.title)">En voir plus !</a>
+                            </div>
                         </div>
-                        <div class="col s12 m4">
-                            <h1>{{film.title}}</h1>
-                            
-                        </div>
-                    </div>
-            </li>
-        </ul>
-  </section>
+                </li>
+            </ul>
+        </section>
     </div>
 </template>
 
@@ -48,6 +55,8 @@ import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
 import {getCategorie,searchApi} from '../api/api.js'
+import CardInfoMovie from '@/components/CardInfoMovie.vue'
+import router from '../router/index.js'
 
 
 export default {
@@ -90,6 +99,7 @@ export default {
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
                 let tab =[];
+                console.log(movies);
                 for(let i=0;i<5;i++){
                     // console.log("salut");
                     tab.push(movies[i])
@@ -111,10 +121,18 @@ export default {
         },
         filmDetails(){
             
-        }
+        },
+        search(name) {
+            // searchApi('Search', this.$refs.input.value).then((response)=> {
+            //    console.log(response.results);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+            router.replace(`/movie/${name}`)
+        },
     },
    components:{
-      
+      CardInfoMovie
   }
 }
 </script>
@@ -122,6 +140,21 @@ export default {
 <style scoped>
 .carousel {
     height: 90vh !important;
+}
+
+.slides {
+    background-color: white;
+}
+
+.btn {
+    background-color: #5F51E5 ;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #B94465 ;
+    transform: scale(1.025);
+    transition: 0.4s;
 }
 
 h1 {
@@ -143,6 +176,7 @@ img {
     height: auto;
     object-fit: cover;
     padding: 5px;
+    margin-top: 15px !important;
     border-radius: .75rem;
     box-shadow: 0 2px 10px 0 black;
 }
