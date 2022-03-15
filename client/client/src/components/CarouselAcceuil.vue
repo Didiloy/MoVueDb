@@ -92,6 +92,7 @@ export default {
                 transition: 1000,
                 interval: 6000
             });
+            this.getImagesById()
         })
         
     },
@@ -105,16 +106,15 @@ export default {
                     tab.push(movies[i])
                     this.tabId.push(tab[i].id + "/Images")
                 }
-            
-                this.getImagesById();
             return (this.topMovies = tab);
             });
         },
-        async getImagesById(){
-            this.tabId.forEach( async(id) =>{
-               
-                await searchApi("Title",id).then((movies) =>{
-
+        async getImagesById(){ //avoir les images en bonne qualité
+            // console.log(this.topMovies);
+            this.topMovies.forEach( async(movie) =>{
+                await searchApi("Title",movie.id).then((movies) =>{
+                    // console.log(movies.image);
+                    movie.image = movies.image
                 })
             })
             
