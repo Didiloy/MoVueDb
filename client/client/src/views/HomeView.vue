@@ -86,11 +86,11 @@ export default {
 }
 .row{
   position: fixed;
-  z-index: 1;
+  z-index: 1 !important;
 }
 
 .main{
     margin-left: 230px;
-    z-index: 2;
+    z-index: 2 !important;
 }
 </style>

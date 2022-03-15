@@ -140,6 +140,7 @@ export default {
 <style scoped>
 .carousel {
     height: 90vh !important;
+    z-index: 2 !important;
 }
 
 .slides {

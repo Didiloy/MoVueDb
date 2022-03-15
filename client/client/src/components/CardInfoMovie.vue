@@ -2,7 +2,10 @@
     <div class="card card-shadow" :style="computedColor">
       <div class="card-header">{{titre}}</div>
       <div class="card-body">
-        <div v-html="content"></div> 
+        <div v-html="content"></div>
+        <div>
+          <p class="link" @click="goToOtherFilms"><b>{{link}}</b></p>
+        </div> 
         <div v-if="image_content"> 
           <img class="image" :src="image_content.image_link" alt="movie picture">
         </div>
@@ -14,7 +17,11 @@
 </template>
 
 <script>
+import router from '../router/index.js'
+
 export default {
+
+
   name: "CardInfoMovie",
   data() {
     return {
@@ -37,6 +44,10 @@ export default {
     image_content: {
       required: false,
       type:Object
+    },
+    link:{
+      required:false,
+      type:String
     }
   },
   computed: {
@@ -45,7 +56,12 @@ export default {
           '--color': `#${this.color_shadow}`
         };
       }
+    },
+  methods:{
+    goToOtherFilms(){
+      router.replace(`/movie/${this.link}`)
     }
+  }
 }
 </script>
 
@@ -101,6 +117,10 @@ img{
   margin-top: 1rem;
   padding: var(--padding);
   padding-top: 0;
+}
+
+.link{
+  cursor: pointer;
 }
 
 .btn {

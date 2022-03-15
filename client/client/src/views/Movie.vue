@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div v-else> 
-                <div class="row">
+                <div class="row" v-if="isMovie">
                     <div class="col s12 m6 l6">
                         <CardInfoMovie 
                                 :color_shadow="bleuColor" 
@@ -93,21 +93,132 @@
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
-                                :content="'placeholder'"/>
+                                :link="this.movieInfos.similars[0].title"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- similaire -->
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="roseColor"
-                                :content="'placeholder'"/>
+                                :link="this.movieInfos.similars[1].title"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- similaire -->
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
-                                :content="'placeholder'"/>
+                                :link="this.movieInfos.similars[2].title"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12" v-if="computedTrailerLink">
+                                <!-- Trailer -->
+                                <iframe class="trailer" 
+                                :src="computedTrailerLink" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                                </iframe>
+                                <p class="link"><a :href="computedNonTransformedLink"> Regarder sur youtube !!</a></p>
+                                    <!-- <video  controls class="trailer" :poster="computedThumbnail">
+                                        <source :src="computedTrailerLink" type="video/ogg">
+                                        <source :src="computedTrailerLink" type="video/mp4">
+                                        <source :src="computedTrailerLink" type="video/webm">
+                                        Votre navigateur ne peux pas afficher la vidéo.
+                                    </video> -->
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row" v-if="isSerie">
+                    <div class="col s12 m6 l6">
+                        <CardInfoMovie 
+                                :color_shadow="bleuColor" 
+                                :image_content="{ image_link: movies.image}"/>
+                        <!-- <img class="image" :src="movies.image" alt="movie picture"> -->
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <div class="row">
+                            <h2>{{movieInfos.title}}</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- plot -->
+                                <CardInfoMovie :titre="movieInfos.tagline !== null? movieInfos.tagline : 'Résumé'" 
+                                :color_shadow="roseColor" 
+                                :content="movieInfos.plotLocal"/>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- cast -->
+                                <CardInfoMovie 
+                                :titre="'Tête d\'affiche'"
+                                :color_shadow="bleuColor"
+                                :content="starList"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- box office -->
+                                <CardInfoMovie 
+                                :titre="'Langues'"
+                                :color_shadow="roseColor"
+                                :content="this.movieInfos.languages"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- Studio de production -->
+                                <CardInfoMovie 
+                                :titre="'Studio de production'"
+                                :color_shadow="bleuColor"
+                                :content="movieInfos.companies"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- Directors -->
+                                <CardInfoMovie 
+                                :titre="'Créateurs'"
+                                :color_shadow="roseColor"
+                                :content="movieInfos.tvSeriesInfo.creators"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- notes -->
+                                <CardInfoMovie 
+                                :titre="'Notes'"
+                                :color_shadow="bleuColor"
+                                :content="this.note"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- date de sortie, durée, genre -->
+                                <CardInfoMovie 
+                                :titre="'Détails'"
+                                :color_shadow="roseColor"
+                                :content="details"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link="this.movieInfos.similars[0].title" />
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="roseColor"
+                                :link="this.movieInfos.similars[1].title"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link="this.movieInfos.similars[2].title"/>
                             </div>
                         </div>
                         <div class="row">
@@ -178,6 +289,7 @@ export default {
         movies: null,
         id: null,
         movieInfos: null,
+        note:null,
         starList: null,
         directorList: null,
         details: null,
@@ -186,6 +298,8 @@ export default {
         nonTransformed_link: null,
         roseColor: "B94465",
         bleuColor: "5F51E5",
+        isMovie:false,
+        isSerie:false
     }
   },
   computed:{
@@ -226,6 +340,7 @@ export default {
           this.movies = [];
           await searchApi('SearchMovie', this.name)
           .then((responses) => {
+              console.log("result");
               console.log(responses.results[0]);
               return (this.movies = responses.results[0], this.id = responses.results[0].id);
           });
@@ -234,36 +349,83 @@ export default {
             await searchApi('Title', this.id)
             .then((responses) => {
                 console.log(responses);
+                if(responses.type == "Movie"){
+                    console.log("This is a movie");
+                    this.isMovie = true
+                    this.isSerie = false
+
+
+                    const paragraphCast = () => {
+                        let paragraphStar = '<p>';
+                        responses.starList.map((star) => {
+                            paragraphStar = paragraphStar + ' ' + star.name + ' <br>';
+                        });
+                        paragraphStar += '</p>';
+                        return paragraphStar;
+                    } 
+                    this.starList = paragraphCast();
+                    //loop throught directorList to make a <p> tag
+                    const paragraphDirector = () => {
+                        let paragraph = '<p>';
+                        responses.directorList.map((star) => {
+                            paragraph = paragraph + ' ' + star.name + ' <br>';
+                        });
+                        paragraph += '</p>';
+                        return paragraph;
+                        } 
+                    this.directorList = paragraphDirector();
+                    //loop throught directorList to make a <p> tag
+                    const paragraphDetails = () => {
+                        let paragraph = '<p> <b>Durée : </b>' + responses.runtimeStr;
+                        paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
+                        paragraph += '<br> <b>Genres : </b>' + responses.genres;
+                        paragraph += '</p>';
+                        return paragraph;
+                        } 
+                    this.details = paragraphDetails();
+                    return (this.movieInfos = responses);
+
+
+                }else if (responses.type == "TVSeries") {
+                    console.log("This is a serie");
+                    this.isSerie = true
+                    this.isMovie = false
+                    
+                    const paragraphCast = () => {
+                        let paragraphStar = '<p>';
+                        responses.starList.map((star) => {
+                            paragraphStar = paragraphStar + ' ' + star.name + ' <br>';
+                        });
+                        paragraphStar += '</p>';
+                        return paragraphStar;
+                    } 
+                    this.starList = paragraphCast();
+                    //loop throught directorList to make a <p> tag
+                    const paragraphDirector = () => {
+                        let paragraph = '<p>';
+                        responses.directorList.map((star) => {
+                            paragraph = paragraph + ' ' + star.name + ' <br>';
+                        });
+                        paragraph += '</p>';
+                        return paragraph;
+                        } 
+                    this.directorList = paragraphDirector();
+                    //loop throught directorList to make a <p> tag
+                    const paragraphDetails = () => {
+                        let paragraph = '<p> <b>Nombre de saisons : </b>' + responses.tvSeriesInfo.seasons;
+                        paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
+                        paragraph += '<br> <b>Genres : </b>' + responses.genres;
+                        paragraph += '</p>';
+                        return paragraph;
+                        } 
+                    this.details = paragraphDetails();
+                    this.note = responses.imDbRating + '/10'
+                    
+                    return (this.movieInfos = responses);
+
+                }
                 //loop throught starList to make a <p> tag
-                const paragraphCast = () => {
-                    let paragraphStar = '<p>';
-                    responses.starList.map((star) => {
-                        paragraphStar = paragraphStar + ' ' + star.name + ' <br>';
-                    });
-                    paragraphStar += '</p>';
-                    return paragraphStar;
-                    } 
-                this.starList = paragraphCast();
-                //loop throught directorList to make a <p> tag
-                const paragraphDirector = () => {
-                    let paragraph = '<p>';
-                    responses.directorList.map((star) => {
-                        paragraph = paragraph + ' ' + star.name + ' <br>';
-                    });
-                    paragraph += '</p>';
-                    return paragraph;
-                    } 
-                this.directorList = paragraphDirector();
-                //loop throught directorList to make a <p> tag
-                const paragraphDetails = () => {
-                    let paragraph = '<p> <b>Durée : </b>' + responses.runtimeStr;
-                    paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
-                    paragraph += '<br> <b>Genres : </b>' + responses.genres;
-                    paragraph += '</p>';
-                    return paragraph;
-                    } 
-                this.details = paragraphDetails();
-                return (this.movieInfos = responses);
+                
             });
         },
         async getLinkTrailer(){
