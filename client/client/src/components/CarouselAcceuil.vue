@@ -90,7 +90,7 @@ export default {
                 indicators: false,
                 height: 800,
                 transition: 1000,
-                interval: 6000
+                interval: 10000
             });
             this.getImagesById()
         })
@@ -100,7 +100,7 @@ export default {
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
                 let tab =[];
-                console.log(movies);
+                // console.log(movies);
                 for(let i=0;i<5;i++){
                     // console.log("salut");
                     tab.push(movies[i])
@@ -112,9 +112,9 @@ export default {
         async getImagesById(){ //avoir les images en bonne qualité
             // console.log(this.topMovies);
             this.topMovies.forEach( async(movie) =>{
-                await searchApi("Title",movie.id).then((movies) =>{
+                await searchApi("Title",movie.id).then((movieById) =>{
                     // console.log(movies.image);
-                    movie.image = movies.image
+                    movie.image = movieById.image
                 })
             })
             
@@ -143,7 +143,8 @@ export default {
 }
 
 .slides {
-    background-color: white;
+    /* background-color: white !important; */
+    background-image: url('../assets/background.jpg') !important;
 }
 
 .btn {
