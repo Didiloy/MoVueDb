@@ -6,28 +6,11 @@ const port = 4000;
 app.use(cors());
 
 //J'utiliser les fichier écrits pour gérer ces requetes
-const top250Movies = require('./api/top250Movies');
-const top250Tvs = require('./api/top250Tvs');
-const mostPopularMovies = require('./api/mostPopularMovies');
-const mostPopularTvs = require('./api/mostPopularTvs');
-const inTheater = require('./api/inTheater');
-const boxOffice = require('./api/boxOffice');
-const boxOfficeAllTime = require('./api/boxOfficeAllTime');
-const search = require('./api/search');
-const searchMovie = require('./api/searchMovie');
-const searchSeries = require('./api/searchSeries');
+// const top250Movies = require('./api/top250Movies');
+
 
 //rediriger les requete de ces urls vers les fichier
-app.use('/api/top250Movies', top250Movies);
-app.use('/api/top250Tvs', top250Tvs);
-app.use('/api/mostPopularMovies', mostPopularMovies);
-app.use('/api/mostPopularTvs', mostPopularTvs);
-app.use('/api/inTheater', inTheater);
-app.use('/api/boxOffice', boxOffice);
-app.use('/api/boxOfficeAllTime', boxOfficeAllTime);
-app.use('/api/search', search);
-app.use('/api/searchMovie', searchMovie);
-app.use('/api/searchSeries', searchSeries);
+// app.use('/api/top250Movies', top250Movies);
 
 app.listen(port, () => {
     console.log("listening on port " + port);
