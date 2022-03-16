@@ -92,11 +92,8 @@ export default {
                 transition: 1000,
                 interval: 10000
             });
-<<<<<<< HEAD
             setInterval(() => {this.instance.next()}, 10000)
-=======
             this.getImagesById()
->>>>>>> e62dcaeb2fd3e09b074585ff1dbb915efd719904
         })
         
     },
@@ -106,10 +103,7 @@ export default {
                 let tab =[];
                 // console.log(movies);
                 for(let i=0;i<5;i++){
-<<<<<<< HEAD
-=======
                     // console.log("salut");
->>>>>>> e62dcaeb2fd3e09b074585ff1dbb915efd719904
                     tab.push(movies[i])
                     this.tabId.push(tab[i].id + "/Images")
                 }
@@ -146,9 +140,7 @@ export default {
 
 <style scoped>
 .carousel {
-<<<<<<< HEAD
     height: 820px !important;
-=======
     height: 90vh !important;
     z-index: 2 !important;
 }
@@ -179,12 +171,10 @@ h1 {
     border-radius : .75rem;
     background-color : white;
     box-shadow: 0 2px 10px 0 black;
->>>>>>> e62dcaeb2fd3e09b074585ff1dbb915efd719904
 }
 
 img {
     width: auto;
-<<<<<<< HEAD
     height: 820px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -209,13 +199,11 @@ img {
     font-weight: bold;
     font-size: large;
     margin-top: 200px;
-=======
     height: auto;
     object-fit: cover;
     padding: 5px;
     margin-top: 15px !important;
     border-radius: .75rem;
     box-shadow: 0 2px 10px 0 black;
->>>>>>> e62dcaeb2fd3e09b074585ff1dbb915efd719904
 }
 </style>
