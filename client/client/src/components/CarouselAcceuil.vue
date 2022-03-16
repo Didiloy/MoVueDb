@@ -1,14 +1,12 @@
 <template>
     <div>
-        <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies">
-            <div class="fill">
-<a class="carousel-item" href="#one!"><img src="https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_Ratio0.6716_AL_.jpg"></a>
+        <div class="carousel carousel-slider" ref="carousel" v-if="computedTopMovies" >
+            <span class="carousel-item" v-for="film in topMovies" v-bind:key="film.id">
+                <img :src="film.image">
+                
+            </span>
             
-            </div>
-            <a class="carousel-item" href="#two!"><img :src="topMovies[1].image"></a>
-            <a class="carousel-item" href="#three!"><img :src="topMovies[2].image"></a>
-            <a class="carousel-item" href="#four!"><img :src="topMovies[3].image"></a>
-            <a class="carousel-item" href="#four!"><img :src="topMovies[4].image"></a>
+            
         </div>
     </div>
 </template>
@@ -44,7 +42,7 @@ export default {
                 fullWidth: true,
                 indicators: true
             });
-            setInterval(() => {this.instance.next()}, 6000)
+            setInterval(() => {this.instance.next()}, 10000)
         })
         
     },
@@ -52,9 +50,16 @@ export default {
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
                 console.log(movies);
-            return (this.topMovies = movies);
+                let tab =[];
+                for(let i=0;i<5;i++){
+                    tab.push(movies[i])
+                }
+            return (this.topMovies = tab);
             });
         },
+        filmDetails(){
+            
+        }
     },
    components:{
       
@@ -64,12 +69,12 @@ export default {
 
 <style scoped>
 .carousel {
-    height: 90vh !important;
+    height: 820px !important;
 }
 
 img {
     width: auto;
-    height: 90vh;
+    height: 820px;
     background-repeat: no-repeat;
     background-size: contain;
 }
