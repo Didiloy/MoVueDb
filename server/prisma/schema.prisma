@@ -23,3 +23,31 @@ model Netflix {
   listed_in  String
   description  String
 }
+
+model Disney {
+  id    Int     @unique
+  type String  
+  title  String
+  director  String
+  cast  String
+  country  String
+  date_added  String
+  release_year  String
+  duration  String
+  listed_in  String
+  description  String
+}
+
+model Amazon {
+  id    Int     @unique
+  type String  
+  title  String
+  director  String
+  cast  String
+  country  String
+  date_added  String
+  release_year  String
+  duration  String
+  listed_in  String
+  description  String
+}
