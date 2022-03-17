@@ -1,53 +1,21 @@
 'use strict';
-/*
+
 const express = require('express');
 const app = express();
+const port = 4000
+const csv = require('csv-parser')
+const fs = require('fs')
 const cors = require('cors');
+const { convertCSVToJson } = require('../server/fonction.js') 
 
-import { PrismaClient } from '@prisma/client'
-import Hapi from '@hapi/hapi'
-const prisma = new PrismaClient()
-*/
+const APIHomePath = "/APIFilm/"
 
+//import { PrismaClient } from '@prisma/client'
 
-const Prisma = require('@prisma/client');
+//const prisma = new PrismaClient()
+//const Prisma = require('@prisma/client');
 //const prisma = new Prisma.PrismaClient();
 
-
-
-
-const Hapi = require('@hapi/hapi');
-
-const init = async () => {
-    
-    const server = Hapi.server({
-        port : 4000,
-        host: 'localhost'
-    })
-
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) =>{
-            return 'Hello World';
-        }
-    })
-
-    await server.start();
-    console.log('Server running on %s', server.info.uri);
-}
-
-process.on('unhandledRejection', (err) => {
-    
-    console.log(err.statusCode);
-    process.exit(1);
-});
-
-
-init();
-
-
-/*
 app.use(cors());
 
 //J'utiliser les fichier écrits pour gérer ces requetes
@@ -63,7 +31,23 @@ app.listen(port, () => {
 
 // Set up home route
 app.get('/', (req, res) => {
-    res.send('This is the homepage');
+    res.send('This is example page');
 });
 
-*/
+
+
+//Ici, la page d'acceuil avec pour lien : http://localhost:4000/APIFilm
+app.get(APIHomePath,(req,res) => {
+    res.send('This is the home page of our API')
+})
+
+app.get(APIHomePath+"test/",async (req,res) => {
+    let tab = []
+    convertCSVToJson("netflix_titles").then((response)=>{
+        tab = response
+        res.send(tab)
+    })
+    
+});
+   
+

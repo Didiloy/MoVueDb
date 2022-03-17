@@ -8,6 +8,7 @@
         - Violet: #561e98 (ancienne) : 7544AE (nouvelle)
         - Gris: d0d0d0
     - Framework JS : Vue.js
+    - API : IMDB Api
 
 
 
@@ -15,4 +16,5 @@
 
     - Express
     - Peerflix
-    - API : IMDB Api
+    - Fichier CSV utilisés : Amazon Prime, Disney Plus et Netflix
+    - Site utile : Kaggle
