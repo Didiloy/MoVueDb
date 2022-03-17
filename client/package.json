@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Loya Dylan, Belet Clément",
   "license": "ISC",
   "dependencies": {
     "materialize-css": "^1.0.0-rc.2",
