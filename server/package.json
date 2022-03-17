@@ -11,7 +11,7 @@
         "studio": "./node_modules/.bin/prisma studio"
     },
     "keywords": [],
-    "author": "",
+    "author": "Loya Dylan, Belet Clément",
     "license": "ISC",
     "dependencies": {
         "@hapi/hapi": "^20.2.1",
