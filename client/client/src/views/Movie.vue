@@ -93,13 +93,15 @@
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
-                                :link="this.movieInfos.similars[0].title"/>
+                                :link_image="this.movieInfos.similars[0].image"
+                                :link="this.movieInfos.similars[0].title" />
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- similaire -->
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="roseColor"
+                                :link_image="this.movieInfos.similars[1].image"
                                 :link="this.movieInfos.similars[1].title"/>
                             </div>
                             <div class="col s12 m12 l4">
@@ -107,6 +109,7 @@
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[2].image"
                                 :link="this.movieInfos.similars[2].title"/>
                             </div>
                         </div>
@@ -200,12 +203,14 @@
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l4">
-                                <!-- similaire -->
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[0].image"
                                 :link="this.movieInfos.similars[0].title" />
+                                <p>{{this.movieInfos.similars[0].image}}</p>
                             </div>
+                            
                             <div class="col s12 m12 l4">
                                 <!-- similaire -->
                                 <CardInfoMovie 
@@ -340,7 +345,7 @@ export default {
           this.movies = [];
           await searchApi('SearchMovie', this.name)
           .then((responses) => {
-              console.log("result");
+            //   console.log("result");
               console.log(responses.results[0]);
               return (this.movies = responses.results[0], this.id = responses.results[0].id);
           });
@@ -420,13 +425,12 @@ export default {
                         } 
                     this.details = paragraphDetails();
                     this.note = responses.imDbRating + '/10'
-                    
                     return (this.movieInfos = responses);
 
                 }
                 //loop throught starList to make a <p> tag
                 
-            });
+            }).then(()=>{console.log("SIMILAR: ", this.movieInfos.similars)});
         },
         async getLinkTrailer(){
             // await searchApi('Trailer', this.id)

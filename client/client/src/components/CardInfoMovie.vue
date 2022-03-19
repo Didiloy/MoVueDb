@@ -3,12 +3,15 @@
       <div class="card-header">{{titre}}</div>
       <div class="card-body">
         <div v-html="content"></div>
-        <div>
-          <p class="link" @click="goToOtherFilms"><b>{{link}}</b></p>
-        </div> 
         <div v-if="image_content"> 
           <img class="image" :src="image_content.image_link" alt="movie picture">
         </div>
+        <div v-if="link_image != null">
+          <img class="image" :src="link_image" alt="movie picture" @click="goToOtherFilms">
+        </div>
+        <div>
+          <p class="link" @click="goToOtherFilms"><b>{{link}}</b></p>
+        </div> 
       </div>
       <div class="card-footer">
         <!-- <button class="btn">Details</button> -->
@@ -46,6 +49,10 @@ export default {
       type:Object
     },
     link:{
+      required:false,
+      type:String
+    },
+    link_image:{
       required:false,
       type:String
     }
