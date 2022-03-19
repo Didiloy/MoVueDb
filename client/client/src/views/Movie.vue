@@ -465,10 +465,7 @@ export default {
                 localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
             }
             let localStorageFav = localStorage.getItem('fav');
-            console.log("LOCALSTORAGEFAV: ", localStorageFav);
             this.favMovies = JSON.parse(localStorageFav);
-            console.log("FAVMOVIE: ",this.favMovies);
-            console.log("MOVIEINFOS: ", this.movieInfos);
             //Ajouter le film au local storage dans le bon format
             this.favMovies[this.movieInfos.id] = {"id": this.movieInfos.id,
              "title": this.movieInfos.title,
