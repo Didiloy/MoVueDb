@@ -20,7 +20,7 @@
             <div v-else>
                 <div class="fullHeight">
                      <div class="searchTitle ">
-                        <h2>Resultat de la recherche pour {{searchTitle}}</h2>
+                        <h2> {{searchTitle}}</h2>
                     </div>
                     <div class="principal">
                         <div v-for="movies in films" v-bind:key="movies.id" class="">
@@ -42,6 +42,11 @@
                                 :description="`Année : ${movies.year}
                                 <br> Note : ${movies.imDbRating}/10
                                 `" />
+
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'Fav'"
+                                :name="movies.title" 
+                                :image="movies.image" 
+                                :description="movies.description" />
                             </div>
                             
                         </div>
@@ -84,7 +89,9 @@ export default {
         searchTitle: "",
         films: null,
         apiGetCategorie : false,
-        chemin:this.path
+        chemin:this.path,
+        isFav: false,
+        favMovies: null
     }
   },
   computed:{
@@ -104,7 +111,11 @@ export default {
         CardSearchMovies
   },
   created(){
-      
+      if (localStorage.length == 0){
+          localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
+      }
+      let localStorageFav = localStorage.getItem('fav');
+      this.favMovies = JSON.parse(localStorageFav);
   },
   mounted() {
       M.AutoInit(),
@@ -115,30 +126,38 @@ export default {
   methods: {
       async getMovie(path){
         //   this.films = [];
-          this.searchTitle = this.name
-            console.log(path);
-          if(this.apiGetCategorie){
-              
-              await getCategorie(path)
-              .then((responses)=>{
-                  console.log("affichage");
-                  console.log(responses);
-                  return (this.films = responses)
-              })
-          }else{
+        this.searchTitle = this.name
+        console.log(path);
+        if (this.isFav){
+            this.films = this.favMovies
+            console.log(this.favMovies);
+        }else {
+            if(this.apiGetCategorie){
+                
+                await getCategorie(path)
+                .then((responses)=>{
+                    console.log("affichage");
+                    console.log(responses);
+                    return (this.films = responses)
+                })
+            }else{
             
             await searchApi(path, this.name)
             .then((responses) => {
                 console.log(responses.results);
                 return (this.films = responses.results);
             });
-          }
-          
+            }
+        }
+        
+        
         },
         testWhoPath(){
             console.log();
             if(this.path == "SearchMovie"){
                 this.apiGetCategorie = false
+            }else if (this.path == "Fav"){
+                this.isFav = true
             }else{
                 this.apiGetCategorie = true
             }

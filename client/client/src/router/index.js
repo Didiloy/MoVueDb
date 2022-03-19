@@ -148,6 +148,20 @@ const routes = [{
             enterClass: "animate__animated animate__fadeInRight",
             leaveClass: "animate__animated animate__fadeOutRight",
         }
+    },
+    {
+        path: '/fav',
+        name: 'Fav',
+        props: true,
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/Fav'),
+        meta: {
+            enterClass: "animate__animated animate__fadeInRight",
+            leaveClass: "animate__animated animate__fadeOutRight",
+        }
     }
 
 

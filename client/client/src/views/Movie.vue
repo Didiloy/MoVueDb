@@ -28,7 +28,12 @@
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
-                            <h2>{{movieInfos.title}}</h2>
+                            <div class="col s6">
+                                <h2>{{movieInfos.title}}</h2>
+                            </div>
+                            <div class="col s6 divFav">
+                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
@@ -144,7 +149,12 @@
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
-                            <h2>{{movieInfos.title}}</h2>
+                            <div class="col s6">
+                                <h2>{{movieInfos.title}}</h2>
+                            </div>
+                            <div class="col s6 divFav">
+                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
@@ -208,7 +218,6 @@
                                 :color_shadow="bleuColor"
                                 :link_image="this.movieInfos.similars[0].image"
                                 :link="this.movieInfos.similars[0].title" />
-                                <p>{{this.movieInfos.similars[0].image}}</p>
                             </div>
                             
                             <div class="col s12 m12 l4">
@@ -216,6 +225,7 @@
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="roseColor"
+                                :link_image="this.movieInfos.similars[1].image"
                                 :link="this.movieInfos.similars[1].title"/>
                             </div>
                             <div class="col s12 m12 l4">
@@ -223,6 +233,7 @@
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[2].image"
                                 :link="this.movieInfos.similars[2].title"/>
                             </div>
                         </div>
@@ -430,7 +441,7 @@ export default {
                 }
                 //loop throught starList to make a <p> tag
                 
-            }).then(()=>{console.log("SIMILAR: ", this.movieInfos.similars)});
+            })
         },
         async getLinkTrailer(){
             // await searchApi('Trailer', this.id)
@@ -448,6 +459,23 @@ export default {
                 this.trailer_link = link
                 
             })
+        },
+        addToFav(){
+            if (localStorage.length == 0){
+                localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
+            }
+            let localStorageFav = localStorage.getItem('fav');
+            console.log("LOCALSTORAGEFAV: ", localStorageFav);
+            this.favMovies = JSON.parse(localStorageFav);
+            console.log("FAVMOVIE: ",this.favMovies);
+            console.log("MOVIEINFOS: ", this.movieInfos);
+            //Ajouter le film au local storage dans le bon format
+            this.favMovies[this.movieInfos.id] = {"id": this.movieInfos.id,
+             "title": this.movieInfos.title,
+             "image": this.movieInfos.image,
+             "description" : this.movieInfos.plotLocal
+             }
+            localStorage.setItem('fav', JSON.stringify(this.favMovies))
         }
     },
     watch: { //refresh components a chaque changement de name
@@ -491,6 +519,16 @@ h2 {
     text-shadow: 1px 2px 1px black;
 }
 
+.divFav {
+    height : 115px;
+}
+
+.addToFav {
+    background-color: #B94465 !important;
+    text-align: center;
+    margin-top: 13%;
+    margin-left: 35%;
+}
 img{
     width: 100%;
     height: auto;

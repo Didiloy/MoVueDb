@@ -12,6 +12,7 @@
                 <li class="bold"><a  class="collapsible-header waves-effect" @click="goToTop250Tvs">Top 250 des meilleurs series</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des films</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect">rechercher des series</a></li>
+                <li class="bold"><a class="collapsible-header waves-effect" @click="goToFav">Films et séries favoris</a></li>
             </ul>
             </li>
             
@@ -57,6 +58,9 @@ export default {
         },
         goToTop250Tvs(){
             router.replace(`/top250Tvs`)
+        },
+        goToFav(){
+            router.replace(`/fav`)
         },
     }
 }
