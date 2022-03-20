@@ -3,10 +3,8 @@
 const express = require('express');
 const app = express();
 const port = 4000
-const csv = require('csv-parser')
-const fs = require('fs')
 const cors = require('cors');
-const { convertCSVToJson } = require('../server/fonction.js') 
+const { convertCSVToJson } = require('../server/fonction.js')
 
 const APIHomePath = "/APIFilm/"
 
@@ -37,17 +35,15 @@ app.get('/', (req, res) => {
 
 
 //Ici, la page d'acceuil avec pour lien : http://localhost:4000/APIFilm
-app.get(APIHomePath,(req,res) => {
+app.get(APIHomePath, (req, res) => {
     res.send('This is the home page of our API')
 })
 
-app.get(APIHomePath+"test/",async (req,res) => {
+app.get(APIHomePath + "test/", async(req, res) => {
     let tab = []
-    convertCSVToJson("netflix_titles").then((response)=>{
+    convertCSVToJson("netflix_titles").then((response) => {
         tab = response
         res.send(tab)
     })
-    
-});
-   
 
+});
