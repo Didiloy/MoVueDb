@@ -28,7 +28,7 @@
                                 <CardSearchMovies class="uneCard" v-if="chemin == 'SearchMovie'"
                                 :name="movies.title" 
                                 :image="movies.image" 
-                                :description="movies.description" />
+                                :description="movies.description.length > 100 ? movies.description.slice(0, 100) : movies.description" />
 
 
                                 <CardSearchMovies class="uneCard" v-if="chemin == 'BoxOffice'"
@@ -46,7 +46,7 @@
                                 <CardSearchMovies class="uneCard" v-if="chemin == 'Fav'"
                                 :name="movies.title" 
                                 :image="movies.image" 
-                                :description="movies.description" />
+                                :description="movies.description.length > 100 ? movies.description.slice(0, 100) : movies.description" />
                             </div>
                             
                         </div>
