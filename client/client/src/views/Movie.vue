@@ -31,7 +31,10 @@
                             <div class="col s6">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                            <div class="col s6 divFav">
+                            <div class="col s6 divFav" v-if="isFav(this.movieInfos.id)">
+                                <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                            </div>
+                            <div class="col s6 divFav" v-else>
                                 <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
                             </div>
                         </div>
@@ -152,7 +155,10 @@
                             <div class="col s6">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                            <div class="col s6 divFav">
+                             <div class="col s6 divFav" v-if="isFav(this.movieInfos.id)">
+                                <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                            </div>
+                            <div class="col s6 divFav" v-else>
                                 <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
                             </div>
                         </div>
@@ -473,6 +479,23 @@ export default {
              "description" : this.movieInfos.plotLocal
              }
             localStorage.setItem('fav', JSON.stringify(this.favMovies))
+            this.$router.go()
+        },
+        isFav(id){
+            let localStorageFav = localStorage.getItem('fav');
+            this.favMovies = JSON.parse(localStorageFav);
+            if (id in this.favMovies) {
+                return true;
+            }
+            return false;
+        },
+        deleteFav(id){
+            let localStorageFav = localStorage.getItem('fav');
+            this.favMovies = JSON.parse(localStorageFav);
+            console.log(this.favMovies);
+            delete this.favMovies[id]
+            localStorage.setItem('fav', JSON.stringify(this.favMovies))
+            this.$router.go()
         }
     },
     watch: { //refresh components a chaque changement de name
