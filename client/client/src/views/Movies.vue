@@ -4,9 +4,6 @@
 
 <script>
 // @ is an alias to /src
-import M from 'materialize-css'
-import 'materialize-css'
-import 'materialize-css/dist/css/materialize.css'
 import GridComponents from '../components/GridComponents.vue'
 
 //quoi afficher:
