@@ -184,6 +184,7 @@ export default {
 .background{
     background-image: url('../assets/background.jpg');
     background-size: cover;
+    min-height: 100vh;
     flex-grow: 1;
 }
 
