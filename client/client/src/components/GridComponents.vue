@@ -25,7 +25,7 @@
                     <div class="principal">
                         <div v-for="movies in films" v-bind:key="movies.id" class="">
                             <div>
-                                <CardSearchMovies class="uneCard" v-if="chemin == 'SearchMovie'"
+                                <CardSearchMovies class="uneCard" v-if="chemin == 'SearchMovie' || chemin == 'SearchTitle'"
                                 :name="movies.title" 
                                 :image="movies.image" 
                                 :description="movies.description.length > 100 ? movies.description.slice(0, 100) : movies.description" />
@@ -68,7 +68,6 @@ import 'materialize-css/dist/css/materialize.css'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
-import router from '../router/index.js'
 import CardSearchMovies from '../components/CardSearchMovies.vue'
 import { getCategorie } from '../api/api.js'
 
@@ -119,9 +118,9 @@ export default {
   },
   mounted() {
       M.AutoInit(),
-      this.testWhoPath(),
-      console.log(this.path);
-      this.getMovie(this.path)
+      this.testWhoPath()
+    //   console.log(this.path);
+    this.getMovie(this.path)
   },
   methods: {
       async getMovie(path){
@@ -154,7 +153,7 @@ export default {
         },
         testWhoPath(){
             console.log();
-            if(this.path == "SearchMovie"){
+            if(this.path == "SearchTitle"){
                 this.apiGetCategorie = false
             }else if (this.path == "Fav"){
                 this.isFav = true
