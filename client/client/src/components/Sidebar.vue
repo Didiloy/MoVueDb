@@ -10,8 +10,6 @@
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularSeries">Series les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToTop250Movies">Top 250 des meilleurs films</a></li>
                 <li class="bold"><a  class="collapsible-header waves-effect" @click="goToTop250Tvs">Top 250 des meilleurs series</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">rechercher des films</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect">rechercher des series</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToFav">Films et séries favoris</a></li>
             </ul>
             </li>
