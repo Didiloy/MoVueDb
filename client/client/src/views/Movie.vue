@@ -360,7 +360,8 @@ export default {
   methods: {
       async getMovie(){
           this.movies = [];
-          await searchApi('SearchMovie', this.name)
+          console.log("TEST : "+this.name);
+          await searchApi('SearchTitle', this.name)
           .then((responses) => {
             //   console.log("result");
               console.log(responses.results[0]);
@@ -446,7 +447,6 @@ export default {
 
                 }
                 //loop throught starList to make a <p> tag
-                
             })
         },
         async getLinkTrailer(){
