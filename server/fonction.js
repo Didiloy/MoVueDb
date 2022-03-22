@@ -18,10 +18,9 @@ function convertCSVToJson(name) {
 }
 
 async function lookDisneyTableId(idP) {
-    const vraiId = "s" + idP.toString()
     return (await prisma.Disney.findMany({
         where: {
-            id: vraiId
+            id: idP
         }
     }));
 }

@@ -92,5 +92,11 @@ app.get(updateDatabase, async(req, res) => {
 // })
 
 app.get("/search/disney/", (req, res) => {
-    lookDisneyTableType(req.query.type).then((response) => { res.send(response) })
+    if (req.query.type) {
+        lookDisneyTableType(req.query.type).then((response) => { res.send(response) })
+    }
+    if (req.query.id) {
+        lookDisneyTableId(req.query.id).then((response) => { res.send(response) })
+    }
+
 })
