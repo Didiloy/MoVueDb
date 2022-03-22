@@ -62,19 +62,19 @@ app.get(updateDatabase, async(req, res) => {
                     await prisma.netflix.create({
                         data: {
                             id: result.show_id,
-                            type: result.type,
-                            title: result.title,
-                            director: result.director,
-                            cast: result.cast,
-                            country: result.country,
-                            date_added: result.date_added,
-                            release_year: result.release_year,
-                            duration: result.duration,
-                            listed_in: result.listed_in,
-                            description: result.description
+                            type: result.type || " ",
+                            title: result.title || " ",
+                            director: result.director || " ",
+                            cast: result.cast || " ",
+                            country: result.country || " ",
+                            date_added: result.date_added || " ",
+                            release_year: result.release_year || " ",
+                            duration: result.duration || " ",
+                            listed_in: result.listed_in || " ",
+                            description: result.description || " "
                         }
-                    }).then(console.log('created'))
-
+                    })
+                    console.log('created');
                 } catch (error) {
                     console.log(error);
                 }
