@@ -50,37 +50,62 @@ app.get(APIHomePath + "test/", async(req, res) => {
 
 app.get(updateDatabase, async(req, res) => {
     const results = [];
-    fs.createReadStream('./databases/netflix_titles.csv')
+    fs.createReadStream('./databases/disney_plus_titles.csv')
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async() => {
             console.log('done parsing csv');
             // console.log(results);
 
-            results.forEach(async(result) => {
+            for (let i = 0; i < results.length; i++) {
                 try {
-                    await prisma.netflix.create({
+                    await prisma.disney.create({
                         data: {
-                            id: result.show_id,
-                            type: result.type || " ",
-                            title: result.title || " ",
-                            director: result.director || " ",
-                            cast: result.cast || " ",
-                            country: result.country || " ",
-                            date_added: result.date_added || " ",
-                            release_year: result.release_year || " ",
-                            duration: result.duration || " ",
-                            listed_in: result.listed_in || " ",
-                            description: result.description || " "
+                            id: results[i].show_id,
+                            type: results[i].type || " ",
+                            title: results[i].title || " ",
+                            director: results[i].director || " ",
+                            cast: results[i].cast || " ",
+                            country: results[i].country || " ",
+                            date_added: results[i].date_added || " ",
+                            release_year: results[i].release_year || " ",
+                            duration: results[i].duration || " ",
+                            listed_in: results[i].listed_in || " ",
+                            description: results[i].description || " "
                         }
                     })
-                    console.log('created');
+                    console.log('created ', results[i].title);
+                    await new Promise(r => setTimeout(r, 50));
                 } catch (error) {
-                    console.log(error);
+                    console.log(error, "\n\n================================");
                 }
-            })
+            }
 
-            await prisma.netflix.findMany().then(results => res.send(results));
+            // results.forEach(async(result) => {
+            //     try {
+            //         await prisma.disney.create({
+            //             data: {
+            //                 id: result.show_id,
+            //                 type: result.type || " ",
+            //                 title: result.title || " ",
+            //                 director: result.director || " ",
+            //                 cast: result.cast || " ",
+            //                 country: result.country || " ",
+            //                 date_added: result.date_added || " ",
+            //                 release_year: result.release_year || " ",
+            //                 duration: result.duration || " ",
+            //                 listed_in: result.listed_in || " ",
+            //                 description: result.description || " "
+            //             }
+            //         })
+            //         console.log('created ', result.title);
+            //         // await new Promise(r => setTimeout(r, 2000));
+            //     } catch (error) {
+            //         console.log(error, "\n\n================================", result.title, "\n================================\n");
+            //     }
+            // })
+
+            await prisma.disney.findMany().then(results => res.send(results));
         })
 
 });
