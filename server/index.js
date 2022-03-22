@@ -87,16 +87,36 @@ app.get(updateDatabase, async(req, res) => {
 });
 
 
-// app.get("/search/disney/:id", (req, res) => {
-//     lookDisneyTableId(req.params.id).then((response) => { res.send(response) })
-// })
-
+//Request on disney table
 app.get("/search/disney/", (req, res) => {
     if (req.query.type) {
         lookTableByField(prisma.disney, "type", req.query.type).then((response) => { res.send(response) })
     }
     if (req.query.id) {
         lookTableByField(prisma.disney, "id", req.query.id).then((response) => { res.send(response) })
+    }
+
+})
+
+
+//Request on Netflix table
+app.get("/search/netflix/", (req, res) => {
+    if (req.query.type) {
+        lookTableByField(prisma.netflix, "type", req.query.type).then((response) => { res.send(response) })
+    }
+    if (req.query.id) {
+        lookTableByField(prisma.netflix, "id", req.query.id).then((response) => { res.send(response) })
+    }
+
+})
+
+//Request on Amazon table
+app.get("/search/amazon/", (req, res) => {
+    if (req.query.type) {
+        lookTableByField(prisma.amazon, "type", req.query.type).then((response) => { res.send(response) })
+    }
+    if (req.query.id) {
+        lookTableByField(prisma.amazon, "id", req.query.id).then((response) => { res.send(response) })
     }
 
 })
