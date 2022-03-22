@@ -5,14 +5,14 @@ const app = express();
 const port = 4000
 const cors = require('cors');
 const { convertCSVToJson } = require('../server/fonction.js')
+const csv = require('csv-parser')
+const fs = require('fs')
+const PrismaClient = require('@prisma/client')
+const prisma = new PrismaClient.PrismaClient();
 
-const APIHomePath = "/APIFilm/"
+const APIHomePath = "/api/films/"
+const updateDatabase = "/api/updateDatabase"
 
-//import { PrismaClient } from '@prisma/client'
-
-//const prisma = new PrismaClient()
-//const Prisma = require('@prisma/client');
-//const prisma = new Prisma.PrismaClient();
 
 app.use(cors());
 
@@ -45,5 +45,42 @@ app.get(APIHomePath + "test/", async(req, res) => {
         tab = response
         res.send(tab)
     })
+
+});
+
+app.get(updateDatabase, async(req, res) => {
+    const results = [];
+    fs.createReadStream('./databases/netflix_titles.csv')
+        .pipe(csv())
+        .on('data', (data) => results.push(data))
+        .on('end', async() => {
+            console.log('done parsing csv');
+            // console.log(results);
+
+            results.forEach(async(result) => {
+                try {
+                    await prisma.netflix.create({
+                        data: {
+                            id: result.show_id,
+                            type: result.type,
+                            title: result.title,
+                            director: result.director,
+                            cast: result.cast,
+                            country: result.country,
+                            date_added: result.date_added,
+                            release_year: result.release_year,
+                            duration: result.duration,
+                            listed_in: result.listed_in,
+                            description: result.description
+                        }
+                    }).then(console.log('created'))
+
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+
+            await prisma.netflix.findMany().then(results => res.send(results));
+        })
 
 });
