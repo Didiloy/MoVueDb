@@ -1,5 +1,7 @@
 const csv = require('csv-parser')
 const fs = require('fs')
+const PrismaClient = require('@prisma/client')
+const prisma = new PrismaClient.PrismaClient();
 
 const path = "./databases/"
 
@@ -13,7 +15,16 @@ function convertCSVToJson(name){
             resolve(tab) 
         });
     })
-    
 }
 
-module.exports = {convertCSVToJson}
+async function lookDisneyTableId(idP){
+    const vraiId = "s"+idP.toString()
+    return (await prisma.Disney.findMany({
+        where:{
+            id: vraiId
+        }
+    }));
+}
+
+
+module.exports = {convertCSVToJson,lookDisneyTableId}

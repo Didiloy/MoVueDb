@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson } = require('../server/fonction.js')
+const { convertCSVToJson,lookDisneyTableId } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -109,3 +109,8 @@ app.get(updateDatabase, async(req, res) => {
         })
 
 });
+
+
+app.get("/search/disney/:id", (req, res) => {
+    lookDisneyTableId(req.params.id).then((response)=>{res.send(response)})
+})
