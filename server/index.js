@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType } = require('../server/fonction.js')
+const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -93,10 +93,10 @@ app.get(updateDatabase, async(req, res) => {
 
 app.get("/search/disney/", (req, res) => {
     if (req.query.type) {
-        lookDisneyTableType(req.query.type).then((response) => { res.send(response) })
+        lookTableByField(prisma.disney, "type", req.query.type).then((response) => { res.send(response) })
     }
     if (req.query.id) {
-        lookDisneyTableId(req.query.id).then((response) => { res.send(response) })
+        lookTableByField(prisma.disney, "id", req.query.id).then((response) => { res.send(response) })
     }
 
 })

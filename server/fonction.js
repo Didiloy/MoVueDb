@@ -35,6 +35,16 @@ async function lookDisneyTableType(type) {
     }));
 }
 
+async function lookTableByField(table, field, req) {
+    if (req === "movie" || req === "MOVIE") req = "Movie";
+    if (req === "Tv Show" || req === "TV SHOW" || req === "tv show") req = "TV Show";
+    return (await table.findMany({
+        where: {
+            [field]: req
+        }
+    }));
+}
 
 
-module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType }
+
+module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField }
