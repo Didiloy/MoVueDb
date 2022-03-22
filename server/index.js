@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson,lookDisneyTableId } = require('../server/fonction.js')
+const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -81,36 +81,16 @@ app.get(updateDatabase, async(req, res) => {
                 }
             }
 
-            // results.forEach(async(result) => {
-            //     try {
-            //         await prisma.disney.create({
-            //             data: {
-            //                 id: result.show_id,
-            //                 type: result.type || " ",
-            //                 title: result.title || " ",
-            //                 director: result.director || " ",
-            //                 cast: result.cast || " ",
-            //                 country: result.country || " ",
-            //                 date_added: result.date_added || " ",
-            //                 release_year: result.release_year || " ",
-            //                 duration: result.duration || " ",
-            //                 listed_in: result.listed_in || " ",
-            //                 description: result.description || " "
-            //             }
-            //         })
-            //         console.log('created ', result.title);
-            //         // await new Promise(r => setTimeout(r, 2000));
-            //     } catch (error) {
-            //         console.log(error, "\n\n================================", result.title, "\n================================\n");
-            //     }
-            // })
-
             await prisma.disney.findMany().then(results => res.send(results));
         })
 
 });
 
 
-app.get("/search/disney/:id", (req, res) => {
-    lookDisneyTableId(req.params.id).then((response)=>{res.send(response)})
+// app.get("/search/disney/:id", (req, res) => {
+//     lookDisneyTableId(req.params.id).then((response) => { res.send(response) })
+// })
+
+app.get("/search/disney/", (req, res) => {
+    lookDisneyTableType(req.query.type).then((response) => { res.send(response) })
 })
