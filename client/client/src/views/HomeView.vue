@@ -7,12 +7,13 @@
       <br>
       <Sidebar />
       <div class="main">
-          <CarouselAcceuil />
+            <CarouselAcceuil />
           <br>
-          <CarouselMostPopularMovies />
+          <!-- <CarouselMostPopularMovies />
           <br>
           <CarouselMostPopularTvs />
-          <br>
+          <br> -->
+           <!-- Section: Popular -->
       </div>
       <br>
       <br>
