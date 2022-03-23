@@ -6,7 +6,7 @@ const KEY3 = "k_z25r6v1f";
 const KEY2 = "k_d0coomyh";
 const KEY7 = "k_vvwj2ui2";
 
-const KEY = KEY4;
+const KEY = KEY1;
 
 const IMDB_BASE_URL = "https://imdb-api.com/fr/API"
 const axios = require('axios');
