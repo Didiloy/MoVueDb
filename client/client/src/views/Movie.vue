@@ -149,7 +149,32 @@
                         <CardInfoMovie 
                                 :color_shadow="bleuColor" 
                                 :image_content="{ image_link: movies.image}"/>
-                        <!-- <img class="image" :src="movies.image" alt="movie picture"> -->
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[0].image"
+                                :link="this.movieInfos.similars[0].title" />
+                            </div>
+                            
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="roseColor"
+                                :link_image="this.movieInfos.similars[1].image"
+                                :link="this.movieInfos.similars[1].title"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[2].image"
+                                :link="this.movieInfos.similars[2].title"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
@@ -219,32 +244,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s12 m12 l4">
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="bleuColor"
-                                :link_image="this.movieInfos.similars[0].image"
-                                :link="this.movieInfos.similars[0].title" />
-                            </div>
-                            
-                            <div class="col s12 m12 l4">
-                                <!-- similaire -->
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="roseColor"
-                                :link_image="this.movieInfos.similars[1].image"
-                                :link="this.movieInfos.similars[1].title"/>
-                            </div>
-                            <div class="col s12 m12 l4">
-                                <!-- similaire -->
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="bleuColor"
-                                :link_image="this.movieInfos.similars[2].image"
-                                :link="this.movieInfos.similars[2].title"/>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col s12 m12 l12" v-if="computedTrailerLink">
                                 <!-- Trailer -->
                                 <iframe class="trailer" 
@@ -285,19 +284,6 @@ import {searchApi} from '@/api/api.js'
 import router from '../router/index.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
 const movieTrailer = require( 'movie-trailer' )
-
-//quoi afficher:
-//Actor list
-//box office
-//Companies
-//directors
-//genre
-//imDbRating imDbRatingVotes
-//plotLocal
-//releaseDate
-//runtimeStr
-//Similars ?
-//year
 
 export default {
   name: 'Movie',
