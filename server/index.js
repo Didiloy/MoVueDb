@@ -95,6 +95,12 @@ app.get("/search/disney/", (req, res) => {
     if (req.query.id) {
         lookTableByField(prisma.disney, "id", req.query.id).then((response) => { res.send(response) })
     }
+    if (req.query.country) {
+        lookTableByField(prisma.disney, "country", req.query.country).then((response) => { res.send(response) })
+    }
+    if (req.query.year){
+        lookTableByField(prisma.disney, "release_year", req.query.year).then((response) => { res.send(response) })
+    }
 
 })
 
@@ -107,6 +113,12 @@ app.get("/search/netflix/", (req, res) => {
     if (req.query.id) {
         lookTableByField(prisma.netflix, "id", req.query.id).then((response) => { res.send(response) })
     }
+    if (req.query.country) {
+        lookTableByField(prisma.netflix, "country", req.query.country).then((response) => { res.send(response) })
+    }
+    if (req.query.year){
+        lookTableByField(prisma.netflix, "release_year", req.query.year).then((response) => { res.send(response) })
+    }
 
 })
 
@@ -117,6 +129,12 @@ app.get("/search/amazon/", (req, res) => {
     }
     if (req.query.id) {
         lookTableByField(prisma.amazon, "id", req.query.id).then((response) => { res.send(response) })
+    }
+    if (req.query.country) {
+        lookTableByField(prisma.amazon, "country", req.query.country).then((response) => { res.send(response) })
+    }
+    if (req.query.year){
+        lookTableByField(prisma.amazon, "release_year", req.query.year).then((response) => { res.send(response) })
     }
 
 })

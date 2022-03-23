@@ -38,6 +38,14 @@ async function lookDisneyTableType(type) {
 async function lookTableByField(table, field, req) {
     if (req === "movie" || req === "MOVIE") req = "Movie";
     if (req === "Tv Show" || req === "TV SHOW" || req === "tv show") req = "TV Show";
+    if (field === "country"){
+        //Mettre la première lettre de chaque mot en majuscule
+        const words = req.split(" ");
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        req = words.join(' ')
+    }
     return (await table.findMany({
         where: {
             [field]: req
