@@ -112,7 +112,7 @@
                                 <CardInfoMovie 
                                 :titre="'Notes'"
                                 :color_shadow="bleuColor"
-                                :content="'placeholder'"/>
+                                :content="movieInfos.imDbRating+'/10 <br> sur '+movieInfos.imDbRatingVotes+' notes'"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- date de sortie, durée, genre -->
@@ -233,7 +233,7 @@
                                 <CardInfoMovie 
                                 :titre="'Notes'"
                                 :color_shadow="bleuColor"
-                                :content="this.note"/>
+                                :content="this.note + '<br> sur '+movieInfos.imDbRatingVotes+' votes'"/>
                             </div>
                             <div class="col s12 m12 l4">
                                 <!-- date de sortie, durée, genre -->
