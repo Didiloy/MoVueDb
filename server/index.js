@@ -50,7 +50,7 @@ app.get(APIHomePath + "test/", async(req, res) => {
 
 app.get(updateDatabase, async(req, res) => {
     const results = [];
-    fs.createReadStream('./databases/disney_plus_titles.csv')
+    fs.createReadStream('./databases/amazon_prime_titles.csv')
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async() => {
@@ -59,7 +59,7 @@ app.get(updateDatabase, async(req, res) => {
 
             for (let i = 0; i < results.length; i++) {
                 try {
-                    await prisma.disney.create({
+                    await prisma.amazon.create({
                         data: {
                             id: results[i].show_id,
                             type: results[i].type || " ",
@@ -75,13 +75,13 @@ app.get(updateDatabase, async(req, res) => {
                         }
                     })
                     console.log('created ', results[i].title);
-                    await new Promise(r => setTimeout(r, 50));
+                    await new Promise(r => setTimeout(r, 500));
                 } catch (error) {
                     console.log(error, "\n\n================================");
                 }
             }
 
-            await prisma.disney.findMany().then(results => res.send(results));
+            await prisma.amazon.findMany().then(results => res.send(results));
         })
 
 });

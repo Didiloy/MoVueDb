@@ -39,7 +39,7 @@ model Disney {
 }
 
 model Amazon {
-  id    Int    @id @unique
+  id    String    @id @unique
   type String  
   title  String
   director  String
