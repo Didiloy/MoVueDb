@@ -1,7 +1,7 @@
 <template>
   <div class="background">
       <div class="row">
-        <Navbar />
+        <Navbar class="nav"/>
       </div>
       <br>
       <br>
@@ -13,16 +13,6 @@
           <br>
           <CarouselMostPopularTvs />
           <br>
-          <!-- <CarouselTop250Movies />
-          <br>
-          <CarouselTop250Series />
-          <br>
-          <CarouselBoxOfficeSemaine /> -->
-          <br>
-          <!-- <CarouselInTheater />
-          <br>
-          <CarouselBoxOfficeAllTime /> -->
-
       </div>
       <br>
       <br>
@@ -86,11 +76,13 @@ export default {
 }
 .row{
   position: fixed;
-  z-index: 1 !important;
+  z-index: 3 !important;
 }
 
 .main{
-    margin-left: 230px;
-    z-index: 2 !important;
+  margin-left: 230px;
+  
 }
+
+
 </style>

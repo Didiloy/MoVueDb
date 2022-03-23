@@ -1,26 +1,5 @@
 <template>
     <div>
-        <!-- <div class="carousel carousel-slider center no-autoinit" ref="carousel" v-if="computedTopMovies" >
-            <div class="carousel-item" v-for="film in topMovies" v-bind:key="film.id">
-                <div class="row">
-                    <div class="col s12 m8">
-                        <div class="carte">
-                            <img :src="film.image" alt="">
-                        </div>
-                        
-                    </div>
-                    <div class="col s12 m4">
-                        <h1>{{film.title}}</h1>
-                        
-                    </div>
-                </div>
-                
-                
-            </div>
-            
-            
-        </div> -->
-
         <section class="slider" ref="slider">
             <ul class="slides">
                 <li v-for="film in topMovies" v-bind:key="film.id">
@@ -139,15 +118,12 @@ export default {
 </script>
 
 <style scoped>
-.carousel {
-    height: 820px !important;
-    height: 90vh !important;
-    z-index: 2 !important;
-}
+
 
 .slides {
     /* background-color: white !important; */
     background-image: url('../assets/background.jpg') !important;
+
 }
 
 .btn {
@@ -180,17 +156,6 @@ img {
     background-size: contain;
 }
 
-/* .fill {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
-}
-.fill img {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
-} */
 
 #btn-carousel {
     border-radius: 20px;
