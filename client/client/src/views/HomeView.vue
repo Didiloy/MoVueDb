@@ -104,6 +104,7 @@ export default {
    
   },
   methods: {
+    // Définition des fonctions permettant d'aller dans les différentes pages
       goToMostPopularMovies(){
             router.replace(`/mostPopularMovies`)
         },
