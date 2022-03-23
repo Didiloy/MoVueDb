@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-        <div class="row fixe">
+        <div class="navbar">
             <Navbar />
         </div>
         <br>
@@ -504,20 +504,19 @@ export default {
     height: 100vh;
 }
 
-.fixe{
-    z-index: 1 !important;
+.navbar{
+    position: fixed;
+    z-index: 5 !important;
 }
 
 .background{
     background-image: url('../assets/background.jpg') !important;
     background-size: cover;
 }
-.fixe{
-    z-index: 1;
-}
+
 .main{
     margin-left: 230px;
-    z-index: 2;
+    
 }
 
 h2 {

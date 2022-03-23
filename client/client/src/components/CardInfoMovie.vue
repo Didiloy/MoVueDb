@@ -88,6 +88,7 @@ img{
   border-radius: .50rem;
   overflow: hidden;
   transition: 0.4s;
+  z-index: 1 !important;
   
 }
 
