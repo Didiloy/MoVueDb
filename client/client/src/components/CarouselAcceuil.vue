@@ -6,10 +6,6 @@
                     <div class="row">
                             <div class="col s12 m8">
                                 <img :src="film.image" alt="">
-                                <!-- <div class="carte">
-                                    
-                                </div> -->
-                                
                             </div>
                             <div class="col s12 m4">
                                 <h1>{{film.title}}</h1>
@@ -48,7 +44,6 @@ export default {
             films_top: "Top 250 des meilleurs films",
             roseColor: "B94465",
             bleuColor: "5F51E5",
-            instance:null,
         }
     },
     computed:{
@@ -59,19 +54,12 @@ export default {
     mounted() {
         this.getMostPopularMovies()
         .then( () => {
-            // M.AutoInit()
-            // this.instance = M.Carousel.init(this.$refs.carousel,{
-            //     fullWidth: true,
-            //     indicators: true
-            // });
-            // setInterval(() => {this.instance.next()}, 6000)
             M.Slider.init(this.$refs.slider, {
                 indicators: false,
                 height: 800,
                 transition: 1000,
                 interval: 10000
             });
-            setInterval(() => {this.instance.next()}, 10000)
             this.getImagesById()
         })
         
