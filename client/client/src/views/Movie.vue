@@ -21,21 +21,48 @@
             <div v-else> 
                 <div class="row" v-if="isMovie">
                     <div class="col s12 m6 l6">
+                        <!-- Ajout de l'image du film -->
                         <CardInfoMovie 
                                 :color_shadow="bleuColor" 
                                 :image_content="{ image_link: movies.image}"/>
-                        <!-- <img class="image" :src="movies.image" alt="movie picture"> -->
+                        <!-- Ajout des films similaires -->
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[0].image"
+                                :link="this.movieInfos.similars[0].title" />
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="roseColor"
+                                :link_image="this.movieInfos.similars[1].image"
+                                :link="this.movieInfos.similars[1].title"/>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <!-- similaire -->
+                                <CardInfoMovie 
+                                :titre="'À (re)découvrir'"
+                                :color_shadow="bleuColor"
+                                :link_image="this.movieInfos.similars[2].image"
+                                :link="this.movieInfos.similars[2].title"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="row">
-                            <div class="col s6">
+                            <div class="col s5">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                            <div class="col s6 divFav" v-if="isFav(this.movieInfos.id)">
+                            <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
                                 <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
                             </div>
-                            <div class="col s6 divFav" v-else>
-                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
+                            <div class="col s7 divFav" v-else>
+                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
                             </div>
                         </div>
                         <div class="row">
@@ -93,32 +120,6 @@
                                 :titre="'Détails'"
                                 :color_shadow="roseColor"
                                 :content="details"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12 m12 l4">
-                                <!-- similaire -->
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="bleuColor"
-                                :link_image="this.movieInfos.similars[0].image"
-                                :link="this.movieInfos.similars[0].title" />
-                            </div>
-                            <div class="col s12 m12 l4">
-                                <!-- similaire -->
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="roseColor"
-                                :link_image="this.movieInfos.similars[1].image"
-                                :link="this.movieInfos.similars[1].title"/>
-                            </div>
-                            <div class="col s12 m12 l4">
-                                <!-- similaire -->
-                                <CardInfoMovie 
-                                :titre="'À (re)découvrir'"
-                                :color_shadow="bleuColor"
-                                :link_image="this.movieInfos.similars[2].image"
-                                :link="this.movieInfos.similars[2].title"/>
                             </div>
                         </div>
                         <div class="row">
