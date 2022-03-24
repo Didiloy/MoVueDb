@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>This website was created by Belet Clément and Loya Dylan</p>
   </div>
 </template>

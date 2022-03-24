@@ -7,14 +7,17 @@
       <br>
       <Sidebar />
       <div class="main">
+        <!-- Composant permettant d'afficher le slider -->
             <CarouselAcceuil />
           <br>
           <div class="row">
+            <!-- ligne contenant les 3 cards des catégories -->
             <div class="container">
                 <h2 class="center"> <span style="color: #5F51E5">À</span> Découvrir</h2>
             </div>
           </div>
           <div class="row">
+            <!-- carte films les plus populaires -->
             <div class="col m12 l4">
               <div class="container">
                   <div class="card" @click="goToMostPopularMovies()">
@@ -29,6 +32,7 @@
                   </div>
               </div>
             </div>
+            <!-- carte séries les plus populaires -->
             <div class="col m12 l4">
               <div class="container">
                   <div class="card " @click="goToMostPopularSeries()">
@@ -44,6 +48,7 @@
                   </div>
               </div>
             </div>
+            <!-- carte box office de la semaine -->
             <div class="col m12 l4">
               <div class="container">
                   <div class="card" @click="goToBoxOffice()">
@@ -60,11 +65,6 @@
               </div>
             </div>
           </div>
-          <!-- <CarouselMostPopularMovies />
-          <br>
-          <CarouselMostPopularTvs />
-          <br> -->
-           <!-- Section: Popular -->
       </div>
       <br>
       <br>
@@ -77,7 +77,6 @@
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import CarouselAcceuil from '@/components/CarouselAcceuil.vue'
-import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
 import router from '../router/index.js'
@@ -96,12 +95,6 @@ export default {
     Navbar,
     Sidebar,
     CarouselAcceuil
-  },
-  created(){
-    
-  },
-  mounted() {
-   
   },
   methods: {
     // Définition des fonctions permettant d'aller dans les différentes pages

@@ -57,6 +57,7 @@
         </div>    
       <br>
       <br>
+      <Footer />
     </div>
 </template>
 
@@ -69,6 +70,7 @@ import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
 import CardSearchMovies from '../components/CardSearchMovies.vue'
+import Footer from '@/components/Footer.vue'
 import { getCategorie } from '../api/api.js'
 
 export default {
@@ -90,7 +92,8 @@ export default {
         apiGetCategorie : false,
         chemin:this.path,
         isFav: false,
-        favMovies: null
+        favMovies: null,
+        Footer
     }
   },
   computed:{
@@ -140,7 +143,7 @@ export default {
                     return (this.films = responses)
                 })
             }else{
-            
+            console.log("ici avec comme categorie: ", path);
             await searchApi(path, this.name)
             .then((responses) => {
                 console.log(responses.results);

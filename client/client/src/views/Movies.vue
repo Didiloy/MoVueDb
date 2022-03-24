@@ -1,6 +1,9 @@
 <template>
-    <!-- on utilise le composant qu'on a créé pour faire la grille de films-->
-    <GridComponents  :path="path" :name="name"/>
+    <div>
+      <!-- on utilise le composant qu'on a créé pour faire la grille de films-->
+      <GridComponents  :path="path" :name="name"/>
+    </div>
+    
 </template>
 
 <script>
@@ -10,7 +13,7 @@ import GridComponents from '../components/GridComponents.vue'
 export default {
   name: 'Movies',
   components:{
-      GridComponents
+      GridComponents,
   },
   data(){
     return{

@@ -268,6 +268,7 @@
         </div>    
       <br>
       <br>
+    <Footer />
   </div>
 </template>
 
@@ -278,6 +279,7 @@ import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
+import Footer from '@/components/Footer.vue'
 import {searchApi} from '@/api/api.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
 const movieTrailer = require( 'movie-trailer' )
@@ -334,7 +336,8 @@ export default {
   components: {
         Navbar,
         Sidebar,
-        CardInfoMovie
+        CardInfoMovie,
+        Footer
   },
   created(){
       
