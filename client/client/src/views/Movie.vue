@@ -185,11 +185,13 @@
                             <div class="col s6">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                             <div class="col s6 divFav" v-if="isFav(this.movieInfos.id)">
-                                <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
-                            </div>
-                            <div class="col s6 divFav" v-else>
-                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter au favoris !</a>
+                             <div>
+                                 <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
+                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">{{this.lesFav}}</a>
+                                </div>
+                                <div class="col s7 divFav" v-else>
+                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">{{this.lesFav}}</a>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
