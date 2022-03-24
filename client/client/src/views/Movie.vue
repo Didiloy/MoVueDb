@@ -58,23 +58,14 @@
                             <div class="col s5">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                            <div v-if="computedFav == true">
+                            <div>
                                  <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
-                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">{{this.lesFav}}</a>
                                 </div>
                                 <div class="col s7 divFav" v-else>
-                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
+                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">{{this.lesFav}}</a>
                                 </div>
                             </div>
-                            <div v-else>
-                                <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
-                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
-                                </div>
-                                <div class="col s7 divFav" v-else>
-                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
-                                </div>
-                            </div>
-                           
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
@@ -325,7 +316,7 @@ export default {
         bleuColor: "5F51E5",
         isMovie:false,
         isSerie:false,
-        isAFav: false
+        lesFav:""
     }
   },
   computed:{
@@ -343,9 +334,6 @@ export default {
         },
         computedNonTransformedLink(){
             return this.nonTransformed_link
-        },
-        computedFav(){
-            return this.isAFav
         }
   },
   components: {
@@ -357,12 +345,17 @@ export default {
       
   },
   mounted() {
+      
       M.AutoInit(),
       this.getMovie().then(() => {
         //   console.log(this.id);
           this.getInfos()
-            .then(this.getLinkTrailer())
+            .then(()=>{
+                this.getLinkTrailer()
+                this.lesFav = this.isFav(this.movieInfos.id) ? "Retirer des favoris!" : "Ajouter aux favoris!"
+                })
       });
+      
   },
   methods: {
       async getMovie(){
@@ -486,6 +479,9 @@ export default {
              "description" : this.movieInfos.plotLocal
              }
              try {
+                 
+                 
+                 this.lesFav = "Retirer des favoris"
                  localStorage.setItem('fav', JSON.stringify(this.favMovies))
                  notyf.success({
                      message: 'Ajouté aux favoris !',
@@ -520,6 +516,7 @@ export default {
             console.log(this.favMovies);
             delete this.favMovies[id]
             try {
+                this.lesFav = "Ajouter aux favoris"
                 localStorage.setItem('fav', JSON.stringify(this.favMovies))
                 notyf.success({
                      message: 'Retiré des favoris !',
