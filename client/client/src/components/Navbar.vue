@@ -6,7 +6,7 @@
         <div >
             <h4 class="title"><b>MoVueDb</b></h4>
         </div>
-        <!-- Defining the search bars -->
+        <!-- Defining the search bar -->
         <div class="height">
             <input ref="input" v-on:keyup.enter="search" type="text" placeholder="Search..." id="searchbar">
         </div>
@@ -15,26 +15,20 @@
 
 <script>
 
-// import M from 'materialize-css'
-// import 'materialize-css'
-// import 'materialize-css/dist/css/materialize.css'
-import {searchApi} from '../api/api.js'
 import router from '../router/index.js'
 
 export default {
-    name: "Navbar",
-    data() {
-        return {}
-    },  
+    name: "Navbar", 
     methods: {
+        /**
+         * Méthode permettant de rechercher un film en allant sur sa page 
+         */
         search() {
-            // searchApi('Search', this.$refs.input.value).then((response)=> {
-            //    console.log(response.results);
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
             router.replace(`/movies/${this.$refs.input.value}`)
         },
+        /**
+         * Méthode permettant de retourner a la vue HomeView
+         */
         goHome(){
             router.replace(`/`)
         }

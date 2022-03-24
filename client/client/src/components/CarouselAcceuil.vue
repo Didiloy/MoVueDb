@@ -2,6 +2,7 @@
     <div>
         <section class="slider" ref="slider">
             <ul class="slides">
+                <!-- affichage des différents films -->
                 <li v-for="film in topMovies" v-bind:key="film.id">
                     <div class="row">
                             <div class="col s12 m8">
@@ -65,37 +66,34 @@ export default {
         
     },
     methods: {
+        /**
+         * Méthode permettant de récupérer les films les plus populaires du moment et de renvoyer les 5 premiers
+         */
         async getMostPopularMovies(){
             await getCategorie("MostPopularMovies").then((movies) =>{
                 let tab =[];
-                // console.log(movies);
                 for(let i=0;i<5;i++){
-                    // console.log("salut");
                     tab.push(movies[i])
                     this.tabId.push(tab[i].id + "/Images")
                 }
             return (this.topMovies = tab);
             });
         },
+        /**
+         * Méthode permettant de récupérer l'image d'un film grace à son ID IMDB
+         */
         async getImagesById(){ //avoir les images en bonne qualité
-            // console.log(this.topMovies);
             this.topMovies.forEach( async(movie) =>{
                 await searchApi("Title",movie.id).then((movieById) =>{
-                    // console.log(movies.image);
                     movie.image = movieById.image
                 })
             })
             
         },
-        filmDetails(){
-            
-        },
+        /**
+         * Fonction permettant d'afficher la page de détail du film
+         */
         search(name) {
-            // searchApi('Search', this.$refs.input.value).then((response)=> {
-            //    console.log(response.results);
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
             router.replace(`/movie/${name}`)
         },
     },

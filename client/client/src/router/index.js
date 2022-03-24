@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Movie from '../views/Movie.vue'
 import Movies from '../views/Movies.vue'
 
+//Création des différentes routes utilisées par l'application
 const routes = [{
         path: '/',
         name: 'home',
@@ -60,20 +61,6 @@ const routes = [{
         // which is lazy-loaded when the route is visited.
         component: () =>
             import ( /* webpackChunkName: "about" */ '../views/SideBarViews/BoxOfficeSemaine'),
-        meta: {
-            enterClass: "animate__animated animate__fadeInRight",
-            leaveClass: "animate__animated animate__fadeOutRight",
-        }
-    },
-    {
-        path: '/boxOfficeAllTime',
-        name: 'boxOfficeAllTime',
-        props: true,
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/SideBarViews/BoxOfficeAllTime'),
         meta: {
             enterClass: "animate__animated animate__fadeInRight",
             leaveClass: "animate__animated animate__fadeOutRight",

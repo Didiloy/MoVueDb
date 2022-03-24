@@ -53,12 +53,10 @@ export default {
       }
     },
     methods: {
+      /**
+      * Fonction permettant d'afficher la page de détail du film
+      */
       async search() {
-            // searchApi('Search', this.$refs.input.value).then((response)=> {
-            //    console.log(response.results);
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
             router.replace(`/movie/${this.name}`)
         },
     }

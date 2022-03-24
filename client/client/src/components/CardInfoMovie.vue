@@ -65,6 +65,9 @@ export default {
       }
     },
   methods:{
+    /**
+     * Méthode permettant de changer de page
+     */
     goToOtherFilms(){
       router.replace(`/movie/${this.link}`)
     }

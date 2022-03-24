@@ -8,6 +8,7 @@
         <Sidebar />
 
         <div class="main">
+            <!-- Div permettant d'afficher l'animation pendant le chargement -->
             <div v-if="thereAreMovies == null" class="fullHeight">
                 <h2>Recherche en cours...</h2>
                 <br>
@@ -23,6 +24,7 @@
                         <h2> {{searchTitle}}</h2>
                     </div>
                     <div class="principal">
+                        <!-- On affiche des cartes différentes selon le type de film que l'on recherche -->
                         <div v-for="movies in films" v-bind:key="movies.id" class="">
                             <div>
                                 <CardSearchMovies class="uneCard" v-if="chemin == 'SearchMovie' || chemin == 'SearchTitle'"
@@ -76,6 +78,7 @@ import { getCategorie } from '../api/api.js'
 export default {
   name: 'Movie',
   props: {
+      //Les props sont requises pour savoir quel type de film on affiche
         name: {
             required: true,
             type: String
@@ -113,6 +116,8 @@ export default {
         Footer
   },
   created(){
+      //Je verifie si il y a des éléments dans le local storage
+      //Si il n'y en a pas j'ajoute un objet pour me permettre de mettres les films que l'utilisateur va ajouter
       if (localStorage.length == 0){
           localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
       }
@@ -126,27 +131,24 @@ export default {
     this.getMovie(this.path)
   },
   methods: {
+      /**
+       * Méthode permettant de récupérer une liste de films a afficher
+       * @param {string } path - Catégorie de la recherche a effectuer sur l'api
+       */
       async getMovie(path){
-        //   this.films = [];
         this.searchTitle = this.name
-        console.log(path);
         if (this.isFav){
             this.films = this.favMovies
-            console.log(this.favMovies);
         }else {
             if(this.apiGetCategorie){
                 
                 await getCategorie(path)
                 .then((responses)=>{
-                    console.log("affichage");
-                    console.log(responses);
                     return (this.films = responses)
                 })
             }else{
-            console.log("ici avec comme categorie: ", path);
             await searchApi(path, this.name)
             .then((responses) => {
-                console.log(responses.results);
                 return (this.films = responses.results);
             });
             }
@@ -154,6 +156,9 @@ export default {
         
         
         },
+        /**
+         * Méthode permettant de savoir a quelle catégorie appartient le chemin récupérer à l'appel du composant
+         */
         testWhoPath(){
             console.log();
             if(this.path == "SearchTitle"){

@@ -34,6 +34,7 @@ import router from '../router/index.js'
 export default {
     name :'CardFilm2',
     props:{
+      //les props sont utilisée pour avoir les informations a affiché dans la carte
         image: {
             required: true,
             type: String

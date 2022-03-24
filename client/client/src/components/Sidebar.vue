@@ -21,20 +21,14 @@
 
 <script>
 
-import M from 'materialize-css'
 import 'materialize-css'
 import 'materialize-css/dist/css/materialize.css'
 import router from '../router/index.js'
 
 export default {
-    
-    data: () => ({
-            isPanelOpen: true
-    }),
+    name: 'Sidebar',
     methods: {
-        closeSidebarPanel() {
-            this.isPanelOpen = false
-        },
+        //On crée les méthodes qui vont permettre de rediriger vers la bonne page
         goToBoxOffice(){
             router.replace(`/boxOffice`)
         },
