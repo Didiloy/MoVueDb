@@ -58,12 +58,23 @@
                             <div class="col s5">
                                 <h2>{{movieInfos.title}}</h2>
                             </div>
-                            <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
-                                <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                            <div v-if="computedFav == true">
+                                 <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
+                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                                </div>
+                                <div class="col s7 divFav" v-else>
+                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
+                                </div>
                             </div>
-                            <div class="col s7 divFav" v-else>
-                                <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
+                            <div v-else>
+                                <div class="col s7 divFav" v-if="isFav(this.movieInfos.id)">
+                                    <a class="waves-effect waves-light btn addToFav" @click="deleteFav(this.movieInfos.id)">Retirer des favoris !</a>
+                                </div>
+                                <div class="col s7 divFav" v-else>
+                                    <a class="waves-effect waves-light btn addToFav" @click="addToFav">Ajouter en favoris !</a>
+                                </div>
                             </div>
+                           
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
@@ -284,6 +295,11 @@ import {searchApi} from '@/api/api.js'
 import router from '../router/index.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
 const movieTrailer = require( 'movie-trailer' )
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+
+// Create an instance of Notyf
+const notyf = new Notyf();
 
 export default {
   name: 'Movie',
@@ -308,7 +324,8 @@ export default {
         roseColor: "B94465",
         bleuColor: "5F51E5",
         isMovie:false,
-        isSerie:false
+        isSerie:false,
+        isAFav: false
     }
   },
   computed:{
@@ -326,6 +343,9 @@ export default {
         },
         computedNonTransformedLink(){
             return this.nonTransformed_link
+        },
+        computedFav(){
+            return this.isAFav
         }
   },
   components: {
@@ -465,15 +485,33 @@ export default {
              "image": this.movieInfos.image,
              "description" : this.movieInfos.plotLocal
              }
-            localStorage.setItem('fav', JSON.stringify(this.favMovies))
-            this.$router.go()
+             try {
+                 localStorage.setItem('fav', JSON.stringify(this.favMovies))
+                 notyf.success({
+                     message: 'Ajouté aux favoris !',
+                     duration: 3000,
+                     position: {x: 'right', y: 'top'}
+                 });
+             } catch (error) {
+                 notyf.error({
+                     message: 'Un problème est survenu !',
+                     duration: 3000,
+                     position: {x: 'right', y: 'top'}
+                 });
+             }
+            
+            // this.$router.go()
         },
         isFav(id){
             let localStorageFav = localStorage.getItem('fav');
             this.favMovies = JSON.parse(localStorageFav);
-            if (id in this.favMovies) {
-                return true;
+            if (this.favMovies !== null) {
+                if (id in this.favMovies) {
+                    this.isAFav = true;
+                    return true;
+                }
             }
+            this.isAFav = false;
             return false;
         },
         deleteFav(id){
@@ -481,8 +519,22 @@ export default {
             this.favMovies = JSON.parse(localStorageFav);
             console.log(this.favMovies);
             delete this.favMovies[id]
-            localStorage.setItem('fav', JSON.stringify(this.favMovies))
-            this.$router.go()
+            try {
+                localStorage.setItem('fav', JSON.stringify(this.favMovies))
+                notyf.success({
+                     message: 'Retiré des favoris !',
+                     duration: 3000,
+                     position: {x: 'right', y: 'top'}
+                 });
+            } catch (error) {
+                notyf.error({
+                     message: 'Un problème est survenu !',
+                     duration: 3000,
+                     position: {x: 'right', y: 'top'}
+                 });
+            }
+            
+            // this.$router.go()
         }
     },
     watch: { //refresh components a chaque changement de name
@@ -493,7 +545,7 @@ export default {
             .then(this.getLinkTrailer())
             
             });
-        }
+        },
     }
 }
 </script>
