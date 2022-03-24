@@ -1,18 +1,9 @@
 <template>
     <nav>
-        <div class="logo">
-            <button v-on:click="goHome">
-                <img src="../assets/clapperboard32x32.png" alt="">
-            </button>
-        </div>
-  
-        <div class="nav-items height">
-  
-            <!-- The Menu items -->
-            <!-- <li><a href="#">TUTORIALS</a></li>
-            <li><a href="#">STUDENT</a></li>
-            <li><a href="#">JOBS</a></li>
-            <li><a href="#">COURSES</a></li> -->
+        <div class="logoo">
+            
+            <img src="../assets/clapperboard32x32.png" alt="" @click="goHome">
+            
         </div>
   
         <!-- Defining the search bars -->
@@ -55,26 +46,9 @@ export default {
     img {
         height: 40px;
         width: 40px;
+        margin-left: 5px;
+        margin-top: 5px;
     }
-
-    .background-img {
-        background-image: url('../assets/background.jpg') !important;
-        background-size: cover;
-    }
-    .background-none {
-        background-color: transparent !important;
-    }
-
-    .background-gris {
-        background-color: #D0D0D0;    
-    }
-
-    .background-rose {
-        background-color: #B94465;
-        margin: 5px 10px;
-        margin-bottom: 10px;
-    }
-
     /* Styling all the elements in nav as a whole */
         nav {
             background-color: transparent !important;
@@ -90,45 +64,25 @@ export default {
         }
   
         /* Styling the logo */
-        nav .logo {
+        nav .logoo {
             color: #fff;
             font-size: 30px;
+            height: 50px;
+            width: 50px;
             font-weight: 600;
             letter-spacing: -1px;
+            transition: .4s;
+            
+        }
+        nav .logoo:hover{
+            background-color: #B94465;
+            cursor: pointer;
+            border-radius: 10px;
+            
+            transition: .4s;
         }
   
         /* Styling all the nav items as a whole */
-        nav .nav-items {
-            display: flex;
-            flex: 1;
-            padding: 0 0 0 33%;
-             
-        }
-  
-        /* Styling the list items in the nav tag */
-        nav .nav-items li {
-            list-style: none;
-            padding: 0 10px;
-            margin: 0 10px; 
-            background-color: #B94465;
-            border-radius: 10px;
-        }
-  
-        /* Styling each list items */
-        nav .nav-items li a {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            position: relative;
-            top: -12px; left: 0px;
-        }
-  
-        /* Setting the hover colour on the list items*/
-          
-        nav .nav-items li:hover {
-            background-color: #19191b;
-        }
           
         #searchbar {
             display: flex;
@@ -138,14 +92,14 @@ export default {
             box-sizing: border-box;
             padding-left: 20px;
             background-color: #D0D0D0;
-         }
+        }
 
-         input::placeholder {
+        input::placeholder {
             color: #19191b;
         }
-         .height {
-             height: 60%;
-         }
+        .height {
+            height: 60%;
+        }
         button {
             border: none;
             color: none;

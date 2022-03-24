@@ -134,6 +134,7 @@ export default {
 
 .card{
   border-radius: .5rem;
+  transition: .4s;
 }
 
 .card:hover{
@@ -141,6 +142,7 @@ export default {
   transition: 0.4s;
   border: none;
   box-shadow: 0 2px 10px 0 #5F51E5;
+  cursor: pointer;
 }
 
 img {
