@@ -1,11 +1,11 @@
 <template>
     <nav>
         <div class="logoo">
-            
             <img src="../assets/clapperboard32x32.png" alt="" @click="goHome">
-            
         </div>
-  
+        <div >
+            <h4 class="title"><b>MoVueDb</b></h4>
+        </div>
         <!-- Defining the search bars -->
         <div class="height">
             <input ref="input" v-on:keyup.enter="search" type="text" placeholder="Search..." id="searchbar">
@@ -48,6 +48,10 @@ export default {
         width: 40px;
         margin-left: 5px;
         margin-top: 5px;
+    }
+    .title{
+        margin-top: 5px;
+        color: #5F51E5;
     }
     /* Styling all the elements in nav as a whole */
         nav {
