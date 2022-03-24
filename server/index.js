@@ -50,7 +50,7 @@ app.get(APIHomePath + "test/", async(req, res) => {
 
 app.get(updateDatabase, async(req, res) => {
     const results = [];
-    fs.createReadStream('./databases/amazon_prime_titles.csv')
+    fs.createReadStream('./databases/netflix_titles.csv')
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async() => {
@@ -59,7 +59,7 @@ app.get(updateDatabase, async(req, res) => {
 
             for (let i = 0; i < results.length; i++) {
                 try {
-                    await prisma.amazon.create({
+                    await prisma.netflix.create({
                         data: {
                             id: results[i].show_id,
                             type: results[i].type || " ",
@@ -81,7 +81,7 @@ app.get(updateDatabase, async(req, res) => {
                 }
             }
 
-            await prisma.amazon.findMany().then(results => res.send(results));
+            await prisma.netflix.findMany().then(results => res.send(results));
         })
 
 });
@@ -98,7 +98,7 @@ app.get("/search/disney/", (req, res) => {
     if (req.query.country) {
         lookTableByField(prisma.disney, "country", req.query.country).then((response) => { res.send(response) })
     }
-    if (req.query.year){
+    if (req.query.year) {
         lookTableByField(prisma.disney, "release_year", req.query.year).then((response) => { res.send(response) })
     }
 
@@ -116,7 +116,7 @@ app.get("/search/netflix/", (req, res) => {
     if (req.query.country) {
         lookTableByField(prisma.netflix, "country", req.query.country).then((response) => { res.send(response) })
     }
-    if (req.query.year){
+    if (req.query.year) {
         lookTableByField(prisma.netflix, "release_year", req.query.year).then((response) => { res.send(response) })
     }
 
@@ -133,7 +133,7 @@ app.get("/search/amazon/", (req, res) => {
     if (req.query.country) {
         lookTableByField(prisma.amazon, "country", req.query.country).then((response) => { res.send(response) })
     }
-    if (req.query.year){
+    if (req.query.year) {
         lookTableByField(prisma.amazon, "release_year", req.query.year).then((response) => { res.send(response) })
     }
 
