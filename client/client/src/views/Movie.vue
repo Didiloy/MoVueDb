@@ -8,6 +8,7 @@
         <Sidebar />
 
         <div class="main">
+            <!-- On crée la div permettant d'afficher l'animation pendant que l'on recherche les informations -->
             <div v-if="computedMovies == null" class="fullHeight">
                 <h2>Recherche en cours...</h2>
                 <br>
@@ -18,7 +19,9 @@
                     </div>
                 </div>
             </div>
-            <div v-else> 
+            <!-- On crée la div dans laquelle sera affichée les informations -->
+            <div v-else>
+                 <!--Si la recherche est de type film  -->
                 <div class="row" v-if="isMovie">
                     <div class="col s12 m6 l6">
                         <!-- Ajout de l'image du film -->
@@ -54,6 +57,7 @@
                         </div>
                     </div>
                     <div class="col s12 m6 l6">
+                        <!-- Ajout des informations du film -->
                         <div class="row">
                             <div class="col s5">
                                 <h2>{{movieInfos.title}}</h2>
@@ -125,6 +129,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            <!-- Si il y a un trailer disponible on l'affiche -->
                             <div class="col s12 m12 l12" v-if="computedTrailerLink">
                                 <!-- Trailer -->
                                 <iframe class="trailer" 
@@ -135,17 +140,12 @@
                                 allowfullscreen>
                                 </iframe>
                                 <p class="link"><a :href="computedNonTransformedLink"> Regarder sur youtube !!</a></p>
-                                    <!-- <video  controls class="trailer" :poster="computedThumbnail">
-                                        <source :src="computedTrailerLink" type="video/ogg">
-                                        <source :src="computedTrailerLink" type="video/mp4">
-                                        <source :src="computedTrailerLink" type="video/webm">
-                                        Votre navigateur ne peux pas afficher la vidéo.
-                                    </video> -->
                             </div>
                         </div>
                         
                     </div>
                 </div>
+                <!-- Si la recherche est de type série -->
                 <div class="row" v-if="isSerie">
                     <div class="col s12 m6 l6">
                         <CardInfoMovie 
@@ -153,6 +153,7 @@
                                 :image_content="{ image_link: movies.image}"/>
                         <div class="row">
                             <div class="col s12 m12 l4">
+                                <!-- similaire -->
                                 <CardInfoMovie 
                                 :titre="'À (re)découvrir'"
                                 :color_shadow="bleuColor"
@@ -179,6 +180,7 @@
                         </div>
                     </div>
                     <div class="col s12 m6 l6">
+                        <!-- On affiche les infos de la série -->
                         <div class="row">
                             <div class="col s6">
                                 <h2>{{movieInfos.title}}</h2>
@@ -256,12 +258,6 @@
                                 allowfullscreen>
                                 </iframe>
                                 <p class="link"><a :href="computedNonTransformedLink"> Regarder sur youtube !!</a></p>
-                                    <!-- <video  controls class="trailer" :poster="computedThumbnail">
-                                        <source :src="computedTrailerLink" type="video/ogg">
-                                        <source :src="computedTrailerLink" type="video/mp4">
-                                        <source :src="computedTrailerLink" type="video/webm">
-                                        Votre navigateur ne peux pas afficher la vidéo.
-                                    </video> -->
                             </div>
                         </div>
                         
@@ -283,11 +279,10 @@ import 'materialize-css/dist/css/materialize.css'
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import {searchApi} from '@/api/api.js'
-import router from '../router/index.js'
 import CardInfoMovie from '@/components/CardInfoMovie.vue'
 const movieTrailer = require( 'movie-trailer' )
 import { Notyf } from 'notyf';
-import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+import 'notyf/notyf.min.css';
 
 // Create an instance of Notyf
 const notyf = new Notyf();
@@ -345,10 +340,9 @@ export default {
       
   },
   mounted() {
-      
+      // On lance les fonctions a l'initialisation de la page
       M.AutoInit(),
       this.getMovie().then(() => {
-        //   console.log(this.id);
           this.getInfos()
             .then(()=>{
                 this.getLinkTrailer()
@@ -358,26 +352,28 @@ export default {
       
   },
   methods: {
+        /**
+         * Méthode permettant de récuperer les résultats de la recherche sur le film et de sélectionner le premier résultat
+         */
       async getMovie(){
           this.movies = [];
-          console.log("TEST : "+this.name);
           await searchApi('SearchTitle', this.name)
           .then((responses) => {
-            //   console.log("result");
-              console.log(responses.results[0]);
               return (this.movies = responses.results[0], this.id = responses.results[0].id);
           });
         },
+        /**
+         * Méthode permettant de formatter les infos a mettre dans les cards en html et de récupérer toutes
+         * les informations sur le film.
+         */
         async getInfos(){
             await searchApi('Title', this.id)
             .then((responses) => {
                 console.log(responses);
                 if(responses.type == "Movie"){
-                    console.log("This is a movie");
                     this.isMovie = true
                     this.isSerie = false
-
-
+                    //loop throught Cast list to make a <p> tag
                     const paragraphCast = () => {
                         let paragraphStar = '<p>';
                         responses.starList.map((star) => {
@@ -397,10 +393,10 @@ export default {
                         return paragraph;
                         } 
                     this.directorList = paragraphDirector();
-                    //loop throught directorList to make a <p> tag
+                    //loop throught details list to make a <p> tag
                     const paragraphDetails = () => {
                         let paragraph = '<p> <b>Durée : </b>' + responses.runtimeStr;
-                        paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
+                        paragraph = paragraph + '<br> <b>Date de sortie: </b>' + responses.releaseDate;
                         paragraph += '<br> <b>Genres : </b>' + responses.genres;
                         paragraph += '</p>';
                         return paragraph;
@@ -410,10 +406,9 @@ export default {
 
 
                 }else if (responses.type == "TVSeries") {
-                    console.log("This is a serie");
                     this.isSerie = true
                     this.isMovie = false
-                    
+                    //loop throught Cast list to make a <p> tag
                     const paragraphCast = () => {
                         let paragraphStar = '<p>';
                         responses.starList.map((star) => {
@@ -433,10 +428,10 @@ export default {
                         return paragraph;
                         } 
                     this.directorList = paragraphDirector();
-                    //loop throught directorList to make a <p> tag
+                    //loop throught  details list to make a <p> tag
                     const paragraphDetails = () => {
                         let paragraph = '<p> <b>Nombre de saisons : </b>' + responses.tvSeriesInfo.seasons;
-                        paragraph = paragraph + '<br> <b>Date de sortie </b>' + responses.releaseDate;
+                        paragraph = paragraph + '<br> <b>Date de sortie: </b>' + responses.releaseDate;
                         paragraph += '<br> <b>Genres : </b>' + responses.genres;
                         paragraph += '</p>';
                         return paragraph;
@@ -446,16 +441,12 @@ export default {
                     return (this.movieInfos = responses);
 
                 }
-                //loop throught starList to make a <p> tag
             })
         },
+        /**
+         * Méthode permettant d'obtenir le lien du trailer du film grace au module movieTrailer
+         */
         async getLinkTrailer(){
-            // await searchApi('Trailer', this.id)
-            // .then((response) => {
-            //     console.log(response);
-            //     this.trailer_link = response.linkEmbed;
-            //     this.thumbnail = response.thumbnailUrl
-            // });
             await movieTrailer(this.name)
             .then((responses) => {
                 this.nonTransformed_link = responses;
@@ -466,6 +457,10 @@ export default {
                 
             })
         },
+        /**
+         * Méthode permettant d'ajouter un film en favoris grace à son id. 
+         * Les favoris sont stockés dans le local storage
+         */
         addToFav(){
             if (localStorage.length == 0){
                 localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
@@ -479,37 +474,41 @@ export default {
              "description" : this.movieInfos.plotLocal
              }
              try {
-                 
-                 
                  this.lesFav = "Retirer des favoris"
                  localStorage.setItem('fav', JSON.stringify(this.favMovies))
+                 //afficher une notification en cas de succès
                  notyf.success({
                      message: 'Ajouté aux favoris !',
                      duration: 3000,
                      position: {x: 'right', y: 'top'}
                  });
              } catch (error) {
+                 //afficher une notification en cas d'erreur
                  notyf.error({
                      message: 'Un problème est survenu !',
                      duration: 3000,
                      position: {x: 'right', y: 'top'}
                  });
              }
-            
-            // this.$router.go()
         },
+        /**
+         * Méthode permettant de savoir si le film passé en paramètre est dans les favoris
+         * @param {string} id - ID Imdb du film dont on veut s'avoir si il est dans les favoris
+         */
         isFav(id){
             let localStorageFav = localStorage.getItem('fav');
             this.favMovies = JSON.parse(localStorageFav);
             if (this.favMovies !== null) {
                 if (id in this.favMovies) {
-                    this.isAFav = true;
                     return true;
                 }
             }
-            this.isAFav = false;
             return false;
         },
+        /**
+         * Méthode permettant de supprimer un film étant dans les favoris
+         * @param {string} id - Id Imdb du film que l'on veut retirer des favoris
+         */
         deleteFav(id){
             let localStorageFav = localStorage.getItem('fav');
             this.favMovies = JSON.parse(localStorageFav);
@@ -530,17 +529,13 @@ export default {
                      position: {x: 'right', y: 'top'}
                  });
             }
-            
-            // this.$router.go()
         }
     },
     watch: { //refresh components a chaque changement de name
         name:function(){
             this.getMovie().then(() => {
-            //   console.log(this.id);
             this.getInfos()
             .then(this.getLinkTrailer())
-            
             });
         },
     }
