@@ -1,9 +1,6 @@
 <template>
-    <div>
       <!-- on utilise le composant qu'on a créé pour faire la grille de films-->
       <GridComponents  :path="path" :name="name"/>
-    </div>
-    
 </template>
 
 <script>

@@ -93,7 +93,6 @@ export default {
         chemin:this.path,
         isFav: false,
         favMovies: null,
-        Footer
     }
   },
   computed:{
@@ -110,7 +109,8 @@ export default {
   components: {
         Navbar,
         Sidebar,
-        CardSearchMovies
+        CardSearchMovies,
+        Footer
   },
   created(){
       if (localStorage.length == 0){
