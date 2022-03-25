@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField } = require('../server/fonction.js')
+const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableByName } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -69,7 +69,7 @@ app.get(updateDatabase, async(req, res) => {
                             country: results[i].country || " ",
                             date_added: results[i].date_added || " ",
                             release_year: results[i].release_year || " ",
-                            duration: results[i].duration || " ",
+                            duratioconvertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableByNamen: results[i].duration || " ",
                             listed_in: results[i].listed_in || " ",
                             description: results[i].description || " "
                         }
@@ -118,6 +118,9 @@ app.get("/search/netflix/", (req, res) => {
     }
     if (req.query.year) {
         lookTableByField(prisma.netflix, "release_year", req.query.year).then((response) => { res.send(response) })
+    }
+    if(req.query.title){
+        lookTableByName(prisma.netflix,req.query.title).then((response) => { res.send(response) })
     }
 
 })

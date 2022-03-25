@@ -53,6 +53,16 @@ async function lookTableByField(table, field, req) {
     }));
 }
 
+async function lookTableByName(table,name){
+    return (await table.findMany({
+        where:{
+            title : {
+                contains : name
+            }
+        }
+    }))
+}
 
 
-module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField }
+
+module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField ,lookTableByName }
