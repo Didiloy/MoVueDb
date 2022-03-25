@@ -123,14 +123,7 @@ app.get("/search/netflix/", (req, res) => {
         lookTableByField(prisma.netflix, "release_year", req.query.year).then((response) => { res.send(response) })
     }
     if(req.query.title){
-<<<<<<< HEAD
-        lookTableFieldContains(prisma.netflix, "title",req.query.title).then((response) => { res.send(response) })
-    }
-    if(req.query.categorie){
-        lookTableFieldContains(prisma.netflix, "listed_in",req.query.categorie).then((response) => { res.send(response) })
-=======
         lookTableFieldContains(prisma.netflix, "title", req.query.title).then((response) => { res.send(response) })
->>>>>>> 3ec737226fd9d754ac34746393f0372fe385fa11
     }
 
 })
@@ -149,13 +142,8 @@ app.get("/search/amazon/", (req, res) => {
     if (req.query.year) {
         lookTableByField(prisma.amazon, "release_year", req.query.year).then((response) => { res.send(response) })
     }
-<<<<<<< HEAD
-    if(req.query.categorie){
-        lookTableFieldContains(prisma.amazon, "listed_in",req.query.categorie).then((response) => { res.send(response) })
-=======
     if(req.query.title){
         lookTableFieldContains(prisma.netflix, "title", req.query.title).then((response) => { res.send(response) })
->>>>>>> 3ec737226fd9d754ac34746393f0372fe385fa11
     }
 
 })
