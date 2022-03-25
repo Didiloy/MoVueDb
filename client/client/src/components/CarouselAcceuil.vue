@@ -109,7 +109,6 @@ export default {
 .slides {
     /* background-color: white !important; */
     background-image: url('../assets/background.jpg') !important;
-
 }
 
 .btn {

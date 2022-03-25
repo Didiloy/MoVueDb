@@ -4,7 +4,6 @@
             <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToBoxOffice">Box office de la semaine</a></li>
-                <li class="bold"><a class="collapsible-header waves-effect" @click="goToInTheater">En salle de cinéma</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularMovies">Films les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToMostPopularSeries">Series les plus populaires</a></li>
                 <li class="bold"><a class="collapsible-header waves-effect" @click="goToTop250Movies">Top 250 des meilleurs films</a></li>
@@ -34,9 +33,6 @@ export default {
         },
         goToBoxOfficeAllTime(){
             router.replace(`/boxOfficeAllTime`)
-        },
-        goToInTheater(){
-            router.replace(`/inTheater`)
         },
         goToMostPopularMovies(){
             router.replace(`/mostPopularMovies`)
