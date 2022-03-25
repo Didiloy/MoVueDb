@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableByName } = require('../server/fonction.js')
+const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -120,7 +120,7 @@ app.get("/search/netflix/", (req, res) => {
         lookTableByField(prisma.netflix, "release_year", req.query.year).then((response) => { res.send(response) })
     }
     if(req.query.title){
-        lookTableByName(prisma.netflix,req.query.title).then((response) => { res.send(response) })
+        lookTableFieldContains(prisma.netflix, req.query.title).then((response) => { res.send(response) })
     }
 
 })

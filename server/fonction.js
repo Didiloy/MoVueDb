@@ -53,10 +53,10 @@ async function lookTableByField(table, field, req) {
     }));
 }
 
-async function lookTableByName(table,name){
+async function lookTableFieldContains(table, field, name){
     return (await table.findMany({
         where:{
-            title : {
+            [field] : {
                 contains : name
             }
         }
