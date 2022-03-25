@@ -74,6 +74,11 @@ import {searchApi} from '@/api/api.js'
 import CardSearchMovies from '../components/CardSearchMovies.vue'
 import Footer from '@/components/Footer.vue'
 import { getCategorie } from '../api/api.js'
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+
+// Create an instance of Notyf
+const notyf = new Notyf();
 
 export default {
   name: 'Movie',
@@ -121,13 +126,23 @@ export default {
       if (localStorage.length == 0){
           localStorage.setItem('fav', JSON.stringify({})) //Je met un objet vide dans le local storage sous la clé fav pour me permettre de récupérer les favoris
       }
-      let localStorageFav = localStorage.getItem('fav');
-      this.favMovies = JSON.parse(localStorageFav);
+      try {
+          let localStorageFav = localStorage.getItem('fav');
+          this.favMovies = JSON.parse(localStorageFav);
+      } catch (error) {
+          console.log("impossible de récupérer l'objet dans le local storage\nerror:", error);
+          notyf.error({
+                     message: 'Un problème est survenu !',
+                     duration: 3000,
+                     position: {x: 'right', y: 'top'}
+                 });
+      }
+      
+      
   },
   mounted() {
       M.AutoInit(),
       this.testWhoPath()
-    //   console.log(this.path);
     this.getMovie(this.path)
   },
   methods: {

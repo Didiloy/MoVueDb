@@ -4,7 +4,7 @@
             <img src="../assets/clapperboard32x32.png" alt="" @click="goHome">
         </div>
         <div >
-            <h4 class="title"><b>MoVueDb</b></h4>
+            <h4 class="title" style="font-family: GOTAGA-Free, fantasy;">MoVueDb</h4>
         </div>
         <!-- Defining the search bar -->
         <div class="height">
@@ -37,6 +37,8 @@ export default {
 </script>
 
 <style scoped>
+    @import url('http://fonts.cdnfonts.com/css/gotaga-free');
+
     img {
         height: 40px;
         width: 40px;
@@ -44,8 +46,9 @@ export default {
         margin-top: 5px;
     }
     .title{
-        margin-top: 5px;
+        margin-top: -2px;
         color: #5F51E5;
+        font-size: 50px;
     }
     /* Styling all the elements in nav as a whole */
         nav {
