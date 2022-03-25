@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 4000
 const cors = require('cors');
-const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains } = require('../server/fonction.js')
+const { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains, lookTableTwoFields } = require('../server/fonction.js')
 const csv = require('csv-parser')
 const fs = require('fs')
 const PrismaClient = require('@prisma/client')
@@ -16,36 +16,13 @@ const updateDatabase = "/api/updateDatabase"
 
 app.use(cors());
 
-//J'utiliser les fichier écrits pour gérer ces requetes
-// const top250Movies = require('./api/top250Movies');
-
-
-//rediriger les requete de ces urls vers les fichier
-// app.use('/api/top250Movies', top250Movies);
-
 app.listen(port, () => {
     console.log("listening on port " + port);
 })
 
 // Set up home route
 app.get('/', (req, res) => {
-    res.send('This is example page');
-});
-
-
-
-//Ici, la page d'acceuil avec pour lien : http://localhost:4000/APIFilm
-app.get(APIHomePath, (req, res) => {
-    res.send('This is the home page of our API')
-})
-
-app.get(APIHomePath + "test/", async(req, res) => {
-    let tab = []
-    convertCSVToJson("netflix_titles").then((response) => {
-        tab = response
-        res.send(tab)
-    })
-
+    res.send('This is the homepage');
 });
 
 app.get(updateDatabase, async(req, res) => {
@@ -107,6 +84,18 @@ app.get("/search/disney/", (req, res) => {
     if(req.query.categorie){
         lookTableFieldContains(prisma.disney, "listed_in",req.query.categorie).then((response) => { res.send(response) })
     }
+    if(req.query.categorie && req.query.year || req.query.year && req.query.categorie){
+        lookTableTwoFields(prisma.disney, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.type ||req.query.type && req.query.categorie){
+        lookTableTwoFields(prisma.disney, ["listed_in", req.query.categorie], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.director ||req.query.director && req.query.categorie){
+        lookTableTwoFields(prisma.disney, ["listed_in", req.query.categorie], ["director", req.query.director]).then((response) => { res.send(response) })
+    }
+    if(req.query.cast && req.query.type ||req.query.type && req.query.cast){
+        lookTableTwoFields(prisma.disney, ["cast", req.query.cast], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
 
 })
 
@@ -131,6 +120,18 @@ app.get("/search/netflix/", (req, res) => {
     if(req.query.categorie){
         lookTableFieldContains(prisma.netflix, "listed_in",req.query.categorie).then((response) => { res.send(response) })
     }
+    if(req.query.categorie && req.query.year || req.query.year && req.query.categorie){
+        lookTableTwoFields(prisma.netflix, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.type ||req.query.type && req.query.categorie){
+        lookTableTwoFields(prisma.netflix, ["listed_in", req.query.categorie], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.director ||req.query.director && req.query.categorie){
+        lookTableTwoFields(prisma.netflix, ["listed_in", req.query.categorie], ["director", req.query.director]).then((response) => { res.send(response) })
+    }
+    if(req.query.cast && req.query.type ||req.query.type && req.query.cast){
+        lookTableTwoFields(prisma.netflix, ["cast", req.query.cast], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
 
 })
 
@@ -153,6 +154,23 @@ app.get("/search/amazon/", (req, res) => {
     }
     if(req.query.categorie){
         lookTableFieldContains(prisma.amazon, "listed_in",req.query.categorie).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.year || req.query.year && req.query.categorie){
+        lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.type ||req.query.type && req.query.categorie){
+        lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
+    if(req.query.categorie && req.query.director ||req.query.director && req.query.categorie){
+        lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["director", req.query.director]).then((response) => { res.send(response) })
+    }
+    if(req.query.cast && req.query.type ||req.query.type && req.query.cast){
+        lookTableTwoFields(prisma.amazon, ["cast", req.query.cast], ["type", req.query.type]).then((response) => { res.send(response) })
+    }
+
+    if(req.query.categorie && req.query.year && req.query.type){
+        //TODO: changer le nom de la fonction et l'adapter
+        // lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => { res.send(response) })
     }
 
 })

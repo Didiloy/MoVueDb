@@ -63,6 +63,24 @@ async function lookTableFieldContains(table, field, name){
     }))
 }
 
+async function lookTableTwoFields(table, field1, field2){
+    return (await table.findMany({
+        where:{
+            AND: [
+                {
+                    [field1[0]] : {
+                        contains : field1[1]
+                    }
+                },
+                {
+                    [field2[0]] : {
+                        contains : field2[1]
+                    }
+                }
+            ]
+        }
+    }))
+}
 
 
-module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains }
+module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains, lookTableTwoFields }
