@@ -65,4 +65,4 @@ async function lookTableFieldContains(table, field, name){
 
 
 
-module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField ,lookTableByName }
+module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField ,lookTableByField, lookTableFieldContains }
