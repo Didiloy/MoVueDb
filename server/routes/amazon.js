@@ -4,6 +4,85 @@ const PrismaClient = require('@prisma/client')
 const prisma = new PrismaClient.PrismaClient();
 const { lookTableByField, lookTableFieldContains, lookTableTwoFields } = require('../fonction.js')
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *          Amazon:
+ *              type: object
+ *              properties:
+ *                  id: 
+ *                      type: string   
+ *                      description: the id of the movie in the database ex:"s123"
+ *                  type: 
+ *                      type: string   
+ *                      description: the type of the movie in the database ex:"movie, tv show"
+ *                  title: 
+ *                      type: string   
+ *                      description: the title of the movie in the database ex:"spider-man"
+ *                  cast: 
+ *                      type: string   
+ *                      description: 1 or more members of the cast of movie ex:"Bryan Cranston"
+ *                  country: 
+ *                      type: string   
+ *                      description: the country were the movie were produced ex:"Canada"
+ *                  year: 
+ *                      type: string   
+ *                      description: the release year of the movie ex:"2020"
+ *                  categorie: 
+ *                      type: string   
+ *                      description: 1 or more categories of the movie ex:"comedy" 
+ */
+
+/**
+ * @swagger
+ * tags:
+ *  name: Amazon Prime
+ *  description: all the routes to deal with amazon prime's movies and tv shows
+ */
+
+/**
+ * @swagger
+ * /search/amazon:
+ *      get:
+ *          summary: returns a list of all the movies and tv shows on Amazon Prime
+ *          tags: [Amazon Prime]
+ *          responses: 
+ *              200: 
+ *                  description: the list of movies that matches the parameters
+ *                  content: application/json
+ *          parameters:
+ *              - in: query
+ *                name: title
+ *                schema:
+ *                 type: string
+ *                description: the title of the movie or a string contained inside the title
+ *              - in: query
+ *                name: type
+ *                schema:
+ *                 type: string
+ *                description: the type the media (movie or tv show)
+ *              - in: query
+ *                name: id
+ *                schema:
+ *                 type: string
+ *                description: the id the media in the database for example "s123"
+ *              - in: query
+ *                name: country
+ *                schema:
+ *                 type: string
+ *                description: the country where the media were produced
+ *              - in: query
+ *                name: year
+ *                schema:
+ *                 type: string
+ *                description: the release year of the media 
+ *              - in: query
+ *                name: categorie
+ *                schema:
+ *                 type: string
+ *                description: the categorie of the media (horror, comedie, etc)
+ */
 
 router.get('/', (req, res) => {
     if (req.query.type) {
@@ -43,9 +122,9 @@ router.get('/', (req, res) => {
     }
 
     //Si aucun paramètres on renvoi la liste de tout les films
-    else {
-        lookTableFieldContains(prisma.amazon, "id", 's').then((response) => { res.send(response) })
-    }
+    // else {
+    //     lookTableFieldContains(prisma.amazon, "id", 's').then((response) => { res.send(response) })
+    // }
 
 });
 
