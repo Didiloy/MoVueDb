@@ -17,3 +17,9 @@
 * Recherche avec le type : `localhost:4000/search/amazon/?type=:type` (:type : ['Movie', 'Tv Show'])
 * Recherche avec l'année de sortie : `localhost:4000/search/amazon/?year=:year` (:year : year wanted)
 * Recherche avec le pays de sortie: `localhost:4000/search/amazon/?country=:country` (:country : country with english name)
+
+# __TODO__
+- CRUD 
+    - Créer un film avec une requete post
+    - update un film avec une requete put
+    - supprimer avec un requete delete
