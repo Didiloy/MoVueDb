@@ -10,7 +10,40 @@ router.use(express.json());
  * @swagger
  * /create/:table:
  *      post:
- *          summary: allow you to add a movies or a tv shows on a table you pass as a parameter.
+ *          description: allow you to add a movies or a tv shows on a table you pass as a parameter.
+ *          consumes:
+ *              - application/json
+ *          parameters:
+ *              - in: body
+ *                name: media 
+ *                description: the media to add
+ *                schema:
+ *                    type: object
+ *                    required:
+ *                        - id
+ *                    properties:
+ *                      id: 
+ *                          type: string
+ *                      type: 
+ *                          type: string
+ *                      title: 
+ *                          type: string
+ *                      director: 
+ *                          type: string
+ *                      cast: 
+ *                          type: string
+ *                      country: 
+ *                          type: string
+ *                      date_added: 
+ *                          type: string
+ *                      release_year: 
+ *                          type: string
+ *                      listed_in: 
+ *                          type: string
+ *                      description: 
+ *                          type: string
+ *                      duration: 
+ *                          type: string
  *          responses: 
  *              200: 
  *                  description: 
