@@ -38,11 +38,13 @@ const amazon = require('./routes/amazon');
 
 //rediriger les requete de ces urls vers les fichier
 app.use('/search/disney', disney);
+app.use('/create/disney', disney);
 app.use('/search/netflix', netflix);
 app.use('/search/amazon', amazon);
 
 
 app.use(cors());
+app.use(express.json());
 
 app.listen(port, () => {
     console.log("listening on port " + port);

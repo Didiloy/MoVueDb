@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const PrismaClient = require('@prisma/client')
 const prisma = new PrismaClient.PrismaClient();
-const { lookTableByField, lookTableFieldContains, lookTableTwoFields } = require('../fonction.js')
+const { lookTableByField, lookTableFieldContains, lookTableTwoFields, createMedia } = require('../fonction.js')
+
+router.use(express.json());
 
 /**
  * @swagger
@@ -121,6 +123,12 @@ router.get('/', (req, res) => {
             return;
         })
     }
+    if (req.query.cast) {
+        lookTableFieldContains(prisma.disney, "cast", req.query.cast).then((response) => {
+            res.status(200).send(response);
+            return;
+        })
+    }
     if (req.query.categorie && req.query.year || req.query.year && req.query.categorie) {
         lookTableTwoFields(prisma.disney, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => {
             res.status(200).send(response);
@@ -152,6 +160,22 @@ router.get('/', (req, res) => {
     //         return;
     //     })
     // }
+})
+
+router.post('/', async(req, res) => {
+    console.log(req.body);
+    try {
+        await createMedia(prisma.disney, req.body)
+            .then((response) => {
+                res.status(200).send(response)
+                console.log("sent:", response);
+                return;
+            })
+    } catch (error) {
+        res.status(500).send(error)
+        console.log("sent error");
+        return;
+    }
 })
 
 module.exports = router;

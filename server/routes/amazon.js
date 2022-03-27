@@ -121,6 +121,12 @@ router.get('/', (req, res) => {
             return;
         })
     }
+    if (req.query.cast) {
+        lookTableFieldContains(prisma.amazon, "cast", req.query.cast).then((response) => {
+            res.status(200).send(response);
+            return;
+        })
+    }
     if (req.query.categorie && req.query.year || req.query.year && req.query.categorie) {
         lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => {
             res.status(200).send(response);

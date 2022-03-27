@@ -38,7 +38,7 @@ async function lookDisneyTableType(type) {
 async function lookTableByField(table, field, req) {
     if (req === "movie" || req === "MOVIE") req = "Movie";
     if (req === "Tv Show" || req === "TV SHOW" || req === "tv show") req = "TV Show";
-    if (field === "country"){
+    if (field === "country") {
         //Mettre la première lettre de chaque mot en majuscule
         const words = req.split(" ");
         for (let i = 0; i < words.length; i++) {
@@ -53,28 +53,27 @@ async function lookTableByField(table, field, req) {
     }));
 }
 
-async function lookTableFieldContains(table, field, name){
+async function lookTableFieldContains(table, field, name) {
     return (await table.findMany({
-        where:{
-            [field] : {
-                contains : name
+        where: {
+            [field]: {
+                contains: name
             }
         }
     }))
 }
 
-async function lookTableTwoFields(table, field1, field2){
+async function lookTableTwoFields(table, field1, field2) {
     return (await table.findMany({
-        where:{
-            AND: [
-                {
-                    [field1[0]] : {
-                        contains : field1[1]
+        where: {
+            AND: [{
+                    [field1[0]]: {
+                        contains: field1[1]
                     }
                 },
                 {
-                    [field2[0]] : {
-                        contains : field2[1]
+                    [field2[0]]: {
+                        contains: field2[1]
                     }
                 }
             ]
@@ -82,5 +81,31 @@ async function lookTableTwoFields(table, field1, field2){
     }))
 }
 
+async function createMedia(table, media) {
+    try {
+        await table.create({
+            data: {
+                id: media.id,
+                type: media.type || " ",
+                title: media.title || " ",
+                director: media.director || " ",
+                cast: media.cast || " ",
+                country: media.country || " ",
+                date_added: media.date_added + '' || " ",
+                release_year: media.release_year || " ",
+                listed_in: media.listed_in || " ",
+                description: media.description || " ",
+                duration: media.duration || ""
+            }
+        }).then((response) => {
+            console.log(response);
+            return response
+        })
 
-module.exports = { convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField , lookTableFieldContains, lookTableTwoFields }
+    } catch (error) {
+        return error
+    }
+}
+
+
+module.exports = { createMedia, convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField, lookTableFieldContains, lookTableTwoFields }
