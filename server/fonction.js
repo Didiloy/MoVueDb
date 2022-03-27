@@ -84,23 +84,32 @@ async function lookTableTwoFields(table, field1, field2) {
 async function createMedia(table, media) {
     try {
         await table.create({
-            data: {
-                id: media.id,
-                type: media.type || " ",
-                title: media.title || " ",
-                director: media.director || " ",
-                cast: media.cast || " ",
-                country: media.country || " ",
-                date_added: media.date_added + '' || " ",
-                release_year: media.release_year || " ",
-                listed_in: media.listed_in || " ",
-                description: media.description || " ",
-                duration: media.duration || ""
+                data: {
+                    id: media.id,
+                    type: media.type || " ",
+                    title: media.title || " ",
+                    director: media.director || " ",
+                    cast: media.cast || " ",
+                    country: media.country || " ",
+                    date_added: media.date_added + '' || " ",
+                    release_year: media.release_year || " ",
+                    listed_in: media.listed_in || " ",
+                    description: media.description || " ",
+                    duration: media.duration || ""
+                }
+            })
+            // .then((response) => {
+            //     console.log("response fn: ", response);
+            //     return response
+            // })
+        await table.findMany({
+            where: {
+                id: media.id
             }
-        }).then((response) => {
-            console.log(response);
-            return response
-        })
+        }).then(results => {
+            console.log("response fn: ", results[0]);
+            return results[0]
+        });
 
     } catch (error) {
         return error

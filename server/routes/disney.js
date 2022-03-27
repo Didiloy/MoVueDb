@@ -163,14 +163,17 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async(req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     try {
-        await createMedia(prisma.disney, req.body)
-            .then((response) => {
-                res.status(200).send(response)
-                console.log("sent:", response);
-                return;
-            })
+        let response = createMedia(prisma.disney, req.body)
+            // .then((response) => {
+            //     console.log("sent:", response);
+            //     res.status(200).json(response)
+            //     return;
+            // })
+        console.log("sent:", response);
+        res.status(200).json(response)
+        return;
     } catch (error) {
         res.status(500).send(error)
         console.log("sent error");

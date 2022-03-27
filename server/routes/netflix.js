@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const PrismaClient = require('@prisma/client')
 const prisma = new PrismaClient.PrismaClient();
-const { lookTableByField, lookTableFieldContains, lookTableTwoFields } = require('../fonction.js')
+const { lookTableByField, lookTableFieldContains, lookTableTwoFields, createMedia } = require('../fonction.js')
+
+router.use(express.json());
 
 /**
  * @swagger
@@ -156,5 +158,24 @@ router.get('/', (req, res) => {
     //     lookTableFieldContains(prisma.netflix, "id", 's').then((response) => { res.send(response) })
     // }
 });
+
+router.post('/', async(req, res) => {
+    // console.log(req.body);
+    try {
+        let response = createMedia(prisma.netflix, req.body)
+            // .then((response) => {
+            //     console.log("sent:", response);
+            //     res.status(200).json(response)
+            //     return;
+            // })
+        console.log("sent:", response);
+        res.status(200).json(response)
+        return;
+    } catch (error) {
+        res.status(500).send(error)
+        console.log("sent error");
+        return;
+    }
+})
 
 module.exports = router;

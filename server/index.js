@@ -40,7 +40,9 @@ const amazon = require('./routes/amazon');
 app.use('/search/disney', disney);
 app.use('/create/disney', disney);
 app.use('/search/netflix', netflix);
+app.use('/create/netflix', netflix);
 app.use('/search/amazon', amazon);
+app.use('/create/amazon', amazon);
 
 
 app.use(cors());
