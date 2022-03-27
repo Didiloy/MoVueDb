@@ -35,14 +35,13 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 const disney = require('./routes/disney');
 const netflix = require('./routes/netflix');
 const amazon = require('./routes/amazon');
+const create = require('./routes/create');
 
 //rediriger les requete de ces urls vers les fichier
 app.use('/search/disney', disney);
-app.use('/create/disney', disney);
 app.use('/search/netflix', netflix);
-app.use('/create/netflix', netflix);
 app.use('/search/amazon', amazon);
-app.use('/create/amazon', amazon);
+app.use('/create', create);
 
 
 app.use(cors());

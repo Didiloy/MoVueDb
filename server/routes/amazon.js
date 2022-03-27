@@ -166,23 +166,5 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', async(req, res) => {
-    // console.log(req.body);
-    try {
-        let response = createMedia(prisma.amazon, req.body)
-            // .then((response) => {
-            //     console.log("sent:", response);
-            //     res.status(200).json(response)
-            //     return;
-            // })
-        console.log("sent:", response);
-        res.status(200).json(response)
-        return;
-    } catch (error) {
-        res.status(500).send(error)
-        console.log("sent error");
-        return;
-    }
-})
 
 module.exports = router;
