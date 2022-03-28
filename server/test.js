@@ -1,7 +1,7 @@
 const axios = require('axios');
 const test = async() => {
     await axios.post('http://localhost:4000/create/disney', {
-        id: "s001",
+        id: "s000",
         type: "Movie",
         title: "mon film test",
         director: "dylan",
@@ -24,4 +24,14 @@ const test2 = async() => {
         })
 }
 
-test2()
+const test3 = async() => {
+    await axios.put('http://localhost:4000/update/disney', {
+        id: "s000",
+        title: "mon film test updated",
+        categories: "Horror",
+    }).then((result) => {
+        console.log(result.data);
+    })
+}
+
+test3()
