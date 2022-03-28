@@ -36,12 +36,14 @@ const disney = require('./routes/disney');
 const netflix = require('./routes/netflix');
 const amazon = require('./routes/amazon');
 const create = require('./routes/create');
+const del = require('./routes/delete');
 
 //rediriger les requete de ces urls vers les fichier
 app.use('/search/disney', disney);
 app.use('/search/netflix', netflix);
 app.use('/search/amazon', amazon);
 app.use('/create', create);
+app.use('/delete/', del);
 
 
 app.use(cors());

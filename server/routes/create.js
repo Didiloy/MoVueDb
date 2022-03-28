@@ -16,14 +16,14 @@ router.use(express.json());
  *          parameters:
  *              - in: body
  *                name: media 
- *                description: the media to add
+ *                description: the media to add, note that the id should not be null or an error will be throw
  *                schema:
  *                    type: object
  *                    required:
  *                        - id
  *                    properties:
  *                      id: 
- *                          type: string
+ *                          type: string 
  *                      type: 
  *                          type: string
  *                      title: 

@@ -1,7 +1,7 @@
 const axios = require('axios');
 const test = async() => {
     await axios.post('http://localhost:4000/create/disney', {
-        id: "s000",
+        id: "s001",
         type: "Movie",
         title: "mon film test",
         director: "dylan",
@@ -17,4 +17,11 @@ const test = async() => {
     })
 }
 
-test()
+const test2 = async() => {
+    await axios.delete('http://localhost:4000/delete/disney/s000')
+        .then((result) => {
+            console.log(result.data);
+        })
+}
+
+test2()
