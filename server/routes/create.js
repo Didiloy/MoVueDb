@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const PrismaClient = require('@prisma/client')
 const prisma = new PrismaClient.PrismaClient();
-const { lookTableByField, lookTableFieldContains, lookTableTwoFields, createMedia } = require('../fonction.js')
+const { createMedia } = require('../fonction.js')
 
 router.use(express.json());
 
@@ -67,14 +67,7 @@ router.post('/:table', async(req, res) => {
             break;
     }
     try {
-        let response = createMedia(table, req.body)
-            // .then((response) => {
-            //     console.log("sent:", response);
-            //     res.status(200).json(response)
-            //     return;
-            // })
-        console.log("sent:", response);
-        res.status(200).json(response)
+        res.status(200).send(await createMedia(table, req.body))
         return;
     } catch (error) {
         res.status(500).send(error)

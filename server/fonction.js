@@ -83,7 +83,7 @@ async function lookTableTwoFields(table, field1, field2) {
 
 async function createMedia(table, media) {
     try {
-        await table.create({
+        return await table.create({
                 data: {
                     id: media.id,
                     type: media.type || " ",
@@ -102,14 +102,14 @@ async function createMedia(table, media) {
             //     console.log("response fn: ", response);
             //     return response
             // })
-        await table.findMany({
-            where: {
-                id: media.id
-            }
-        }).then(results => {
-            console.log("response fn: ", results[0]);
-            return results[0]
-        });
+            // await table.findMany({
+            //     where: {
+            //         id: media.id
+            //     }
+            // }).then(results => {
+            //     console.log("response fn: ", results[0]);
+            //     return results[0]
+            // });
 
     } catch (error) {
         return error
