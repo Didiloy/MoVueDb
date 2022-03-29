@@ -147,14 +147,14 @@ router.get('/', async (req, res) => {
     }
     if (req.query.year) {
         try {
-            await lookTableByField(prisma.amazon, "year", req.query.year).then((answer) => {
+            await lookTableByField(prisma.amazon, "release_year", req.query.year).then((answer) => {
                 console.log("answer: " + answer);
                 response.amazon = answer
             })
-            await lookTableByField(prisma.netflix, "year", req.query.year).then((answer) => {
+            await lookTableByField(prisma.netflix, "release_year", req.query.year).then((answer) => {
                 response.netflix = answer
             })
-            await lookTableByField(prisma.disney, "year", req.query.year).then((answer) => {
+            await lookTableByField(prisma.disney, "release_year", req.query.year).then((answer) => {
                 response.disney = answer
             })
             console.log(response);
@@ -189,13 +189,13 @@ router.get('/', async (req, res) => {
                 console.log("answer: " + answer);
                 response.amazon = answer
             })
-            await lookTableFieldContains(prisma.netflix, "listed_in", req.categoriey.categorie).then((answer) => {
+            await lookTableFieldContains(prisma.netflix, "listed_in", req.query.categorie).then((answer) => {
                 response.netflix = answer
             })
             await lookTableFieldContains(prisma.disney, "listed_in", req.query.categorie).then((answer) => {
                 response.disney = answer
             })
-            console.log(response);
+            // console.log(response);
             res.status(200).send(response);
         } catch (error) {
             res.status(500).send(error)
@@ -208,10 +208,10 @@ router.get('/', async (req, res) => {
                 console.log("answer: " + answer);
                 response.amazon = answer
             })
-            await lookTableFieldContains(prisma.netflix, "cast", req.categoriey.cast).then((answer) => {
+            await lookTableFieldContains(prisma.netflix, "cast", req.query.cast).then((answer) => {
                 response.netflix = answer
             })
-            await lookTableFieldContains(prisma.disney, "cast", req.query.cast).cast((answer) => {
+            await lookTableFieldContains(prisma.disney, "cast", req.query.cast).then((answer) => {
                 response.disney = answer
             })
             console.log(response);
