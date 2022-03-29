@@ -83,7 +83,8 @@ async function lookTableTwoFields(table, field1, field2) {
 
 async function createMedia(table, media) {
     try {
-        return await table.create({
+        if (media.id.length > 0) {
+            return await table.create({
                 data: {
                     id: media.id,
                     type: media.type || " ",
@@ -98,14 +99,86 @@ async function createMedia(table, media) {
                     duration: media.duration || ""
                 }
             })
-            // .then((response) => {
-            //     console.log("response fn: ", response);
-            //     return response
-            // })
+        } else {
+            throw "null Id"
+        }
     } catch (error) {
         return error
     }
 }
 
+async function deleteMedia(table, id) {
+    try {
+        if (id.length > 0) {
+            return await table.delete({
+                where: {
+                    id: id
+                }
+            })
+        } else {
+            throw "null Id"
+        }
+    } catch (error) {
+        if (
+            error instanceof PrismaClient.PrismaClientKnownRequestError &&
+            error.code === "P2025"
+        ) {
+            console.log("Media not found");
+        } else console.error(error);
+        console.log(error);
+        return error
+    }
+}
 
-module.exports = { createMedia, convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField, lookTableFieldContains, lookTableTwoFields }
+async function updateMedia(table, media) {
+    try {
+        if (media.id.length > 0) {
+            if (media.title && media.categories) {
+                return await table.update({
+                    data: {
+                        title: media.title || " ",
+                        listed_in: media.categories || " ",
+                    },
+                    where: {
+                        id: media.id
+                    }
+                })
+            } else if (media.title) {
+                return await table.update({
+                    data: {
+                        title: media.title || " ",
+                    },
+                    where: {
+                        id: media.id
+                    }
+                })
+            } else if (media.categories) {
+                return await table.update({
+                    data: {
+                        listed_in: media.categories || " ",
+                    },
+                    where: {
+                        id: media.id
+                    }
+                })
+            } else {
+                throw "null arguments"
+            }
+
+        } else {
+            throw "null Id"
+        }
+    } catch (error) {
+        if (
+            error instanceof PrismaClient.PrismaClientKnownRequestError &&
+            error.code === "P2025"
+        ) {
+            console.log("Media not found");
+        } else console.error(error);
+        console.log(error);
+        return error
+    }
+}
+
+
+module.exports = { updateMedia, deleteMedia, createMedia, convertCSVToJson, lookDisneyTableId, lookDisneyTableType, lookTableByField, lookTableFieldContains, lookTableTwoFields }

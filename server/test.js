@@ -1,6 +1,10 @@
 const axios = require('axios');
-const test = async() => {
-    await axios.post('http://localhost:4000/create/disney', {
+const instance = axios.create({
+    proxy:false
+  });
+
+const test = async() => {  
+    await instance.post('http://localhost:4000/create/disney', {
         id: "s001",
         type: "Movie",
         title: "mon film test",
@@ -17,4 +21,21 @@ const test = async() => {
     })
 }
 
-test()
+const test2 = async() => {
+    await instance.delete('http://localhost:4000/delete/disney/s000')
+        .then((result) => {
+            console.log(result.data);
+        })
+}
+
+const test3 = async() => {
+    await instance.put('http://localhost:4000/update/disney', {
+        id: "s000",
+        title: "mon film test updated",
+        categories: "Horror",
+    }).then((result) => {
+        console.log(result.data);
+    })
+}
+
+test2()

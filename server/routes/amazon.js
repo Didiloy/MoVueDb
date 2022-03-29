@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const PrismaClient = require('@prisma/client')
 const prisma = new PrismaClient.PrismaClient();
-const { lookTableByField, lookTableFieldContains, lookTableTwoFields, createMedia } = require('../fonction.js')
+const { lookTableByField, lookTableFieldContains, lookTableTwoFields } = require('../fonction.js')
 
 router.use(express.json());
 
