@@ -184,22 +184,61 @@ router.get('/', async (req, res) => {
         
     }
     if (req.query.categorie) {
-        lookTableFieldContains(prisma.amazon, "listed_in", req.query.categorie).then((response) => {
+        try {
+            await lookTableFieldContains(prisma.amazon, "listed_in", req.query.categorie).then((answer) => {
+                console.log("answer: " + answer);
+                response.amazon = answer
+            })
+            await lookTableFieldContains(prisma.netflix, "listed_in", req.categoriey.categorie).then((answer) => {
+                response.netflix = answer
+            })
+            await lookTableFieldContains(prisma.disney, "listed_in", req.query.categorie).then((answer) => {
+                response.disney = answer
+            })
+            console.log(response);
             res.status(200).send(response);
-            return;
-        })
+        } catch (error) {
+            res.status(500).send(error)
+        }
+        
     }
     if (req.query.cast) {
-        lookTableFieldContains(prisma.amazon, "cast", req.query.cast).then((response) => {
+        try {
+            await lookTableFieldContains(prisma.amazon, "cast", req.query.cast).then((answer) => {
+                console.log("answer: " + answer);
+                response.amazon = answer
+            })
+            await lookTableFieldContains(prisma.netflix, "cast", req.categoriey.cast).then((answer) => {
+                response.netflix = answer
+            })
+            await lookTableFieldContains(prisma.disney, "cast", req.query.cast).cast((answer) => {
+                response.disney = answer
+            })
+            console.log(response);
             res.status(200).send(response);
-            return;
-        })
+        } catch (error) {
+            res.status(500).send(error)
+        }
+        
     }
     if (req.query.categorie && req.query.year || req.query.year && req.query.categorie) {
-        lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((response) => {
+        try {
+            await lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((answer) => {
+                // console.log("answer: " + answer);
+                response.amazon = answer
+            })
+            await lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((answer) => {
+                response.netflix = answer
+            })
+            await lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["release_year", req.query.year]).then((answer) => {
+                response.disney = answer
+            })
+            // console.log(response);
             res.status(200).send(response);
-            return;
-        })
+            return
+        } catch (error) {
+            res.status(500).send(error)
+        }
     }
     if (req.query.categorie && req.query.type || req.query.type && req.query.categorie) {
         lookTableTwoFields(prisma.amazon, ["listed_in", req.query.categorie], ["type", req.query.type]).then((response) => {
