@@ -1,20 +1,19 @@
-# projetFilmsWebClient
+# client
 
-### Client :
+## Project setup
+```
+npm install
+```
 
-    - Style : Materialize
-    - Couleurs: 
-        - Bleu : #1e7898 (ancienne) : 2596BE (nouvelle)
-        - Violet: #561e98 (ancienne) : 7544AE (nouvelle)
-        - Gris: d0d0d0
-    - Framework JS : Vue.js
-    - API : IMDB Api
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
-
-### Server :
-
-    - Express
-    - Peerflix
-    - Fichier CSV utilisés : Amazon Prime, Disney Plus et Netflix
-    - Site utile : Kaggle
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
