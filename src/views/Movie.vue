@@ -142,7 +142,12 @@
                                 <p class="link"><a :href="computedNonTransformedLink"> Regarder sur youtube !!</a></p>
                             </div>
                         </div>
-                        
+                        <div class="row">
+                            <!-- Afficher des liens torrents -->
+                            <div class="col s12 m12 l12">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Si la recherche est de type série -->
@@ -349,10 +354,14 @@ export default {
       M.AutoInit(),
       this.getMovie().then(() => {
           this.getInfos()
-            .then(()=>{
+            .then(async ()=>{
                 this.getLinkTrailer()
                 this.lesFav = this.isFav(this.movieInfos.id) ? "Retirer des favoris!" : "Ajouter aux favoris!"
-                })
+                let torrent_list = await this.getTorrentList(this.movieInfos.title)
+                .then((response) => {return response})
+                .catch((err) => { return err})
+                console.log(torrent_list);
+            })
       });
       
   },
@@ -534,6 +543,23 @@ export default {
                      position: {x: 'right', y: 'top'}
                  });
             }
+        },
+        async getTorrentList(name){
+            let TORRENT_API_BASE_URL = "https://snowfl.com/vNRBwysEifoaeapUUZspqOiMuQtMBCivmtzu"
+            let TORRENT_API_END_URL = "Fitw86se/0/NONE/NONE/1?_=1648912000876"
+            return new Promise((resolve, reject) => {
+                fetch(`${TORRENT_API_BASE_URL}/${name}/${TORRENT_API_END_URL}`, {
+                    method: 'GET',
+                    mode: "no-cors",
+                    headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(function(response) {
+                        resolve(response);
+                    })
+                    .catch((error) => {
+                        reject(error.message)
+                    })
+            })
         }
     },
     watch: { //refresh components a chaque changement de name
